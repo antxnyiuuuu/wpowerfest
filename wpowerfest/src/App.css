@@ -1,42 +1,76 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.fullscreen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('/images/Backing-HD.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: auto;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .fullscreen-image {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-size: cover;
+    background-position: center;
   }
 }
 
-.card {
-  padding: 2em;
+/* Móviles en landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .fullscreen-image {
+    background-size: cover;
+    background-position: center;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .fullscreen-image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Pantallas medianas (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .fullscreen-image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Pantallas grandes (1025px - 1920px) */
+@media (min-width: 1025px) and (max-width: 1920px) {
+  .fullscreen-image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Pantallas muy grandes (más de 1920px) */
+@media (min-width: 1921px) {
+  .fullscreen-image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* Altura muy pequeña */
+@media (max-height: 500px) {
+  .fullscreen-image {
+    background-size: cover;
+    background-position: center;
+  }
 }
