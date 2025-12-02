@@ -1,0 +1,337 @@
+/* Importar fuente Montserrat de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap');
+
+/* ============================================
+   1. CONTENEDOR PRINCIPAL
+   ============================================ */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+/* ============================================
+   FONDO BASE - IMAGEN DESENFOCADA (Z-Index 0)
+   ============================================ */
+.background-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.6));
+}
+
+/* ============================================
+   2. ÁREA IZQUIERDA - LA CHICA (Z-Index 10)
+   ============================================ */
+.girl-layer {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 10;
+  animation: slideInLeft 1s ease-out;
+}
+
+.girl-image {
+  height: 800px;
+  width: auto;
+  object-fit: contain;
+  object-position: center left;
+  animation: float 4s ease-in-out infinite;
+  animation-delay: 1s;
+  filter: drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* ============================================
+   3. ÁREA DERECHA - CONTENEDOR CENTRADO VERTICALMENTE (Z-Index 20)
+   ============================================ */
+.right-wrapper {
+  position: absolute;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 1400px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  animation: slideInRight 1s ease-out;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+.logo-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: right center;
+  margin-bottom: 0;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15)) 
+          drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))
+          drop-shadow(0 2px 4px rgba(197, 85, 192, 0.2));
+}
+
+/* ============================================
+   4. TEXTO - DENTRO DEL CONTENEDOR DERECHO (Z-Index 30)
+   ============================================ */
+.info-text {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  z-index: 30;
+  text-align: center;
+  animation: fadeInUp 1s ease-out 0.8s both;
+  margin-top: 60px;
+  padding: 0;
+  padding-left: 100px;
+  box-sizing: border-box;
+}
+
+.text-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300; /* Fina */
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  color: #C555C0;
+  margin: 0 0 1.5rem 0;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.text-date {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; /* Gruesa */
+  font-size: 2.5rem;
+  color: #C555C0;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+.text-location {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400; /* Regular */
+  font-size: 1.5rem;
+  color: #C555C0;
+  margin: 1.5rem 0 0 0;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================
+   RECTÁNGULO BLANCO CENTRAL (Z-Index 15)
+   ============================================ */
+.center-rectangle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background-color: #ffffff;
+  z-index: 5;
+  opacity: 1;
+  border-radius: 0;
+  backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   5. DECORACIÓN - BARRAS (Z-Index 40)
+   ============================================ */
+.bar-top-layer {
+  position: absolute;
+  top: 5%;
+  right: 0;
+  z-index: 40;
+  animation: slideInRight 1s ease-out 0.6s both;
+}
+
+.bar-bottom-layer {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  z-index: 40;
+  animation: slideInLeft 1s ease-out 0.6s both;
+}
+
+.bar-image {
+  width: auto;
+  height: auto;
+  max-width: none;
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.bar-top-layer .bar-image {
+  transform: scale(1);
+}
+
+/* ============================================
+   ANIMACIONES KEYFRAMES
+   ============================================ */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate(-100px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MÓVIL
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .girl-image {
+    height: 400px;
+    left: 0;
+  }
+
+  .right-wrapper {
+    width: 90vw;
+    max-width: 600px;
+    padding-right: 1rem;
+    align-items: center;
+  }
+
+  .logo-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .info-text {
+    width: 100%;
+    text-align: center;
+    margin-top: -30px;
+    padding: 0;
+  }
+
+  .text-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .text-date {
+    font-size: 1.8rem;
+  }
+
+  .text-location {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  .bar-top-layer {
+    top: 10%;
+  }
+
+  .bar-bottom-layer {
+    bottom: 10%;
+  }
+}
+
+/* ============================================
+   TABLETS
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .girl-image {
+    height: 700px;
+  }
+
+  .right-wrapper {
+    width: 1200px;
+    top: 45%;
+  }
+
+  .text-date {
+    font-size: 2.2rem;
+  }
+
+  .text-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .text-location {
+    font-size: 1.3rem;
+  }
+}
+
+/* ============================================
+   PANTALLAS GRANDES
+   ============================================ */
+@media (min-width: 1920px) {
+  .girl-image {
+    height: 800px;
+  }
+
+  .right-wrapper {
+    width: 1400px;
+    top: 45%;
+  }
+
+  .text-date {
+    font-size: 3rem;
+  }
+
+  .text-subtitle {
+    font-size: 1.4rem;
+  }
+
+  .text-location {
+    font-size: 1.8rem;
+  }
+}
+

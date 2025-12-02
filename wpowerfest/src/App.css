@@ -23,7 +23,7 @@
     height: 100dvh;
     background-size: cover;
     background-position: center;
-  }
+}
 }
 
 /* Móviles en landscape */
@@ -63,7 +63,7 @@
   .fullscreen-image {
     background-size: cover;
     background-position: center;
-  }
+}
 }
 
 /* Altura muy pequeña */
