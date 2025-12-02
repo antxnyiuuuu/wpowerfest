@@ -1,75 +1,123 @@
-.fullscreen-image {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Estilos adicionales para la landing page */
+/* Los estilos principales están en Tailwind */
+
+/* Ajustes para Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  background: rgba(0, 0, 0, 0.3);
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+}
+
+.swiper-pagination {
+  background: rgba(0, 0, 0, 0.5) !important;
+  padding: 10px 20px !important;
+  border-radius: 30px !important;
+  backdrop-filter: blur(10px);
+  bottom: 30px !important;
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5 !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 6px !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: white !important;
+  transform: scale(1.2);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ajustes para imágenes */
+img {
+  display: block;
+  max-width: 100%;
   width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #000;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: auto;
+  height: auto;
 }
 
-/* Móviles pequeños (hasta 480px) */
-@media (max-width: 480px) {
-  .fullscreen-image {
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    background-size: cover;
-    background-position: center;
+/* Prevenir scroll horizontal en todas las secciones */
+section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Mejoras para móvil */
+@media (max-width: 768px) {
+  /* Ocultar navegación en móvil */
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+  
+  .swiper-pagination {
+    padding: 8px 16px !important;
+    bottom: 20px !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 4px !important;
+    background: white !important;
+    opacity: 0.6 !important;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+    background: #AB00A4 !important;
+    transform: scale(1.3);
+  }
+  
+  /* Reducir espacios en el header en móvil */
+  header {
+    min-height: auto !important;
+  }
+  
+  /* Reducir espacios en secciones en móvil */
+  section {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Mejorar carrusel en móvil */
+  .swiper-slide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .swiper-slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 }
 
-/* Móviles en landscape */
-@media (max-width: 768px) and (orientation: landscape) {
-  .fullscreen-image {
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-/* Tablets (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .fullscreen-image {
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-/* Pantallas medianas (769px - 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .fullscreen-image {
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-/* Pantallas grandes (1025px - 1920px) */
-@media (min-width: 1025px) and (max-width: 1920px) {
-  .fullscreen-image {
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-/* Pantallas muy grandes (más de 1920px) */
-@media (min-width: 1921px) {
-  .fullscreen-image {
-    background-size: cover;
-    background-position: center;
-  }
-}
-
-/* Altura muy pequeña */
-@media (max-height: 500px) {
-  .fullscreen-image {
-    background-size: cover;
-    background-position: center;
-  }
+/* Touch optimizations */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
