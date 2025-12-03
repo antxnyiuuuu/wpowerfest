@@ -10,6 +10,7 @@ import Stand from './pages/Stand'
 import WS from './pages/WS'
 import PageTransition from './components/PageTransition'
 import WhatsAppButton from './components/WhatsAppButton'
+import CountdownTimer from './components/CountdownTimer'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/ws" element={<PageTransition><WS /></PageTransition>} />
       </Routes>
       <WhatsAppButton />
+      <CountdownTimer />
     </BrowserRouter>
   )
 }

@@ -4,27 +4,26 @@ function Navigation() {
   const location = useLocation()
 
   const categories = [
-    { name: 'Info', path: '/info' },
-    { name: 'Mapa', path: '/mapa' },
+    { name: 'Sobre el Evento', path: '/info' },
+    { name: 'Salon Warmi Challenge', path: '/mapa' },
     { name: 'Auspiciante', path: '/auspiciante' },
-    { name: 'Pasaporte', path: '/pasaporte' },
-    { name: 'Premios', path: '/premios' },
     { name: 'Stand', path: '/stand' },
   ]
 
   return (
-    <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#7FBFA9]/30" style={{ marginBottom: '40px' }}>
-      <div className="container mx-auto px-4" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+    <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#7FBFA9]/30">
+      <div className="w-full max-w-full mx-auto" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
         {/* Logo centrado */}
         <div 
-          className="flex justify-center"
+          className="flex justify-center items-center"
           style={{ 
             paddingTop: '5px',
             paddingBottom: '1px',
-            marginBottom: '3px'
+            marginBottom: '3px',
+            width: '100%'
           }}
         >
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center justify-center">
             <img 
               src="/images/logo-header.jpeg" 
               alt="Logo Header" 
@@ -35,10 +34,13 @@ function Navigation() {
 
         {/* Categorías como texto subrayado */}
         <div 
-          className="flex items-center justify-center gap-4 md:gap-10 lg:gap-12 xl:gap-14 overflow-x-auto mx-auto"
+          className="flex items-center justify-center gap-4 md:gap-10 lg:gap-12 xl:gap-14 overflow-x-auto"
           style={{ 
             paddingTop: '15px',
-            paddingBottom: '10px'
+            paddingBottom: '10px',
+            width: '100%',
+            marginLeft: 'auto',
+            marginRight: 'auto'
           }}
         >
           {/* Icono de casa */}
