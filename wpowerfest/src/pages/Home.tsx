@@ -1,42 +1,57 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 
 function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0)
   const [hoveredLogo, setHoveredLogo] = useState<string | null>(null)
   const navigate = useNavigate()
-
-  // Carrusel - imágenes
-  const carouselImages = useMemo(() => [
-    '/images/inicio.jpg',
-    '/images/map.jpg',
-    '/images/map2.jpg',
-    '/images/stands.jpg',
-    '/images/stands2.jpg',
-    '/images/passport.jpg',
-  ], [])
+  
+  // Contador regresivo
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    // Auto-play del carrusel
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
-    }, 5000) // Cambia cada 5 segundos
+    const targetDate = new Date('2026-03-06T00:00:00').getTime()
+    const startDate = new Date('2025-01-01T00:00:00').getTime() // Fecha de inicio para calcular progreso
+    const totalDuration = targetDate - startDate
+
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const difference = targetDate - now
+      const elapsed = now - startDate
+
+      // Calcular porcentaje de progreso
+      const progressPercent = Math.min(Math.max((elapsed / totalDuration) * 100, 0), 100)
+      setProgress(progressPercent)
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        })
+      } else {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0
+        })
+        setProgress(100)
+      }
+    }
+
+    updateCountdown()
+    const interval = setInterval(updateCountdown, 1000)
 
     return () => clearInterval(interval)
-  }, [carouselImages.length])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)
-  }
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
+  }, [])
 
   // Función para manejar clicks en los logos
   const handleLogoClick = (logoName: string) => {
@@ -75,84 +90,27 @@ function Home() {
     <div className="relative w-full h-full">
       <Navigation />
 
-      {/* Carrusel */}
-      <div className="w-full z-45 relative">
-        <div className="relative overflow-hidden h-[200px] md:h-[500px] lg:h-[calc(100vh-200px)] md:min-h-[600px]">
-          {/* Imágenes del carrusel */}
-          {carouselImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-all duration-500 ease-in-out flex items-center justify-center ${
-                index === currentSlide ? 'opacity-100 translate-x-0' : 
-                index < currentSlide ? 'opacity-0 -translate-x-full' : 
-                'opacity-0 translate-x-full'
-              }`}
-            >
-              <img
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className="w-full h-full object-contain carousel-image"
-              />
-            </div>
-          ))}
-
-          {/* Botones de navegación */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-3 md:p-6 shadow-lg transition-all duration-300 hover:scale-110 z-10"
-            aria-label="Anterior"
-          >
-            <svg className="w-6 h-6 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-3 md:p-6 shadow-lg transition-all duration-300 hover:scale-110 z-10"
-            aria-label="Siguiente"
-          >
-            <svg className="w-6 h-6 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Indicadores */}
-          <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-            {carouselImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full carousel-indicator ${index === currentSlide ? 'active' : ''}`}
-                style={{
-                  backgroundColor: index === currentSlide ? '#913889' : 'rgba(145, 56, 137, 0.5)',
-                  boxShadow: index === currentSlide ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none'
-                }}
-                onMouseEnter={(e) => {
-                  if (index !== currentSlide) {
-                    e.currentTarget.style.backgroundColor = 'rgba(145, 56, 137, 0.7)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (index !== currentSlide) {
-                    e.currentTarget.style.backgroundColor = 'rgba(145, 56, 137, 0.5)'
-                  }
-                }}
-                aria-label={`Ir a slide ${index + 1}`}
-              />
-            ))}
-          </div>
+      {/* Imagen principal */}
+      <div className="w-full z-45 relative" style={{ marginTop: '10px', marginBottom: '10px' }}>
+        <div className="relative overflow-hidden h-[200px] md:h-[500px] lg:h-[calc(100vh-200px)] md:min-h-[600px] flex items-center justify-center">
+          <img
+            src="/images/inicio.png"
+            alt="Warmi Power Fest"
+            className="w-full h-full object-cover"
+            style={{ width: '100%', objectFit: 'cover' }}
+          />
         </div>
       </div>
 
       {/* Sección de presentación */}
-      <div className="w-full bg-gradient-to-br from-[#7FBFA9]/10 via-white to-[#913889]/10" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+      <div className="w-full bg-gradient-to-br from-[#7FBFA9]/10 via-white to-[#913889]/10" style={{ paddingTop: '60px', paddingBottom: '60px', marginTop: '10px', marginBottom: '10px' }}>
         <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%' }}>
             <h1 
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#913889] leading-tight"
               style={{ 
                 letterSpacing: '3px',
+                marginTop: '10px',
                 marginBottom: '40px',
                 width: '100%',
                 maxWidth: '900px',
@@ -166,6 +124,7 @@ function Home() {
               className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed"
               style={{ 
                 letterSpacing: '1px',
+                marginTop: '10px',
                 marginBottom: '50px',
                 width: '100%',
                 maxWidth: '800px',
@@ -177,32 +136,115 @@ function Home() {
               Un espacio donde mujeres de todas las edades podrán entrenar, aprender, disfrutar y conectar con marcas y experiencias creadas especialmente para ellas.
             </p>
             
-            {/* Información del evento */}
+            {/* Contador regresivo */}
             <div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+              className="w-full mt-8 md:mt-12"
               style={{ 
-                width: '100%',
-                maxWidth: '1000px',
+                maxWidth: '1200px',
                 marginTop: '30px',
-                justifyContent: 'center'
+                marginBottom: '10px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                paddingLeft: '20px',
+                paddingRight: '20px'
               }}
             >
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-[#7FBFA9]/30 text-center" style={{ width: '100%' }}>
-                <div className="text-3xl mb-3">📅</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Fechas</h3>
-                <p className="text-gray-600 text-sm md:text-base">6, 7 y 8 de marzo<br />2026</p>
+              <div className="bg-white rounded-xl p-6 md:p-8 shadow-xl transition-all duration-300 border border-[#7FBFA9]/30 text-center" style={{ boxShadow: '0 20px 40px rgba(145, 56, 137, 0.2)', marginTop: '10px', marginBottom: '10px' }}>
+                <h3 className="text-xl md:text-2xl font-bold text-[#913889]" style={{ marginTop: '10px', marginBottom: '10px' }}>Faltan</h3>
+                <div className="flex items-center justify-center gap-2 md:gap-4" style={{ marginTop: '10px', marginBottom: '10px' }}>
+                  <div className="flex flex-col items-center">
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '3px', textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>
+                      {String(timeLeft.days).padStart(3, '0')}
+                    </div>
+                    <span className="text-sm md:text-base text-gray-600 font-semibold" style={{ marginTop: '10px', marginBottom: '10px' }}>DAYS</span>
+                  </div>
+                  <span className="text-3xl md:text-4xl font-mono font-bold text-[#913889]" style={{ textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>:</span>
+                  <div className="flex flex-col items-center">
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '3px', textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>
+                      {String(timeLeft.hours).padStart(2, '0')}
+                    </div>
+                    <span className="text-sm md:text-base text-gray-600 font-semibold" style={{ marginTop: '10px', marginBottom: '10px' }}>HOURS</span>
+                  </div>
+                  <span className="text-3xl md:text-4xl font-mono font-bold text-[#913889]" style={{ textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>:</span>
+                  <div className="flex flex-col items-center">
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '3px', textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>
+                      {String(timeLeft.minutes).padStart(2, '0')}
+                    </div>
+                    <span className="text-sm md:text-base text-gray-600 font-semibold" style={{ marginTop: '10px', marginBottom: '10px' }}>MINUTES</span>
+                  </div>
+                  <span className="text-3xl md:text-4xl font-mono font-bold text-[#913889]" style={{ textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>:</span>
+                  <div className="flex flex-col items-center">
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '3px', textShadow: '2px 2px 8px rgba(145, 56, 137, 0.3)', marginTop: '10px', marginBottom: '10px' }}>
+                      {String(timeLeft.seconds).padStart(2, '0')}
+                    </div>
+                    <span className="text-sm md:text-base text-gray-600 font-semibold" style={{ marginTop: '10px', marginBottom: '10px' }}>SECONDS</span>
+                  </div>
+                </div>
+                
+                {/* Barra de progreso */}
+                <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                  <div className="w-full bg-gray-200 rounded-full h-4 md:h-5 overflow-hidden" style={{ boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+                    <div 
+                      className="h-full rounded-full transition-all duration-1000 ease-out"
+                      style={{ 
+                        width: `${progress}%`,
+                        background: 'linear-gradient(90deg, #913889 0%, #7FBFA9 100%)',
+                        boxShadow: '0 2px 8px rgba(145, 56, 137, 0.4)'
+                      }}
+                    ></div>
+                  </div>
+                </div>
+                
+                <p className="text-gray-500 text-xs md:text-sm" style={{ marginTop: '10px', marginBottom: '10px' }}>6 de marzo 2026</p>
               </div>
-              
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-[#7FBFA9]/30 text-center" style={{ width: '100%' }}>
-                <div className="text-3xl mb-3">📍</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Ubicación</h3>
-                <p className="text-gray-600 text-sm md:text-base">Centro de Exposiciones<br />Quito</p>
-              </div>
-              
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-[#7FBFA9]/30 text-center" style={{ width: '100%' }}>
-                <div className="text-3xl mb-3">👥</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Participantes</h3>
-                <p className="text-gray-600 text-sm md:text-base">+10,000 mujeres<br />reunidas</p>
+            </div>
+
+            {/* Mapa de ubicación */}
+            <div 
+              className="w-full mt-8 md:mt-12"
+              style={{ 
+                maxWidth: '1200px',
+                marginTop: '30px',
+                marginBottom: '10px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                paddingLeft: '20px',
+                paddingRight: '20px'
+              }}
+            >
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-[#7FBFA9]/30" style={{ boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)', marginTop: '10px', marginBottom: '10px' }}>
+                <div className="p-5 md:p-6 bg-white">
+                  <h3 className="text-xl md:text-2xl font-bold text-[#913889] text-center flex items-center justify-center gap-3" style={{ marginTop: '10px', marginBottom: '10px' }}>
+                    <span className="text-2xl md:text-3xl" style={{ marginTop: '10px', marginBottom: '10px' }}>📍</span>
+                    <span style={{ marginTop: '10px', marginBottom: '10px' }}>Ubicación del Evento</span>
+                  </h3>
+                </div>
+                <div className="relative w-full overflow-hidden bg-gray-100" style={{ height: '400px', minHeight: '350px' }}>
+                  <iframe
+                    src="https://www.google.com/maps?q=Centro+de+Exposiciones+Quito&output=embed&hl=es"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ubicación del Warmi Power Fest - Centro de Exposiciones, Quito"
+                    className="w-full h-full"
+                  ></iframe>
+                  <div className="absolute bottom-4 right-4 z-10">
+                    <a 
+                      href="https://maps.app.goo.gl/QoXDHQgyjr8zyaGk6" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 px-4 py-2 md:px-6 md:py-3 rounded-lg shadow-xl border border-gray-200 transition-all duration-300 hover:scale-105 font-medium text-sm md:text-base flex items-center gap-2"
+                    >
+                      <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                      </svg>
+                      Abrir en Google Maps
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -210,7 +252,7 @@ function Home() {
       </div>
 
       {/* Logos en fila */}
-      <div className="w-full z-40 relative bg-white/90 backdrop-blur-sm py-4 md:py-6">
+      <div className="w-full z-40 relative bg-white/90 backdrop-blur-sm py-4 md:py-6" style={{ marginTop: '10px', marginBottom: '10px' }}>
         <div className="container mx-auto px-4 flex flex-wrap items-center justify-center gap-8 md:gap-10 lg:gap-12">
           {logos.map((logo) => (
             <div 
@@ -259,7 +301,7 @@ function Home() {
                 </div>
               )}
               
-              <span className="text-xs md:text-sm lg:text-base font-light text-[#913889] text-center">
+              <span className="text-xs md:text-sm lg:text-base font-light text-[#913889] text-center" style={{ marginTop: '10px', marginBottom: '10px' }}>
                 {logo.label}
               </span>
             </div>
@@ -268,13 +310,14 @@ function Home() {
       </div>
 
       {/* Sección de Ejes */}
-      <div className="w-full bg-white" style={{ paddingTop: '60px', paddingBottom: '60px' }}>
+      <div className="w-full bg-white" style={{ paddingTop: '60px', paddingBottom: '60px', marginTop: '10px', marginBottom: '10px' }}>
         <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
             <h2 
               className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#913889] text-center"
               style={{ 
                 letterSpacing: '3px',
+                marginTop: '10px',
                 marginBottom: '50px',
                 width: '100%',
                 maxWidth: '900px',
@@ -289,31 +332,33 @@ function Home() {
               style={{ 
                 width: '100%',
                 maxWidth: '1000px',
+                marginTop: '10px',
+                marginBottom: '10px',
                 justifyContent: 'center'
               }}
             >
-              <div className="text-center p-6 rounded-lg hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300">
-                <div className="text-4xl mb-4">💪</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Fitness</h3>
-                <p className="text-gray-600 text-sm">Entrenamiento y actividad física</p>
+              <div className="text-center p-6 rounded-lg bg-white hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300 shadow-lg hover:shadow-xl" style={{ marginTop: '10px', marginBottom: '10px', boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}>
+                <div className="text-4xl" style={{ marginTop: '10px', marginBottom: '10px' }}>💪</div>
+                <h3 className="text-lg md:text-xl font-semibold text-[#913889]" style={{ marginTop: '10px', marginBottom: '10px' }}>Fitness</h3>
+                <p className="text-gray-600 text-sm" style={{ marginTop: '10px', marginBottom: '10px' }}>Entrenamiento y actividad física</p>
               </div>
               
-              <div className="text-center p-6 rounded-lg hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300">
-                <div className="text-4xl mb-4">🧘</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Wellness</h3>
-                <p className="text-gray-600 text-sm">Bienestar y relajación</p>
+              <div className="text-center p-6 rounded-lg bg-white hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300 shadow-lg hover:shadow-xl" style={{ marginTop: '10px', marginBottom: '10px', boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}>
+                <div className="text-4xl" style={{ marginTop: '10px', marginBottom: '10px' }}>🧘</div>
+                <h3 className="text-lg md:text-xl font-semibold text-[#913889]" style={{ marginTop: '10px', marginBottom: '10px' }}>Wellness</h3>
+                <p className="text-gray-600 text-sm" style={{ marginTop: '10px', marginBottom: '10px' }}>Bienestar y relajación</p>
               </div>
               
-              <div className="text-center p-6 rounded-lg hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300">
-                <div className="text-4xl mb-4">👗</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Moda</h3>
-                <p className="text-gray-600 text-sm">Estilo y tendencias</p>
+              <div className="text-center p-6 rounded-lg bg-white hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300 shadow-lg hover:shadow-xl" style={{ marginTop: '10px', marginBottom: '10px', boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}>
+                <div className="text-4xl" style={{ marginTop: '10px', marginBottom: '10px' }}>👗</div>
+                <h3 className="text-lg md:text-xl font-semibold text-[#913889]" style={{ marginTop: '10px', marginBottom: '10px' }}>Moda</h3>
+                <p className="text-gray-600 text-sm" style={{ marginTop: '10px', marginBottom: '10px' }}>Estilo y tendencias</p>
               </div>
               
-              <div className="text-center p-6 rounded-lg hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300">
-                <div className="text-4xl mb-4">❤️</div>
-                <h3 className="text-lg md:text-xl font-semibold text-[#913889] mb-2">Salud</h3>
-                <p className="text-gray-600 text-sm">Nutrición y cuidados</p>
+              <div className="text-center p-6 rounded-lg bg-white hover:bg-gradient-to-br hover:from-[#7FBFA9]/10 hover:to-[#913889]/10 transition-all duration-300 shadow-lg hover:shadow-xl" style={{ marginTop: '10px', marginBottom: '10px', boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}>
+                <div className="text-4xl" style={{ marginTop: '10px', marginBottom: '10px' }}>❤️</div>
+                <h3 className="text-lg md:text-xl font-semibold text-[#913889]" style={{ marginTop: '10px', marginBottom: '10px' }}>Salud</h3>
+                <p className="text-gray-600 text-sm" style={{ marginTop: '10px', marginBottom: '10px' }}>Nutrición y cuidados</p>
               </div>
             </div>
           </div>
@@ -321,7 +366,7 @@ function Home() {
       </div>
 
       {/* Footer simple */}
-      <footer className="w-full bg-gradient-to-r from-[#7FBFA9] to-[#913889] text-white py-8 md:py-10">
+      <footer className="w-full bg-gradient-to-r from-[#7FBFA9] to-[#913889] text-white py-8 md:py-10" style={{ marginTop: '10px' }}>
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm md:text-base mb-4">
             © {new Date().getFullYear()} Warmi Power Fest. Todos los derechos reservados.

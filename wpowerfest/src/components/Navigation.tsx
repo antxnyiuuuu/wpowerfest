@@ -5,7 +5,7 @@ function Navigation() {
 
   const categories = [
     { name: 'Info', path: '/info' },
-    { name: 'Salon Warmi Challenge', path: '/mapa' },
+    { name: 'Mapa', path: '/mapa' },
     { name: 'Auspiciante', path: '/auspiciante' },
     { name: 'Pasaporte', path: '/pasaporte' },
     { name: 'Premios', path: '/premios' },
@@ -41,6 +41,35 @@ function Navigation() {
             paddingBottom: '10px'
           }}
         >
+          {/* Icono de casa */}
+          <Link
+            to="/"
+            className="relative transition-all duration-300"
+          >
+            <span 
+              className={`text-xs md:text-lg lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
+                location.pathname === '/' 
+                  ? 'text-[#913889]' 
+                  : 'text-gray-500 hover:text-[#7FBFA9]'
+              }`}
+              style={{
+                textDecoration: location.pathname === '/' ? 'underline' : 'none',
+                textDecorationThickness: '2px',
+                textDecorationColor: location.pathname === '/' ? '#913889' : 'transparent',
+                textUnderlineOffset: '8px'
+              }}
+            >
+              <svg 
+                className="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 inline-block" 
+                fill="currentColor" 
+                viewBox="0 0 20 20"
+                style={{ verticalAlign: 'middle' }}
+              >
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+            </span>
+          </Link>
+
           {categories.map((category) => {
             const isActive = location.pathname === category.path
             return (
