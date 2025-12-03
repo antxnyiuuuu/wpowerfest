@@ -9,6 +9,7 @@ import Premios from './pages/Premios'
 import Stand from './pages/Stand'
 import WS from './pages/WS'
 import PageTransition from './components/PageTransition'
+import WhatsAppButton from './components/WhatsAppButton'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/stand" element={<PageTransition><Stand /></PageTransition>} />
         <Route path="/ws" element={<PageTransition><WS /></PageTransition>} />
       </Routes>
+      <WhatsAppButton />
     </BrowserRouter>
   )
 }

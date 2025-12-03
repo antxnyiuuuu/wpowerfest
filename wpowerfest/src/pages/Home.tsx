@@ -3,37 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 
 function Home() {
-  const [isMobile, setIsMobile] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [hoveredLogo, setHoveredLogo] = useState<string | null>(null)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    // Detectar si es móvil por tamaño de pantalla (hasta 768px)
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-
-    // Verificar al cargar
-    checkMobile()
-
-    // Escuchar cambios de tamaño
-    window.addEventListener('resize', checkMobile)
-
-    return () => {
-      window.removeEventListener('resize', checkMobile)
-    }
-  }, [])
-
   // Carrusel - imágenes
   const carouselImages = useMemo(() => [
-    isMobile ? '/images/Backing-HD-android.png' : '/images/Backing-HD.jpg',
+    '/images/inicio.jpg',
     '/images/map.jpg',
     '/images/map2.jpg',
     '/images/stands.jpg',
     '/images/stands2.jpg',
     '/images/passport.jpg',
-  ], [isMobile])
+  ], [])
 
   useEffect(() => {
     // Auto-play del carrusel
@@ -95,7 +77,7 @@ function Home() {
 
       {/* Carrusel */}
       <div className="w-full z-45 relative">
-        <div className="relative overflow-hidden" style={{ height: 'calc(100vh - 200px)', minHeight: '600px' }}>
+        <div className="relative overflow-hidden h-[200px] md:h-[500px] lg:h-[calc(100vh-200px)] md:min-h-[600px]">
           {/* Imágenes del carrusel */}
           {carouselImages.map((image, index) => (
             <div
@@ -109,7 +91,7 @@ function Home() {
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain carousel-image"
               />
             </div>
           ))}
@@ -117,35 +99,33 @@ function Home() {
           {/* Botones de navegación */}
           <button
             onClick={prevSlide}
-            className="absolute left-8 md:left-12 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-5 md:p-6 shadow-lg transition-all duration-300 hover:scale-110 z-10"
+            className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-3 md:p-6 shadow-lg transition-all duration-300 hover:scale-110 z-10"
             aria-label="Anterior"
           >
-            <svg className="w-10 h-10 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-8 md:right-12 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-5 md:p-6 shadow-lg transition-all duration-300 hover:scale-110 z-10"
+            className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-3 md:p-6 shadow-lg transition-all duration-300 hover:scale-110 z-10"
             aria-label="Siguiente"
           >
-            <svg className="w-10 h-10 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
           {/* Indicadores */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {carouselImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className="transition-all duration-300 rounded-full"
+                className={`transition-all duration-300 rounded-full carousel-indicator ${index === currentSlide ? 'active' : ''}`}
                 style={{
                   backgroundColor: index === currentSlide ? '#913889' : 'rgba(145, 56, 137, 0.5)',
-                  width: index === currentSlide ? '32px' : '12px',
-                  height: '12px',
                   boxShadow: index === currentSlide ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none'
                 }}
                 onMouseEnter={(e) => {
