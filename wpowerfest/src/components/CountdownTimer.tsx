@@ -55,7 +55,7 @@ function CountdownTimer() {
 
   return (
     <div 
-      className="fixed bottom-4 left-4 z-50 bg-white rounded-lg shadow-lg border border-gray-200 text-center"
+      className="fixed bottom-4 left-4 md:bottom-2 md:left-auto md:right-6 z-50 bg-white rounded-lg shadow-lg border border-gray-200 text-center hidden md:block"
       style={{ 
         minWidth: '160px',
         maxWidth: '220px',

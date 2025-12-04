@@ -1,20 +1,12 @@
-import { useLocation } from 'react-router-dom'
-
-function WhatsAppButton() {
-  const location = useLocation()
+function WhatsAppButtonHome() {
   const whatsappLink = 'https://wa.me/message/6VRABHAF55GXA1'
-
-  // No mostrar en la página de inicio
-  if (location.pathname === '/') {
-    return null
-  }
 
   return (
     <a
       href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 md:bottom-[calc(0.5rem+180px+0.5rem)] right-6 z-50 group"
+      className="fixed bottom-6 right-6 z-50 group"
       aria-label="Contactar por WhatsApp"
     >
       <div className="relative w-16 h-16 md:w-20 md:h-20">
@@ -39,5 +31,5 @@ function WhatsAppButton() {
   )
 }
 
-export default WhatsAppButton
+export default WhatsAppButtonHome
 

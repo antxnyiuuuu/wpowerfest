@@ -1,74 +1,72 @@
-import { useState, useEffect } from 'react'
 import Navigation from '../components/Navigation'
 
 function Info() {
-  const infoImages = [
-    '/images/info1.jpg',
-    '/images/info2.jpg',
-    '/images/info3.jpg',
-    '/images/impacto.jpg',
-  ]
-
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % infoImages.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [infoImages.length])
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % infoImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + infoImages.length) % infoImages.length)
-  }
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
 
-      {/* Carrusel de imágenes */}
-      <div className="relative overflow-hidden" style={{ height: 'calc(100vh - 150px)', minHeight: '600px' }}>
-        {infoImages.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-700 ease-in-out flex items-center justify-center ${
-              index === currentSlide ? 'opacity-100 translate-x-0 scale-100' : 
-              index < currentSlide ? 'opacity-0 -translate-x-full scale-95' : 
-              'opacity-0 translate-x-full scale-95'
-            }`}
-          >
-            <img
-              src={image}
-              alt={`Info ${index + 1}`}
-              className="w-full h-full object-contain"
-            />
+      {/* Sección principal - Centrado */}
+      <div className="w-full flex items-center justify-center min-h-[calc(100vh-200px)]">
+        {/* Card con bordes redondeados */}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 max-w-6xl w-full mx-4 md:mx-6 my-8 md:my-12">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            
+            {/* Primera mitad - Imagen */}
+            <div className="flex items-center justify-center p-6 md:p-8">
+              <img
+                src="/images/Chica Runner.jpg"
+                alt="Warmi Runner"
+                className="w-full max-w-md h-auto object-contain rounded-lg"
+              />
+            </div>
+
+            {/* Segunda mitad - Logo y texto */}
+            <div className="flex flex-col items-center justify-center space-y-5 md:space-y-6 text-center p-8 md:p-10">
+              {/* Logo */}
+              <div className="w-full flex justify-center">
+                <img
+                  src="/images/logo-solo-warmi.png"
+                  alt="Warmi Logo"
+                  className="h-16 md:h-20 lg:h-24 object-contain"
+                />
+              </div>
+
+              {/* Título */}
+              <h1 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#913889] leading-tight"
+                style={{ 
+                  fontFamily: "'Anton', sans-serif",
+                  letterSpacing: '2px'
+                }}
+              >
+                WARMI POWER FEST
+              </h1>
+
+              {/* Texto informativo */}
+              <div className="space-y-4 md:space-y-5 text-gray-700">
+                <p 
+                  className="text-base md:text-lg lg:text-xl leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Montserrat', sans-serif",
+                    lineHeight: '1.8'
+                  }}
+                >
+                  Warmi Power Fest, el festival femenino más inspirador y completo del país, celebramos los 15 años de la Warmi Runner.
+                </p>
+                
+                <p 
+                  className="text-base md:text-lg lg:text-xl leading-relaxed"
+                  style={{ 
+                    fontFamily: "'Montserrat', sans-serif",
+                    lineHeight: '1.8'
+                  }}
+                >
+                  Un espacio donde mujeres de todas las edades podrán entrenar, aprender, disfrutar y conectar con marcas y experiencias creadas especialmente para ellas.
+                </p>
+              </div>
+            </div>
           </div>
-        ))}
-
-        {/* Botones de navegación */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-4 md:p-5 shadow-lg transition-all duration-300 hover:scale-110 z-10"
-          aria-label="Anterior"
-        >
-          <svg className="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-4 md:p-5 shadow-lg transition-all duration-300 hover:scale-110 z-10"
-          aria-label="Siguiente"
-        >
-          <svg className="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        </div>
       </div>
     </div>
   )

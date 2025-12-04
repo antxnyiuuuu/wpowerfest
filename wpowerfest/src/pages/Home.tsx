@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/Navigation'
+import WhatsAppButtonHome from '../components/WhatsAppButtonHome'
 
 function Home() {
   // Contador regresivo
@@ -225,6 +226,9 @@ function Home() {
           </p>
         </div>
       </footer>
+      
+      {/* Botón de WhatsApp solo para la página de inicio */}
+      <WhatsAppButtonHome />
     </div>
   )
 }
