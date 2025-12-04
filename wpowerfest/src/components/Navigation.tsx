@@ -1,7 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
 
 function Navigation() {
   const location = useLocation()
+  const isMapaPage = location.pathname === '/mapa'
+  const [showText, setShowText] = useState(!isMapaPage)
+  const hideTimeoutRef = useRef<number | null>(null)
 
   const categories = [
     { name: 'Sobre el Evento', path: '/info' },
@@ -9,6 +13,52 @@ function Navigation() {
     { name: 'Auspiciante', path: '/auspiciante' },
     { name: 'Stand', path: '/stand' },
   ]
+
+  // Ocultar texto automáticamente cuando se entra a la página del mapa
+  useEffect(() => {
+    if (isMapaPage) {
+      setShowText(false)
+    } else {
+      setShowText(true)
+    }
+    // Limpiar timeout al cambiar de página
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current)
+      hideTimeoutRef.current = null
+    }
+    
+    // Limpiar timeout al desmontar
+    return () => {
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
+      }
+    }
+  }, [isMapaPage])
+
+  const handleMouseEnter = () => {
+    if (isMapaPage) {
+      // Cancelar cualquier timeout pendiente
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
+        hideTimeoutRef.current = null
+      }
+      setShowText(true)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (isMapaPage) {
+      // Cancelar timeout anterior si existe
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current)
+      }
+      // Esperar 2 segundos antes de ocultar
+      hideTimeoutRef.current = window.setTimeout(() => {
+        setShowText(false)
+        hideTimeoutRef.current = null
+      }, 2000)
+    }
+  }
 
   return (
     <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#7FBFA9]/30">
@@ -22,6 +72,8 @@ function Navigation() {
             marginBottom: '3px',
             width: '100%'
           }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <Link to="/" className="flex items-center justify-center">
             <img 
@@ -34,10 +86,12 @@ function Navigation() {
 
         {/* Categorías como texto subrayado */}
         <div 
-          className="flex items-center justify-center gap-4 md:gap-10 lg:gap-12 xl:gap-14 overflow-x-auto"
+          className={`flex items-center justify-center gap-4 md:gap-10 lg:gap-12 xl:gap-14 overflow-x-auto transition-all duration-300 ${
+            showText ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'
+          }`}
           style={{ 
-            paddingTop: '15px',
-            paddingBottom: '10px',
+            paddingTop: showText ? '15px' : '0',
+            paddingBottom: showText ? '10px' : '0',
             width: '100%',
             marginLeft: 'auto',
             marginRight: 'auto'
