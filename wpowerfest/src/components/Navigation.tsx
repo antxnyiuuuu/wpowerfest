@@ -12,32 +12,23 @@ function Navigation() {
   const categories = [
     { name: 'Sobre el Evento', path: '/info' },
     { name: 'Salon Warmi Challenge', path: '/mapa' },
-    { name: 'Auspiciante', path: '/auspiciante' },
+    { name: 'Warmi Talks', path: '/warmi-talks' },
     { name: 'Stand', path: '/stand' },
   ]
 
-  // Ocultar texto automáticamente después de 4 segundos cuando se entra a la página del mapa
+  // Siempre mostrar el header
   useEffect(() => {
-    if (isMapaPage) {
-      // Mostrar al inicio
-      setShowText(true)
-      
-      // Limpiar cualquier timeout anterior
-      if (initialHideTimeoutRef.current) {
-        clearTimeout(initialHideTimeoutRef.current)
-      }
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current)
-      }
-      
-      // Ocultar después de 4 segundos
-      initialHideTimeoutRef.current = window.setTimeout(() => {
-        setShowText(false)
-        initialHideTimeoutRef.current = null
-      }, 4000)
-    } else {
-      // En otras páginas, siempre mostrar
-      setShowText(true)
+    // Siempre mostrar el texto del header
+    setShowText(true)
+    
+    // Limpiar cualquier timeout anterior
+    if (initialHideTimeoutRef.current) {
+      clearTimeout(initialHideTimeoutRef.current)
+      initialHideTimeoutRef.current = null
+    }
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current)
+      hideTimeoutRef.current = null
     }
     
     // Limpiar timeouts al cambiar de página o desmontar
@@ -54,34 +45,19 @@ function Navigation() {
   }, [isMapaPage])
 
   const handleMouseEnter = () => {
-    if (isMapaPage) {
-      // Cancelar cualquier timeout pendiente
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current)
-        hideTimeoutRef.current = null
-      }
-      setShowText(true)
-    }
+    // Siempre mostrar el texto
+    setShowText(true)
   }
 
   const handleMouseLeave = () => {
-    if (isMapaPage) {
-      // Cancelar timeout anterior si existe
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current)
-      }
-      // Esperar 2 segundos antes de ocultar
-      hideTimeoutRef.current = window.setTimeout(() => {
-        setShowText(false)
-        hideTimeoutRef.current = null
-      }, 2000)
-    }
+    // Siempre mostrar el texto
+    setShowText(true)
   }
 
   return (
     <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#7FBFA9]/20">
       {/* Header principal - siempre visible */}
-      <div className="w-full max-w-full mx-auto px-5 py-4 md:py-5">
+      <div className="w-full max-w-full mx-auto px-5" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         {/* Layout móvil - centrado */}
         <div className="md:hidden flex items-center justify-center gap-4 relative">
           {/* Botón menú móvil */}
@@ -95,7 +71,7 @@ function Navigation() {
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center',
-              fontFamily: "'Montserrat', sans-serif"
+              fontFamily: "'Gotham', sans-serif"
             }}
           >
             <svg 
@@ -118,6 +94,7 @@ function Navigation() {
             to="/" 
             className="flex items-center justify-center flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(false)}
+            style={{ paddingTop: '7px', paddingBottom: '7px', paddingLeft: '10px', paddingRight: '10px' }}
           >
             <img 
               src="/images/logo-header.jpeg" 
@@ -138,6 +115,7 @@ function Navigation() {
             onClick={() => setIsMobileMenuOpen(false)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            style={{ paddingTop: '7px', paddingBottom: '7px', paddingLeft: '10px', paddingRight: '10px' }}
           >
             <img 
               src="/images/logo-header.jpeg" 
@@ -163,7 +141,7 @@ function Navigation() {
                 ? 'bg-gradient-to-r from-[#913889]/10 to-[#7FBFA9]/10 text-[#913889] font-semibold border border-[#913889]/20' 
                 : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
             }`}
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            style={{ fontFamily: "'Gotham', sans-serif", padding: '10px' }}
           >
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-lg ${location.pathname === '/' ? 'bg-[#913889]/10' : 'bg-gray-100'}`}>
@@ -187,7 +165,7 @@ function Navigation() {
                     ? 'bg-gradient-to-r from-[#913889]/10 to-[#7FBFA9]/10 text-[#913889] font-semibold border border-[#913889]/20' 
                     : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
                 }`}
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
+                style={{ fontFamily: "'Gotham', sans-serif", padding: '10px' }}
               >
                 <span className="text-base block">{category.name}</span>
               </Link>
@@ -204,13 +182,13 @@ function Navigation() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="w-full max-w-full mx-auto px-6 pb-5">
+        <div className="w-full max-w-full mx-auto px-6" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
           <div className="flex items-center justify-center gap-8 lg:gap-12 xl:gap-16">
             {/* Icono de casa */}
             <Link
               to="/"
               className="relative transition-all duration-300"
-              style={{ padding: '8px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <span 
                 className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
@@ -244,7 +222,7 @@ function Navigation() {
                   key={category.path}
                   to={category.path}
                   className="relative transition-all duration-300"
-                  style={{ padding: '8px 12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  style={{ padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                   <span 
                     className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${

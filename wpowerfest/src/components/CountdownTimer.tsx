@@ -14,20 +14,12 @@ function CountdownTimer() {
     minutes: 0,
     seconds: 0
   })
-  const [progress, setProgress] = useState(0)
-
   useEffect(() => {
     const targetDate = new Date('2026-03-06T00:00:00').getTime()
-    const startDate = new Date('2025-01-01T00:00:00').getTime()
-    const totalDuration = targetDate - startDate
 
     const updateCountdown = () => {
       const now = new Date().getTime()
       const difference = targetDate - now
-      const elapsed = now - startDate
-
-      const progressPercent = Math.min(Math.max((elapsed / totalDuration) * 100, 0), 100)
-      setProgress(progressPercent)
 
       if (difference > 0) {
         setTimeLeft({
@@ -43,7 +35,6 @@ function CountdownTimer() {
           minutes: 0,
           seconds: 0
         })
-        setProgress(100)
       }
     }
 
@@ -71,45 +62,32 @@ function CountdownTimer() {
           <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.days).padStart(3, '0')}
           </div>
-          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Días</span>
+          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Días</span>
         </div>
         <span className="text-base md:text-lg font-mono font-light text-gray-400" style={{ marginTop: '5px', marginBottom: '5px' }}>:</span>
         <div className="flex flex-col items-center">
           <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
-          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Horas</span>
+          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Horas</span>
         </div>
         <span className="text-base md:text-lg font-mono font-light text-gray-400" style={{ marginTop: '5px', marginBottom: '5px' }}>:</span>
         <div className="flex flex-col items-center">
           <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
-          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Min</span>
+          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Min</span>
         </div>
         <span className="text-base md:text-lg font-mono font-light text-gray-400" style={{ marginTop: '5px', marginBottom: '5px' }}>:</span>
         <div className="flex flex-col items-center">
           <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
-          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Seg</span>
+          <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Seg</span>
         </div>
       </div>
       
-      {/* Barra de progreso */}
-      <div style={{ marginTop: '8px', marginBottom: '5px', paddingLeft: '8px', paddingRight: '8px' }}>
-        <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
-          <div 
-            className="h-full rounded-full transition-all duration-1000 ease-out"
-            style={{ 
-              width: `${progress}%`,
-              background: '#913889'
-            }}
-          ></div>
-        </div>
-      </div>
-      
-      <p className="text-gray-400 text-[10px] font-light" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '5px', marginBottom: '5px' }}>6 de marzo 2026</p>
+      <p className="text-gray-400 text-[10px] font-light" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>6 de marzo 2026</p>
     </div>
   )
 }

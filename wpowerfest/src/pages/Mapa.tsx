@@ -18,6 +18,8 @@ function Mapa() {
   const [activeMaqueta, setActiveMaqueta] = useState<'salon' | 'nutritiva'>('salon')
   const [showTitleAnimation, setShowTitleAnimation] = useState(false)
   const [isChangingMaqueta, setIsChangingMaqueta] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [isReady, setIsReady] = useState(false)
   
   const maquetas = {
     salon: {
@@ -36,12 +38,29 @@ function Mapa() {
   const positionRef = useRef({ x: 0, y: 0 })
   const clickStartRef = useRef({ x: 0, y: 0 })
   const tooltipTimeoutRef = useRef<number | null>(null)
+  const rafRef = useRef<number | null>(null)
+  const pendingUpdateRef = useRef<{ scale?: number; position?: { x: number; y: number } } | null>(null)
+  const lastUpdateTime = useRef<number>(0)
+  const imageTransformRef = useRef<HTMLDivElement>(null)
+
+  const applyTransform = (scale: number, pos: { x: number; y: number }) => {
+    if (imageTransformRef.current) {
+      imageTransformRef.current.style.transform = `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px)) scale(${scale})`
+    }
+  }
 
   const handleWheel = (e: React.WheelEvent) => {
     // Prevenir zoom de página completo cuando se hace zoom en la imagen
     e.preventDefault()
     
     if (!containerRef.current || !imageRef.current) return
+    
+    // Throttling agresivo - máximo 60fps (16ms entre actualizaciones)
+    const now = performance.now()
+    if (now - lastUpdateTime.current < 16) {
+      return
+    }
+    lastUpdateTime.current = now
     
     // Detectar si es un gesto de pellizco (ctrlKey) o scroll normal
     const isPinch = e.ctrlKey
@@ -77,15 +96,14 @@ function Mapa() {
     const pointX = mouseX - containerCenterX
     const pointY = mouseY - containerCenterY
     
-    // Calcular el nuevo scale
-    // Si es pellizco (ctrlKey), usar deltaY directamente, si no, usar el delta normal
+    // Calcular el nuevo scale con delta más pequeño para zoom más suave
     let delta: number
     if (isPinch) {
-      // Para pellizco, invertir la dirección (deltaY negativo = zoom in)
-      delta = e.deltaY < 0 ? 1.1 : 0.9
+      // Para pellizco, usar delta más pequeño
+      delta = e.deltaY < 0 ? 1.05 : 0.95
     } else {
-      // Para scroll normal
-      delta = e.deltaY > 0 ? 0.9 : 1.1
+      // Para scroll normal, usar delta más pequeño
+      delta = e.deltaY > 0 ? 0.95 : 1.05
     }
     const newScale = Math.min(Math.max(currentScale * delta, 0.05), 5)
     const scaleChange = newScale / currentScale
@@ -94,11 +112,21 @@ function Mapa() {
     const newX = pointX - (pointX - currentPos.x) * scaleChange
     const newY = pointY - (pointY - currentPos.y) * scaleChange
     
-    // Actualizar refs y estados
+    // Actualizar refs inmediatamente
     scaleRef.current = newScale
     positionRef.current = { x: newX, y: newY }
-    setScale(newScale)
-    setPosition({ x: newX, y: newY })
+    
+    // Aplicar transform directamente al DOM para mejor rendimiento
+    applyTransform(newScale, { x: newX, y: newY })
+    
+    // Actualizar estado solo ocasionalmente para sincronización
+    if (rafRef.current === null) {
+      rafRef.current = requestAnimationFrame(() => {
+        setScale(scaleRef.current)
+        setPosition(positionRef.current)
+        rafRef.current = null
+      })
+    }
   }
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -248,6 +276,8 @@ function Mapa() {
   }
 
   const changeMaqueta = (maqueta: 'salon' | 'nutritiva') => {
+    // Resetear el estado de carga cuando cambia la maqueta
+    setImageLoaded(false)
     if (maqueta === activeMaqueta) return
     
     // Marcar que estamos cambiando de maqueta
@@ -365,23 +395,35 @@ function Mapa() {
 
   useEffect(() => {
     const handleImageLoad = () => {
+      setImageLoaded(true)
       const newScale = calculateInitialScale()
       setInitialScale(newScale)
       setScale(newScale)
       scaleRef.current = newScale
       positionRef.current = { x: 0, y: 0 }
       setPosition({ x: 0, y: 0 })
+      // Marcar como listo después de un pequeño delay para asegurar que el layout esté completo
+      setTimeout(() => {
+        setIsReady(true)
+      }, 100)
     }
+
+    // Resetear estado de carga cuando cambia la maqueta
+    setImageLoaded(false)
 
     // Resetear cuando cambia la maqueta
     if (imageRef.current?.complete) {
       handleImageLoad()
     } else {
       imageRef.current?.addEventListener('load', handleImageLoad)
+      imageRef.current?.addEventListener('error', () => {
+        setImageLoaded(true) // Mostrar incluso si hay error
+      })
     }
 
     return () => {
       imageRef.current?.removeEventListener('load', handleImageLoad)
+      imageRef.current?.removeEventListener('error', () => {})
     }
   }, [activeMaqueta])
 
@@ -418,6 +460,10 @@ function Mapa() {
       if (welcomeTimeoutRef.current) {
         clearTimeout(welcomeTimeoutRef.current)
       }
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current)
+        rafRef.current = null
+      }
     }
   }, [scale, initialScale])
 
@@ -435,7 +481,8 @@ function Mapa() {
           marginBottom: '10px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          display: 'block'
+          display: 'block',
+          minHeight: '70vh'
         }}
       >
         <div 
@@ -446,7 +493,9 @@ function Mapa() {
             maxHeight: '800px',
             minHeight: '400px',
             cursor: isDragging ? 'grabbing' : 'grab',
-            touchAction: 'none'
+            touchAction: 'none',
+            willChange: 'auto',
+            backfaceVisibility: 'hidden'
           }}
           onWheel={handleWheel}
           onMouseDown={handleMouseDown}
@@ -486,7 +535,7 @@ function Mapa() {
            {showTitleAnimation && (
              <div 
                className="absolute top-0 left-0 right-0 z-50 flex items-center justify-center pt-6 md:pt-8 pointer-events-none"
-               style={{ fontFamily: "'Montserrat', sans-serif" }}
+               style={{ fontFamily: "'Gotham', sans-serif" }}
              >
                <h2 
                  className="text-2xl md:text-3xl lg:text-4xl font-bold text-center animate-slide-down-up"
@@ -512,7 +561,7 @@ function Mapa() {
               {/* Texto */}
               <div 
                 className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none animate-fade-in"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
+                style={{ fontFamily: "'Gotham', sans-serif" }}
               >
                  <p className="text-white text-sm md:text-base font-medium text-center px-4 drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                    Puedes <span className="font-semibold text-[#7FBFA9]">arrastrar</span> y <span className="font-semibold text-[#7FBFA9]">agrandar</span> esta imagen<br />
@@ -524,6 +573,7 @@ function Mapa() {
             </>
           )}
            <div
+             ref={imageTransformRef}
              style={{
                position: 'absolute',
                top: '50%',
@@ -532,20 +582,39 @@ function Mapa() {
                transition: 'none',
                willChange: 'transform',
                backfaceVisibility: 'hidden',
-               perspective: 1000
+               perspective: 1000,
+               transformOrigin: 'center center'
              }}
            >
+            {/* Spinner de carga */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-200 z-30">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-4 border-[#913889] border-t-transparent rounded-full animate-spin"></div>
+                  <p 
+                    className="text-gray-600 text-sm"
+                    style={{ fontFamily: "'Gotham', sans-serif" }}
+                  >
+                    Cargando...
+                  </p>
+                </div>
+              </div>
+            )}
+            
             <img
               ref={imageRef}
               src={maquetas[activeMaqueta].image}
               alt={maquetas[activeMaqueta].name}
-              className="max-w-none"
+              className="max-w-none transition-opacity duration-300"
               style={{
                 display: 'block',
                 userSelect: 'none',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                opacity: imageLoaded ? 1 : 0
               }}
               draggable={false}
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)} // En caso de error, también ocultar el spinner
             />
           </div>
 
@@ -557,7 +626,7 @@ function Mapa() {
                 left: `${tooltipPosition.x}px`,
                 top: `${tooltipPosition.y - 60}px`,
                 transform: 'translateX(-50%)',
-                fontFamily: "'Montserrat', sans-serif"
+                fontFamily: "'Gotham', sans-serif"
               }}
             >
               <div className="bg-white rounded-md shadow-lg border border-gray-200 px-3 py-2 animate-fade-in pointer-events-auto">
@@ -598,7 +667,7 @@ function Mapa() {
                 setScale(newScale)
               }}
               className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 px-3 py-2 rounded-lg shadow-lg border border-gray-200 transition-all duration-300 hover:scale-105 font-medium text-sm"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "'Gotham', sans-serif" }}
             >
               +
             </button>
@@ -609,14 +678,14 @@ function Mapa() {
                 setScale(newScale)
               }}
               className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 px-3 py-2 rounded-lg shadow-lg border border-gray-200 transition-all duration-300 hover:scale-105 font-medium text-sm"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "'Gotham', sans-serif" }}
             >
               −
             </button>
             <button
               onClick={resetView}
               className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 px-3 py-2 rounded-lg shadow-lg border border-gray-200 transition-all duration-300 hover:scale-105 font-medium text-xs"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              style={{ fontFamily: "'Gotham', sans-serif" }}
             >
               Reset
             </button>

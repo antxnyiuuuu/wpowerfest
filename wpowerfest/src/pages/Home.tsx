@@ -88,7 +88,7 @@ function Home() {
             <p 
               className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed"
               style={{ 
-                fontFamily: "'Montserrat', sans-serif",
+                fontFamily: "'Gotham', sans-serif",
                 letterSpacing: '1px',
                 marginTop: '10px',
                 marginBottom: '50px',
@@ -124,28 +124,28 @@ function Home() {
                     <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.days).padStart(3, '0')}
                     </div>
-                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Días</span>
+                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Días</span>
                   </div>
                   <span className="text-2xl md:text-3xl font-mono font-light text-gray-400" style={{ marginTop: '10px', marginBottom: '10px' }}>:</span>
                   <div className="flex flex-col items-center">
                     <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.hours).padStart(2, '0')}
                     </div>
-                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Horas</span>
+                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Horas</span>
                   </div>
                   <span className="text-2xl md:text-3xl font-mono font-light text-gray-400" style={{ marginTop: '10px', marginBottom: '10px' }}>:</span>
                   <div className="flex flex-col items-center">
                     <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.minutes).padStart(2, '0')}
                     </div>
-                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Min</span>
+                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Min</span>
                   </div>
                   <span className="text-2xl md:text-3xl font-mono font-light text-gray-400" style={{ marginTop: '10px', marginBottom: '10px' }}>:</span>
                   <div className="flex flex-col items-center">
                     <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.seconds).padStart(2, '0')}
                     </div>
-                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Seg</span>
+                    <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Seg</span>
                   </div>
                 </div>
                 
@@ -162,7 +162,7 @@ function Home() {
                   </div>
                 </div>
                 
-                <p className="text-gray-400 text-xs md:text-sm font-light" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '10px', marginBottom: '10px' }}>6 de marzo 2026</p>
+                <p className="text-gray-400 text-xs md:text-sm font-light" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>6 de marzo 2026</p>
               </div>
             </div>
 
@@ -221,7 +221,7 @@ function Home() {
       {/* Footer simple */}
       <footer className="w-full bg-gradient-to-r from-[#7FBFA9] to-[#913889] text-white py-8 md:py-10" style={{ marginTop: '10px' }}>
         <div className="w-full max-w-full mx-auto px-4 text-center" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          <p className="text-sm md:text-base" style={{ fontFamily: "'Montserrat', sans-serif", marginTop: '10px', marginBottom: '10px' }}>
+          <p className="text-sm md:text-base" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>
             © {new Date().getFullYear()} Warmi Power Fest. Todos los derechos reservados.
           </p>
         </div>

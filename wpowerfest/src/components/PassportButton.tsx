@@ -46,7 +46,7 @@ function PassportButton() {
           }}
         >
           <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-200 px-4 py-3 whitespace-nowrap">
-            <p className="text-sm font-medium text-gray-800" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            <p className="text-sm font-medium text-gray-800" style={{ fontFamily: "'Gotham', sans-serif" }}>
               Ver info sobre Warmi Passport →
             </p>
           </div>

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Mapa from "./pages/Mapa";
 import Auspiciante from "./pages/Auspiciante";
+import WarmiTalks from "./pages/WarmiTalks";
 import Pasaporte from "./pages/Pasaporte";
 import Premios from "./pages/Premios";
 import Stand from "./pages/Stand";
@@ -15,7 +16,12 @@ import PassportButton from "./components/PassportButton";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -39,6 +45,14 @@ function App() {
           element={
             <PageTransition>
               <Auspiciante />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/warmi-talks"
+          element={
+            <PageTransition>
+              <WarmiTalks />
             </PageTransition>
           }
         />

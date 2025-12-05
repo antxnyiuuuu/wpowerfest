@@ -3,15 +3,28 @@ import { useLocation } from 'react-router-dom'
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   const location = useLocation()
+  const isMapaPage = location.pathname === '/mapa'
+  // Para la página del mapa, no usar animación para evitar flash blanco
   const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
+    // Saltar animación para la página del mapa
+    if (isMapaPage) {
+      setIsAnimating(false)
+      return
+    }
+    
     setIsAnimating(true)
     const timer = setTimeout(() => {
       setIsAnimating(false)
     }, 500)
     return () => clearTimeout(timer)
-  }, [location.pathname])
+  }, [location.pathname, isMapaPage])
+
+  // Sin animación para la página del mapa
+  if (isMapaPage) {
+    return <div>{children}</div>
+  }
 
   return (
     <div

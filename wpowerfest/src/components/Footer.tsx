@@ -51,8 +51,8 @@ function Footer() {
                 </svg>
                 WhatsApp
               </a>
-              <Link to="/auspiciante" className="text-gray-600 hover:text-[#913889] transition-colors duration-300 text-sm md:text-base">
-                Auspiciantes
+              <Link to="/warmi-talks" className="text-gray-600 hover:text-[#913889] transition-colors duration-300 text-sm md:text-base">
+                Warmi Talks
               </Link>
               <Link to="/pasaporte" className="text-gray-600 hover:text-[#913889] transition-colors duration-300 text-sm md:text-base">
                 Pasaporte
