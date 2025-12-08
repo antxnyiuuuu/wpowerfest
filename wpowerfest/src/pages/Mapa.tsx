@@ -174,11 +174,13 @@ function Mapa() {
     // Si no se movió significativamente, es un click
     if (isDragging && !hasMoved && e) {
       const target = e.target as HTMLElement;
-      // No mostrar tooltip si se hizo clic en los botones de control de zoom o en las flechas de cambio de maqueta
+      // No mostrar tooltip si se hizo clic en los botones de control de zoom, en las flechas de cambio de maqueta, o en cualquier botón
       if (
         target.closest(".zoom-controls") ||
         target.closest('button[aria-label="Anterior"]') ||
-        target.closest('button[aria-label="Siguiente"]')
+        target.closest('button[aria-label="Siguiente"]') ||
+        target.tagName === "BUTTON" ||
+        target.closest("button")
       ) {
         setIsDragging(false);
         setHasMoved(false);
@@ -213,7 +215,26 @@ function Mapa() {
     setHasMoved(false);
   };
 
+  const initialDistanceRef = useRef<number | null>(null);
+  const initialScaleRef = useRef<number>(1);
+
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Si hay dos dedos, es un gesto de pinch to zoom
+    if (e.touches.length === 2) {
+      setIsDragging(false);
+      setIsZooming(true);
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const distance = Math.sqrt(
+        Math.pow(touch2.clientX - touch1.clientX, 2) +
+          Math.pow(touch2.clientY - touch1.clientY, 2)
+      );
+      initialDistanceRef.current = distance;
+      initialScaleRef.current = scaleRef.current;
+      return;
+    }
+
+    // Un solo dedo para arrastrar
     if (e.touches.length === 1) {
       setIsDragging(true);
       setHasMoved(false);
@@ -229,7 +250,50 @@ function Mapa() {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    // Si hay dos dedos, hacer pinch to zoom
+    if (e.touches.length === 2 && initialDistanceRef.current !== null) {
+      e.preventDefault(); // Prevenir scroll solo durante pinch to zoom
+      const touch1 = e.touches[0];
+      const touch2 = e.touches[1];
+      const currentDistance = Math.sqrt(
+        Math.pow(touch2.clientX - touch1.clientX, 2) +
+          Math.pow(touch2.clientY - touch1.clientY, 2)
+      );
+
+      const scaleChange = currentDistance / initialDistanceRef.current;
+      const newScale = Math.min(
+        Math.max(initialScaleRef.current * scaleChange, 0.05),
+        5
+      );
+
+      // Calcular el punto medio entre los dos dedos para centrar el zoom
+      const midX = (touch1.clientX + touch2.clientX) / 2;
+      const midY = (touch1.clientY + touch2.clientY) / 2;
+
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const containerCenterX = rect.width / 2;
+        const containerCenterY = rect.height / 2;
+        const pointX = midX - rect.left - containerCenterX;
+        const pointY = midY - rect.top - containerCenterY;
+
+        const scaleRatio = newScale / scaleRef.current;
+        const newX = pointX - (pointX - positionRef.current.x) * scaleRatio;
+        const newY = pointY - (pointY - positionRef.current.y) * scaleRatio;
+
+        scaleRef.current = newScale;
+        positionRef.current = { x: newX, y: newY };
+        applyTransform(newScale, { x: newX, y: newY });
+        setScale(newScale);
+        setPosition({ x: newX, y: newY });
+      }
+      return;
+    }
+
+    // Un solo dedo para arrastrar
     if (isDragging && e.touches.length === 1) {
+      e.preventDefault(); // Prevenir scroll mientras se arrastra
+
       // Detectar si el touch se movió significativamente (más de 5px)
       const moveDistance = Math.sqrt(
         Math.pow(e.touches[0].clientX - clickStartRef.current.x, 2) +
@@ -247,8 +311,38 @@ function Mapa() {
   };
 
   const handleTouchEnd = (e?: React.TouchEvent) => {
+    // Limpiar estado de pinch to zoom
+    if (initialDistanceRef.current !== null) {
+      initialDistanceRef.current = null;
+      setIsZooming(false);
+    }
+
     // Para touch, también mostrar tooltip si no hubo movimiento significativo
     if (isDragging && !hasMoved && e && e.changedTouches.length > 0) {
+      const target = document.elementFromPoint(
+        e.changedTouches[0].clientX,
+        e.changedTouches[0].clientY
+      ) as HTMLElement;
+
+      // No mostrar tooltip si se tocó un botón de control de zoom o cambio de maqueta
+      if (
+        target?.closest(".zoom-controls") ||
+        target?.closest('button[aria-label="Anterior"]') ||
+        target?.closest('button[aria-label="Siguiente"]') ||
+        target?.tagName === "BUTTON"
+      ) {
+        setIsDragging(false);
+        setHasMoved(false);
+        return;
+      }
+
+      // No mostrar tooltip si la animación de título está activa, si estamos cambiando de maqueta, o si el mensaje de bienvenida está visible
+      if (showTitleAnimation || isChangingMaqueta || showWelcomeOverlay) {
+        setIsDragging(false);
+        setHasMoved(false);
+        return;
+      }
+
       const rect = containerRef.current?.getBoundingClientRect();
       if (rect) {
         setTooltipPosition({

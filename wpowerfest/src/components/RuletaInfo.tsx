@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 
 function RuletaInfo() {
   const [hoveredSection, setHoveredSection] = useState<number | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedEje, setSelectedEje] = useState<typeof sections[0] | null>(null)
 
   // 5 secciones con información sobre los ejes
   const sections = [
@@ -43,6 +46,101 @@ function RuletaInfo() {
   ]
 
   const hoveredEje = hoveredSection ? sections.find(s => s.id === hoveredSection) : null
+
+  // Detectar si es móvil (tablet y móvil)
+  const [isMobile, setIsMobile] = useState(false)
+  
+  // Estados para detectar scroll vs tap
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null)
+  const hasMovedRef = useRef(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Bloquear scroll cuando el modal está abierto
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [isModalOpen])
+
+  // Manejar click/touch en sección
+  const handleSectionClick = (section: typeof sections[0]) => {
+    if (isMobile && !hasMovedRef.current) {
+      setSelectedEje(section)
+      setIsModalOpen(true)
+    }
+  }
+
+  // Manejar inicio de touch
+  const handleTouchStart = (e: React.TouchEvent, section: typeof sections[0]) => {
+    if (isMobile) {
+      const touch = e.touches[0]
+      touchStartRef.current = {
+        x: touch.clientX,
+        y: touch.clientY,
+        time: Date.now()
+      }
+      hasMovedRef.current = false
+    } else {
+      setHoveredSection(section.id)
+    }
+  }
+
+  // Manejar movimiento de touch
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isMobile && touchStartRef.current) {
+      const touch = e.touches[0]
+      const moveDistance = Math.sqrt(
+        Math.pow(touch.clientX - touchStartRef.current.x, 2) +
+        Math.pow(touch.clientY - touchStartRef.current.y, 2)
+      )
+      // Si se movió más de 10px, es un scroll, no un tap
+      if (moveDistance > 10) {
+        hasMovedRef.current = true
+      }
+    }
+  }
+
+  // Manejar fin de touch
+  const handleTouchEnd = (e: React.TouchEvent, section: typeof sections[0]) => {
+    if (isMobile) {
+      // Solo abrir modal si no hubo movimiento significativo y fue un tap rápido
+      if (touchStartRef.current && !hasMovedRef.current) {
+        const touchDuration = Date.now() - touchStartRef.current.time
+        // Si fue un tap rápido (menos de 300ms), abrir modal
+        if (touchDuration < 300) {
+          handleSectionClick(section)
+        }
+      }
+      touchStartRef.current = null
+      hasMovedRef.current = false
+    } else {
+      setTimeout(() => setHoveredSection(null), 300)
+    }
+  }
+
+  // Cerrar modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedEje(null)
+  }
 
   return (
     <div className="w-full flex items-center justify-center" style={{ paddingTop: '35px', paddingBottom: '35px' }}>
@@ -163,10 +261,12 @@ function RuletaInfo() {
                         width: '50%',
                         height: '50%',
                       }}
-                      onMouseEnter={() => setHoveredSection(section.id)}
-                      onMouseLeave={() => setHoveredSection(null)}
-                      onTouchStart={() => setHoveredSection(section.id)}
-                      onTouchEnd={() => setTimeout(() => setHoveredSection(null), 300)}
+                      onMouseEnter={() => !isMobile && setHoveredSection(section.id)}
+                      onMouseLeave={() => !isMobile && setHoveredSection(null)}
+                      onClick={() => !isMobile && handleSectionClick(section)}
+                      onTouchStart={(e) => handleTouchStart(e, section)}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={(e) => handleTouchEnd(e, section)}
                     >
                       <img
                         src={section.image}
@@ -199,6 +299,91 @@ function RuletaInfo() {
 
         </div>
       </div>
+
+      {/* Modal para móvil */}
+      {isModalOpen && selectedEje && createPortal(
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-[#000000]/60 backdrop-blur-md h-screen w-screen"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) handleCloseModal()
+          }}
+        >
+          <div
+            className="rounded-3xl w-full max-w-md relative border-t-8 border-[#B018A9] shadow-2xl animate-fadeInUp m-auto overflow-hidden"
+            style={{ backgroundColor: '#ffffff' }}
+          >
+            {/* Botón cerrar */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 text-[#9ca3af] hover:text-[#B018A9] hover:bg-[#f3f4f6] rounded-full p-2 transition-colors z-10"
+              aria-label="Cerrar"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Contenido del modal */}
+            <div className="py-10 px-6 md:px-10">
+              {/* Imagen del eje */}
+              <div className="flex justify-center mb-6">
+                <div className="w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
+                  <img
+                    src={selectedEje.image}
+                    alt={selectedEje.title}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Título */}
+              <h3
+                className="text-3xl md:text-4xl text-[#B018A9] font-['Anton'] uppercase mb-4 text-center"
+                style={{
+                  letterSpacing: '2px',
+                }}
+              >
+                {selectedEje.title}
+              </h3>
+
+              {/* Línea decorativa */}
+              <div className="flex justify-center mb-6">
+                <div className="h-1 w-16 bg-gradient-to-r from-transparent via-[#54F6C5] to-transparent"></div>
+              </div>
+
+              {/* Descripción */}
+              <p
+                className="text-base md:text-lg text-gray-600 leading-relaxed text-center"
+                style={{
+                  fontFamily: "'Gotham', sans-serif",
+                  lineHeight: '1.8',
+                  fontWeight: 300,
+                  letterSpacing: '0.2px',
+                }}
+              >
+                {selectedEje.description}
+              </p>
+
+              {/* Elementos decorativos */}
+              <div className="flex items-center justify-center gap-3 mt-8">
+                <div className="h-1 w-12 bg-[#54F6C5]"></div>
+                <div className="h-1 w-6 bg-[#B018A9]"></div>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   )
 }
