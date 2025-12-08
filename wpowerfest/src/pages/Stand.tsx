@@ -50,7 +50,7 @@ function Stand() {
         {/* Botones de navegación */}
         <button
           onClick={prevSlide}
-          className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-4 md:p-5 shadow-lg transition-all duration-300 hover:scale-110 z-10"
+          className="absolute left-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#B018A9] hover:text-[#54F6C5] rounded-full p-4 md:p-5 shadow-lg transition-all duration-300 hover:scale-110 z-10"
           aria-label="Anterior"
         >
           <svg className="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ function Stand() {
 
         <button
           onClick={nextSlide}
-          className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#913889] hover:text-[#7FBFA9] rounded-full p-4 md:p-5 shadow-lg transition-all duration-300 hover:scale-110 z-10"
+          className="absolute right-8 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#B018A9] hover:text-[#54F6C5] rounded-full p-4 md:p-5 shadow-lg transition-all duration-300 hover:scale-110 z-10"
           aria-label="Siguiente"
         >
           <svg className="w-8 h-8 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -55,32 +55,32 @@ function CountdownTimer() {
       }}
     >
       <h3 className="text-xs md:text-sm font-light text-gray-700 uppercase tracking-wider" style={{ fontFamily: "'Anton', sans-serif", marginTop: '5px', marginBottom: '8px' }}>
-        El festival se acerca
+        El WPF se acerca
       </h3>
       <div className="flex items-center justify-center gap-1.5 md:gap-2" style={{ marginTop: '5px', marginBottom: '5px' }}>
         <div className="flex flex-col items-center">
-          <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
+          <div className="text-lg md:text-xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.days).padStart(3, '0')}
           </div>
           <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Días</span>
         </div>
         <span className="text-base md:text-lg font-mono font-light text-gray-400" style={{ marginTop: '5px', marginBottom: '5px' }}>:</span>
         <div className="flex flex-col items-center">
-          <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
+          <div className="text-lg md:text-xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.hours).padStart(2, '0')}
           </div>
           <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Horas</span>
         </div>
         <span className="text-base md:text-lg font-mono font-light text-gray-400" style={{ marginTop: '5px', marginBottom: '5px' }}>:</span>
         <div className="flex flex-col items-center">
-          <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
+          <div className="text-lg md:text-xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.minutes).padStart(2, '0')}
           </div>
           <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Min</span>
         </div>
         <span className="text-base md:text-lg font-mono font-light text-gray-400" style={{ marginTop: '5px', marginBottom: '5px' }}>:</span>
         <div className="flex flex-col items-center">
-          <div className="text-lg md:text-xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
+          <div className="text-lg md:text-xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
             {String(timeLeft.seconds).padStart(2, '0')}
           </div>
           <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Seg</span>

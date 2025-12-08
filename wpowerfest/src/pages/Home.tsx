@@ -67,11 +67,11 @@ function Home() {
       </div>
 
       {/* Sección de presentación */}
-      <div className="w-full bg-gradient-to-br from-[#7FBFA9]/10 via-white to-[#913889]/10" style={{ paddingTop: '60px', paddingBottom: '60px', marginTop: '10px', marginBottom: '10px' }}>
+      <div className="w-full bg-gradient-to-br from-[#54F6C5]/10 via-white to-[#B018A9]/10" style={{ paddingTop: '60px', paddingBottom: '60px', marginTop: '10px', marginBottom: '10px' }}>
         <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', width: '100%' }}>
             <h1 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#913889] leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#B018A9] leading-tight"
               style={{ 
                 fontFamily: "'Anton', sans-serif",
                 letterSpacing: '3px',
@@ -98,7 +98,7 @@ function Home() {
                 paddingRight: '20px'
               }}
             >
-              Celebramos los 15 años de la Warmi Runner presentando el <span className="font-semibold text-[#913889]">Warmi Power Fest</span>. 
+              Celebramos los 15 años de la Warmi Runner presentando el <span className="font-semibold text-[#B018A9]">Warmi Power Fest</span>. 
               Un espacio donde mujeres de todas las edades podrán entrenar, aprender, disfrutar y conectar con marcas y experiencias creadas especialmente para ellas.
             </p>
             
@@ -121,28 +121,28 @@ function Home() {
                 </h3>
                 <div className="flex items-center justify-center gap-3 md:gap-4" style={{ marginTop: '10px', marginBottom: '10px' }}>
                   <div className="flex flex-col items-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.days).padStart(3, '0')}
                     </div>
                     <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Días</span>
                   </div>
                   <span className="text-2xl md:text-3xl font-mono font-light text-gray-400" style={{ marginTop: '10px', marginBottom: '10px' }}>:</span>
                   <div className="flex flex-col items-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.hours).padStart(2, '0')}
                     </div>
                     <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Horas</span>
                   </div>
                   <span className="text-2xl md:text-3xl font-mono font-light text-gray-400" style={{ marginTop: '10px', marginBottom: '10px' }}>:</span>
                   <div className="flex flex-col items-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.minutes).padStart(2, '0')}
                     </div>
                     <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Min</span>
                   </div>
                   <span className="text-2xl md:text-3xl font-mono font-light text-gray-400" style={{ marginTop: '10px', marginBottom: '10px' }}>:</span>
                   <div className="flex flex-col items-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#913889]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '10px', marginBottom: '10px' }}>
                       {String(timeLeft.seconds).padStart(2, '0')}
                     </div>
                     <span className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>Seg</span>
@@ -156,7 +156,7 @@ function Home() {
                       className="h-full rounded-full transition-all duration-1000 ease-out"
                       style={{ 
                         width: `${progress}%`,
-                        background: '#913889'
+                        background: '#B018A9'
                       }}
                     ></div>
                   </div>
@@ -179,9 +179,9 @@ function Home() {
                 paddingRight: '20px'
               }}
             >
-              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-[#7FBFA9]/30" style={{ boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)', marginTop: '10px', marginBottom: '10px' }}>
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-[#54F6C5]/30" style={{ boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)', marginTop: '10px', marginBottom: '10px' }}>
                 <div className="p-5 md:p-6 bg-white">
-                  <h3 className="text-xl md:text-2xl font-bold text-[#913889] text-center flex items-center justify-center gap-3" style={{ fontFamily: "'Anton', sans-serif", marginTop: '10px', marginBottom: '10px' }}>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#B018A9] text-center flex items-center justify-center gap-3" style={{ fontFamily: "'Anton', sans-serif", marginTop: '10px', marginBottom: '10px' }}>
                     <span className="text-2xl md:text-3xl" style={{ marginTop: '10px', marginBottom: '10px' }}>📍</span>
                     <span style={{ marginTop: '10px', marginBottom: '10px' }}>Ubicación del Evento</span>
                   </h3>
@@ -219,7 +219,7 @@ function Home() {
       </div>
 
       {/* Footer simple */}
-      <footer className="w-full bg-gradient-to-r from-[#7FBFA9] to-[#913889] text-white py-8 md:py-10" style={{ marginTop: '10px' }}>
+      <footer className="w-full bg-gradient-to-r from-[#54F6C5] to-[#B018A9] text-white py-8 md:py-10" style={{ marginTop: '10px' }}>
         <div className="w-full max-w-full mx-auto px-4 text-center" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           <p className="text-sm md:text-base" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '10px', marginBottom: '10px' }}>
             © {new Date().getFullYear()} Warmi Power Fest. Todos los derechos reservados.

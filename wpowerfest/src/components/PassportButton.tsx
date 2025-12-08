@@ -39,15 +39,15 @@ function PassportButton() {
       {/* Tooltip */}
       {showTooltip && (
         <div 
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 tooltip-container"
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 tooltip-container"
           style={{
             pointerEvents: 'none',
             zIndex: 60
           }}
         >
-          <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-200 px-4 py-3 whitespace-nowrap">
-            <p className="text-sm font-medium text-gray-800" style={{ fontFamily: "'Gotham', sans-serif" }}>
-              Ver info sobre Warmi Passport →
+          <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-gray-200 px-6 py-4 whitespace-nowrap">
+            <p className="text-sm font-medium" style={{ fontFamily: "'Gotham', sans-serif", letterSpacing: '3px', color: '#A905A0' }}>
+              ¡CONÓCEME! →
             </p>
           </div>
           {/* Flecha del tooltip */}

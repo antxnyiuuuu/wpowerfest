@@ -55,7 +55,7 @@ function Navigation() {
   }
 
   return (
-    <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#7FBFA9]/20">
+    <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#54F6C5]/20">
       {/* Header principal - siempre visible */}
       <div className="w-full max-w-full mx-auto px-5" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
         {/* Layout móvil - centrado */}
@@ -138,13 +138,13 @@ function Navigation() {
             onClick={() => setIsMobileMenuOpen(false)}
             className={`block py-4 px-5 rounded-xl transition-all duration-200 ${
               location.pathname === '/' 
-                ? 'bg-gradient-to-r from-[#913889]/10 to-[#7FBFA9]/10 text-[#913889] font-semibold border border-[#913889]/20' 
+                ? 'bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20' 
                 : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
             }`}
             style={{ fontFamily: "'Gotham', sans-serif", padding: '10px' }}
           >
             <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-lg ${location.pathname === '/' ? 'bg-[#913889]/10' : 'bg-gray-100'}`}>
+              <div className={`p-2 rounded-lg ${location.pathname === '/' ? 'bg-[#B018A9]/10' : 'bg-gray-100'}`}>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                 </svg>
@@ -162,7 +162,7 @@ function Navigation() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block py-4 px-5 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? 'bg-gradient-to-r from-[#913889]/10 to-[#7FBFA9]/10 text-[#913889] font-semibold border border-[#913889]/20' 
+                    ? 'bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20' 
                     : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
                 }`}
                 style={{ fontFamily: "'Gotham', sans-serif", padding: '10px' }}
@@ -193,13 +193,13 @@ function Navigation() {
               <span 
                 className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
                   location.pathname === '/' 
-                    ? 'text-[#913889]' 
-                    : 'text-gray-500 hover:text-[#7FBFA9]'
+                    ? 'text-[#B018A9]' 
+                    : 'text-gray-500 hover:text-[#54F6C5]'
                 }`}
                 style={{
                   textDecoration: location.pathname === '/' ? 'underline' : 'none',
                   textDecorationThickness: '2px',
-                  textDecorationColor: location.pathname === '/' ? '#913889' : 'transparent',
+                  textDecorationColor: location.pathname === '/' ? '#B018A9' : 'transparent',
                   textUnderlineOffset: '8px',
                   paddingBottom: '5px'
                 }}
@@ -227,13 +227,13 @@ function Navigation() {
                   <span 
                     className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
                       isActive 
-                        ? 'text-[#913889]' 
-                        : 'text-gray-500 hover:text-[#7FBFA9]'
+                        ? 'text-[#B018A9]' 
+                        : 'text-gray-500 hover:text-[#54F6C5]'
                     }`}
                     style={{
                       textDecoration: isActive ? 'underline' : 'none',
                       textDecorationThickness: '2px',
-                      textDecorationColor: isActive ? '#913889' : 'transparent',
+                      textDecorationColor: isActive ? '#B018A9' : 'transparent',
                       textUnderlineOffset: '8px',
                       paddingBottom: '5px'
                     }}

@@ -58,18 +58,18 @@ function RuletaInfo() {
                   <p 
                     className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
                     style={{ 
-                      fontFamily: "'Gotham', sans-serif",
+                      fontFamily: "'Anton', sans-serif",
                       lineHeight: '1.7',
-                      fontWeight: 300,
-                      letterSpacing: '0.3px',
+                      fontWeight: 400,
+                      letterSpacing: '2px',
                       marginTop: '20px',
                       marginBottom: '30px'
                     }}
                   >
-                    <span className="font-medium text-[#913889]">{hoveredEje.title}</span>
+                    <span className="text-[#B018A9]">{hoveredEje.title}</span>
                   </p>
                   
-                  <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#913889]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
+                  <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#B018A9]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
                   
                   {/* Descripción del eje */}
                   <p 
@@ -88,8 +88,8 @@ function RuletaInfo() {
 
                   {/* Elemento decorativo */}
                   <div className="flex items-center gap-3" style={{ marginTop: '30px', marginBottom: '20px' }}>
-                    <div className="h-1 w-12 bg-[#7FBFA9]"></div>
-                    <div className="h-1 w-6 bg-[#913889]"></div>
+                    <div className="h-1 w-12 bg-[#54F6C5]"></div>
+                    <div className="h-1 w-6 bg-[#B018A9]"></div>
                   </div>
                 </>
               ) : (
@@ -98,18 +98,18 @@ function RuletaInfo() {
                   <p 
                     className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
                     style={{ 
-                      fontFamily: "'Gotham', sans-serif",
+                      fontFamily: "'Anton', sans-serif",
                       lineHeight: '1.7',
-                      fontWeight: 300,
-                      letterSpacing: '0.3px',
+                      fontWeight: 400,
+                      letterSpacing: '2px',
                       marginTop: '20px',
                       marginBottom: '30px'
                     }}
                   >
-                    Los <span className="font-medium text-[#913889]">Ejes del Festival</span>
+                    <span className="font-medium text-[#B018A9] ">NUESTROS  EJES</span>
                   </p>
                   
-                  <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#913889]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
+                  <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#B018A9]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
                   
                   <p 
                     className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed"
@@ -127,8 +127,8 @@ function RuletaInfo() {
 
                   {/* Elemento decorativo */}
                   <div className="flex items-center gap-3" style={{ marginTop: '30px', marginBottom: '20px' }}>
-                    <div className="h-1 w-12 bg-[#7FBFA9]"></div>
-                    <div className="h-1 w-6 bg-[#913889]"></div>
+                    <div className="h-1 w-12 bg-[#54F6C5]"></div>
+                    <div className="h-1 w-6 bg-[#B018A9]"></div>
                   </div>
                 </>
               )}
@@ -136,8 +136,8 @@ function RuletaInfo() {
           </div>
 
           {/* Card de la ruleta */}
-          <div className="p-8 sm:p-8 md:p-8 order-1 lg:order-1 flex items-center justify-center" style={{ marginTop: '20px', marginBottom: '20px' }}>
-            <div className="relative w-full aspect-square max-w-[280px] sm:max-w-xs md:max-w-sm mx-auto">
+          <div className="p-8 sm:p-8 md:p-8 order-1 lg:order-1 flex items-center justify-start" style={{ marginTop: '20px', marginBottom: '20px', paddingLeft: '0', marginLeft: '-20px' }}>
+            <div className="relative w-full aspect-square max-w-[360px] sm:max-w-md md:max-w-lg lg:max-w-xl">
               {/* Contenedor para las secciones */}
               <div className="relative w-full h-full">
                 {sections.map((section) => {
@@ -160,8 +160,8 @@ function RuletaInfo() {
                         top: `${y}%`,
                         transform: `translate(-50%, -50%) rotate(${section.rotation}deg)`,
                         transformOrigin: 'center center',
-                        width: '38%',
-                        height: '38%',
+                        width: '50%',
+                        height: '50%',
                       }}
                       onMouseEnter={() => setHoveredSection(section.id)}
                       onMouseLeave={() => setHoveredSection(null)}

@@ -512,7 +512,7 @@ function Mapa() {
            {/* Flecha izquierda */}
            <button
              onClick={() => changeMaqueta(activeMaqueta === 'salon' ? 'nutritiva' : 'salon')}
-             className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white/95 text-gray-600 hover:text-[#913889] rounded-full p-2 md:p-2.5 shadow-md transition-all duration-200 hover:scale-105"
+             className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white/95 text-gray-600 hover:text-[#B018A9] rounded-full p-2 md:p-2.5 shadow-md transition-all duration-200 hover:scale-105"
              aria-label="Anterior"
            >
              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -523,7 +523,7 @@ function Mapa() {
            {/* Flecha derecha */}
            <button
              onClick={() => changeMaqueta(activeMaqueta === 'salon' ? 'nutritiva' : 'salon')}
-             className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white/95 text-gray-600 hover:text-[#913889] rounded-full p-2 md:p-2.5 shadow-md transition-all duration-200 hover:scale-105"
+             className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white/95 text-gray-600 hover:text-[#B018A9] rounded-full p-2 md:p-2.5 shadow-md transition-all duration-200 hover:scale-105"
              aria-label="Siguiente"
            >
              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -564,7 +564,7 @@ function Mapa() {
                 style={{ fontFamily: "'Gotham', sans-serif" }}
               >
                  <p className="text-white text-sm md:text-base font-medium text-center px-4 drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
-                   Puedes <span className="font-semibold text-[#7FBFA9]">arrastrar</span> y <span className="font-semibold text-[#7FBFA9]">agrandar</span> esta imagen<br />
+                   Puedes <span className="font-semibold text-[#54F6C5]">arrastrar</span> y <span className="font-semibold text-[#54F6C5]">agrandar</span> esta imagen<br />
                    <span className="text-xs md:text-sm opacity-90">
                      <span className="font-semibold">Rueda del mouse</span> o <span className="font-semibold">pellizco en trackpad</span> para agrandar
                    </span>
@@ -590,7 +590,7 @@ function Mapa() {
             {!imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-200 z-30">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="w-12 h-12 border-4 border-[#913889] border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-12 h-12 border-4 border-[#B018A9] border-t-transparent rounded-full animate-spin"></div>
                   <p 
                     className="text-gray-600 text-sm"
                     style={{ fontFamily: "'Gotham', sans-serif" }}
@@ -638,7 +638,7 @@ function Mapa() {
                     }
                     navigate('/stand')
                   }}
-                  className="text-sm text-[#913889] font-medium hover:text-[#7FBFA9] transition-colors whitespace-nowrap"
+                  className="text-sm text-[#B018A9] font-medium hover:text-[#54F6C5] transition-colors whitespace-nowrap"
                 >
                   Ver Info de Stands →
                 </button>
@@ -689,6 +689,99 @@ function Mapa() {
             >
               Reset
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Card separado con texto Salón Warmi Challenge */}
+      <div 
+        className="mx-auto bg-white"
+        style={{ 
+          width: '95%',
+          maxWidth: '1400px',
+          marginTop: '20px',
+          marginBottom: '20px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          display: 'block'
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center px-6 md:px-12 py-8 md:py-12">
+          {/* Lado izquierdo - Texto */}
+          <div className="order-2 lg:order-1 lg:text-left">
+            {/* Título */}
+            <h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase"
+              style={{ 
+                fontFamily: "'Anton', sans-serif",
+                color: '#B018A9',
+                letterSpacing: '2px',
+                lineHeight: '1.2',
+                marginBottom: '40px'
+              }}
+            >
+              SALÓN W<span style={{ color: '#54F6C5' }}>A</span>RMI CH<span style={{ color: '#54F6C5' }}>A</span>LLENGE
+            </h2>
+
+            {/* Párrafos */}
+            <div className="space-y-16 md:space-y-20">
+              <p 
+                className="text-base md:text-lg text-[#B018A9] leading-relaxed"
+                style={{ 
+                  fontFamily: "'Gotham', sans-serif",
+                  color: '#B018A9',
+                  textAlign: 'justify'
+                }}
+              >
+                El Salón Warmi Challenge es el corazón del WPF: el punto donde más de 15 mil mujeres se empoderan del bienestar, la salud, la nutrición, el deporte y el emprendimiento.
+              </p>
+
+              <p 
+                className="text-base md:text-lg text-[#B018A9] leading-relaxed"
+                style={{ 
+                  fontFamily: "'Gotham', sans-serif",
+                  color: '#B018A9',
+                  textAlign: 'justify'
+                }}
+              >
+                Aquí, tu marca conecta directamente con una audiencia activa.
+              </p>
+
+              <p 
+                className="text-base md:text-lg text-[#B018A9] leading-relaxed"
+                style={{ 
+                  fontFamily: "'Gotham', sans-serif",
+                  color: '#B018A9',
+                  textAlign: 'justify'
+                }}
+              >
+                Este espacio acogerá el Warmi Challenge, una experiencia interactiva con retos físicos, mentales y emocionales que garantiza alta interacción, tráfico constante y contenido viral.
+              </p>
+            </div>
+          </div>
+
+          {/* Lado derecho - Imagen */}
+          <div className="relative flex items-center justify-center order-1 lg:order-2">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md" style={{ overflow: 'visible' }}>
+              {/* Decoración sutil de fondo */}
+              <div className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 w-24 h-24 sm:w-32 sm:h-32 bg-[#B018A9]/5 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 w-32 h-32 sm:w-40 sm:h-40 bg-[#54F6C5]/5 rounded-full blur-3xl"></div>
+              
+              {/* Imagen principal */}
+              <div className="relative overflow-visible rounded-2xl">
+                <img
+                  src="/images/Chica-Pasaporte.png"
+                  alt="Salón Warmi Challenge"
+                  className="w-full h-auto object-cover rounded-2xl relative z-10"
+                  style={{
+                    border: '5px solid white',
+                    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), 0 10px 25px rgba(0, 0, 0, 0.3)'
+                  }}
+                />
+                {/* Overlay sutil para dar profundidad */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-20"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
