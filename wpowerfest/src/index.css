@@ -74,7 +74,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #A900A1;
   text-decoration: inherit;
 }
 
@@ -139,7 +139,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: #A900A1;
 }
 
 button:focus,
@@ -158,7 +158,7 @@ button:focus-visible {
   }
 
   button {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
   }
 }
 

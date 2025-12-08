@@ -1,63 +1,66 @@
-import { Link, useLocation } from 'react-router-dom'
-import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
 function Navigation() {
-  const location = useLocation()
-  const isMapaPage = location.pathname === '/mapa'
-  const [showText, setShowText] = useState(true) // Siempre mostrar al inicio
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const hideTimeoutRef = useRef<number | null>(null)
-  const initialHideTimeoutRef = useRef<number | null>(null)
+  const location = useLocation();
+  const isMapaPage = location.pathname === "/mapa";
+  const [showText, setShowText] = useState(true); // Siempre mostrar al inicio
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const hideTimeoutRef = useRef<number | null>(null);
+  const initialHideTimeoutRef = useRef<number | null>(null);
 
   const categories = [
-    { name: 'Sobre el Evento', path: '/info' },
-    { name: 'Salon Warmi Challenge', path: '/mapa' },
-    { name: 'Warmi Talks', path: '/warmi-talks' },
-    { name: 'Stand', path: '/stand' },
-  ]
+    { name: "Sobre el Evento", path: "/info" },
+    { name: "Salon Warmi Challenge", path: "/mapa" },
+    { name: "Warmi Talks", path: "/warmi-talks" },
+    { name: "Stands", path: "/stand" },
+  ];
 
   // Siempre mostrar el header
   useEffect(() => {
     // Siempre mostrar el texto del header
-    setShowText(true)
-    
+    setShowText(true);
+
     // Limpiar cualquier timeout anterior
     if (initialHideTimeoutRef.current) {
-      clearTimeout(initialHideTimeoutRef.current)
-      initialHideTimeoutRef.current = null
+      clearTimeout(initialHideTimeoutRef.current);
+      initialHideTimeoutRef.current = null;
     }
     if (hideTimeoutRef.current) {
-      clearTimeout(hideTimeoutRef.current)
-      hideTimeoutRef.current = null
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
     }
-    
+
     // Limpiar timeouts al cambiar de página o desmontar
     return () => {
       if (initialHideTimeoutRef.current) {
-        clearTimeout(initialHideTimeoutRef.current)
-        initialHideTimeoutRef.current = null
+        clearTimeout(initialHideTimeoutRef.current);
+        initialHideTimeoutRef.current = null;
       }
       if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current)
-        hideTimeoutRef.current = null
+        clearTimeout(hideTimeoutRef.current);
+        hideTimeoutRef.current = null;
       }
-    }
-  }, [isMapaPage])
+    };
+  }, [isMapaPage]);
 
   const handleMouseEnter = () => {
     // Siempre mostrar el texto
-    setShowText(true)
-  }
+    setShowText(true);
+  };
 
   const handleMouseLeave = () => {
     // Siempre mostrar el texto
-    setShowText(true)
-  }
+    setShowText(true);
+  };
 
   return (
     <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#54F6C5]/20">
       {/* Header principal - siempre visible */}
-      <div className="w-full max-w-full mx-auto px-5" style={{ paddingTop: '20px', paddingBottom: '20px' }}>
+      <div
+        className="w-full max-w-full mx-auto px-5"
+        style={{ paddingTop: "20px", paddingBottom: "20px" }}
+      >
         {/* Layout móvil - centrado */}
         <div className="md:hidden flex items-center justify-center gap-4 relative">
           {/* Botón menú móvil */}
@@ -65,40 +68,55 @@ function Navigation() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-3 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-all duration-200"
             aria-label="Toggle menu"
-            style={{ 
-              minWidth: '48px', 
-              minHeight: '48px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center',
-              fontFamily: "'Gotham', sans-serif"
+            style={{
+              minWidth: "48px",
+              minHeight: "48px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "'Gotham', sans-serif",
             }}
           >
-            <svg 
-              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-90 opacity-70' : 'opacity-100'}`}
-              fill="none" 
-              stroke="currentColor" 
+            <svg
+              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${
+                isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
+              }`}
+              fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
               strokeWidth={2}
             >
               {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               )}
             </svg>
           </button>
 
           {/* Logo centrado */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center justify-center flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(false)}
-            style={{ paddingTop: '7px', paddingBottom: '7px', paddingLeft: '10px', paddingRight: '10px' }}
+            style={{
+              paddingTop: "7px",
+              paddingBottom: "7px",
+              paddingLeft: "10px",
+              paddingRight: "10px",
+            }}
           >
-            <img 
-              src="/images/logo-header.jpeg" 
-              alt="Logo Header" 
+            <img
+              src="/images/logo-header.jpeg"
+              alt="Logo Header"
               className="h-12 sm:h-14 object-contain"
             />
           </Link>
@@ -109,17 +127,22 @@ function Navigation() {
 
         {/* Layout desktop - original */}
         <div className="hidden md:flex items-center justify-center">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center justify-center flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(false)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            style={{ paddingTop: '7px', paddingBottom: '7px', paddingLeft: '10px', paddingRight: '10px' }}
+            style={{
+              paddingTop: "7px",
+              paddingBottom: "7px",
+              paddingLeft: "10px",
+              paddingRight: "10px",
+            }}
           >
-            <img 
-              src="/images/logo-header.jpeg" 
-              alt="Logo Header" 
+            <img
+              src="/images/logo-header.jpeg"
+              alt="Logo Header"
               className="h-16 lg:h-20 object-contain"
             />
           </Link>
@@ -127,9 +150,9 @@ function Navigation() {
       </div>
 
       {/* Menú móvil - solo visible en móviles cuando está abierto */}
-      <div 
+      <div
         className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="px-5 py-6 space-y-4 border-t border-gray-100">
@@ -137,15 +160,23 @@ function Navigation() {
             to="/"
             onClick={() => setIsMobileMenuOpen(false)}
             className={`block py-4 px-5 rounded-xl transition-all duration-200 ${
-              location.pathname === '/' 
-                ? 'bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20' 
-                : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
+              location.pathname === "/"
+                ? "bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20"
+                : "text-gray-700 hover:bg-gray-50 active:bg-gray-100"
             }`}
-            style={{ fontFamily: "'Gotham', sans-serif", padding: '10px' }}
+            style={{ fontFamily: "'Gotham', sans-serif", padding: "10px" }}
           >
             <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-lg ${location.pathname === '/' ? 'bg-[#B018A9]/10' : 'bg-gray-100'}`}>
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <div
+                className={`p-2 rounded-lg ${
+                  location.pathname === "/" ? "bg-[#B018A9]/10" : "bg-gray-100"
+                }`}
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                 </svg>
               </div>
@@ -154,61 +185,73 @@ function Navigation() {
           </Link>
 
           {categories.map((category) => {
-            const isActive = location.pathname === category.path
+            const isActive = location.pathname === category.path;
             return (
               <Link
                 key={category.path}
                 to={category.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block py-4 px-5 rounded-xl transition-all duration-200 ${
-                  isActive 
-                    ? 'bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20' 
-                    : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
+                  isActive
+                    ? "bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20"
+                    : "text-gray-700 hover:bg-gray-50 active:bg-gray-100"
                 }`}
-                style={{ fontFamily: "'Gotham', sans-serif", padding: '10px' }}
+                style={{ fontFamily: "'Gotham', sans-serif", padding: "10px" }}
               >
                 <span className="text-base block">{category.name}</span>
               </Link>
-            )
+            );
           })}
         </div>
       </div>
 
       {/* Menú desktop - solo visible en pantallas grandes */}
-      <div 
+      <div
         className={`hidden md:block transition-all duration-300 ${
-          showText ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'
+          showText
+            ? "opacity-100 max-h-96"
+            : "opacity-0 max-h-0 overflow-hidden"
         }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="w-full max-w-full mx-auto px-6" style={{ paddingTop: '10px', paddingBottom: '10px' }}>
+        <div
+          className="w-full max-w-full mx-auto px-6"
+          style={{ paddingTop: "10px", paddingBottom: "10px" }}
+        >
           <div className="flex items-center justify-center gap-8 lg:gap-12 xl:gap-16">
             {/* Icono de casa */}
             <Link
               to="/"
               className="relative transition-all duration-300"
-              style={{ padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{
+                padding: "10px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <span 
+              <span
                 className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
-                  location.pathname === '/' 
-                    ? 'text-[#B018A9]' 
-                    : 'text-gray-500 hover:text-[#54F6C5]'
+                  location.pathname === "/"
+                    ? "text-[#B018A9]"
+                    : "text-gray-500 hover:text-[#54F6C5]"
                 }`}
                 style={{
-                  textDecoration: location.pathname === '/' ? 'underline' : 'none',
-                  textDecorationThickness: '2px',
-                  textDecorationColor: location.pathname === '/' ? '#B018A9' : 'transparent',
-                  textUnderlineOffset: '8px',
-                  paddingBottom: '5px'
+                  textDecoration:
+                    location.pathname === "/" ? "underline" : "none",
+                  textDecorationThickness: "2px",
+                  textDecorationColor:
+                    location.pathname === "/" ? "#B018A9" : "transparent",
+                  textUnderlineOffset: "8px",
+                  paddingBottom: "5px",
                 }}
               >
-                <svg 
-                  className="w-5 h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 inline-block" 
-                  fill="currentColor" 
+                <svg
+                  className="w-5 h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 inline-block"
+                  fill="currentColor"
                   viewBox="0 0 20 20"
-                  style={{ verticalAlign: 'middle' }}
+                  style={{ verticalAlign: "middle" }}
                 >
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                 </svg>
@@ -216,39 +259,43 @@ function Navigation() {
             </Link>
 
             {categories.map((category) => {
-              const isActive = location.pathname === category.path
+              const isActive = location.pathname === category.path;
               return (
                 <Link
                   key={category.path}
                   to={category.path}
                   className="relative transition-all duration-300"
-                  style={{ padding: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  style={{
+                    padding: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
                 >
-                  <span 
+                  <span
                     className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
-                      isActive 
-                        ? 'text-[#B018A9]' 
-                        : 'text-gray-500 hover:text-[#54F6C5]'
+                      isActive
+                        ? "text-[#B018A9]"
+                        : "text-gray-500 hover:text-[#54F6C5]"
                     }`}
                     style={{
-                      textDecoration: isActive ? 'underline' : 'none',
-                      textDecorationThickness: '2px',
-                      textDecorationColor: isActive ? '#B018A9' : 'transparent',
-                      textUnderlineOffset: '8px',
-                      paddingBottom: '5px'
+                      textDecoration: isActive ? "underline" : "none",
+                      textDecorationThickness: "2px",
+                      textDecorationColor: isActive ? "#B018A9" : "transparent",
+                      textUnderlineOffset: "8px",
+                      paddingBottom: "5px",
                     }}
                   >
                     {category.name}
                   </span>
                 </Link>
-              )
+              );
             })}
           </div>
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navigation
-
+export default Navigation;
