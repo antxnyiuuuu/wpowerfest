@@ -111,59 +111,64 @@ function Stand() {
         selectedStand &&
         createPortal(
           <div
-            // Aumenté el padding aquí a 'p-6' para separar el modal del borde del celular
             className="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-[#000000]/60 backdrop-blur-md h-screen w-screen"
             onClick={(e) => {
               if (e.target === e.currentTarget) handleClose();
             }}
           >
+            {/* Botón X en la esquina superior derecha */}
+            <button
+              onClick={handleClose}
+              className="absolute top-6 right-6 bg-white text-gray-700 hover:text-[#A900A1] hover:bg-gray-100 rounded-full p-3 md:p-4 transition-all duration-300 z-10 shadow-xl"
+              aria-label="Cerrar"
+              style={{ minWidth: "48px", minHeight: "48px" }}
+            >
+              <svg
+                className="w-6 h-6 md:w-7 md:h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={3}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
             <div
-              className="rounded-3xl w-full max-w-lg relative border-t-8 border-[#A900A1] shadow-2xl animate-fadeInUp m-auto"
+              className="rounded-3xl w-full max-w-2xl relative border-t-8 border-[#A900A1] shadow-2xl animate-fadeInUp"
               style={{ backgroundColor: "#ffffff" }}
             >
-              <button
-                onClick={handleClose}
-                className="absolute top-4 right-4 text-[#9ca3af] hover:text-[#A900A1] hover:bg-[#f3f4f6] rounded-full p-2 transition-colors z-10"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-
-              <div className="py-10 px-6 md:px-10 lg:px-12">
-                <h3 className="text-4xl text-[#A900A1] font-['Anton'] uppercase mb-2 text-center">
+              <div className="py-10 md:py-12 px-10 md:px-16 lg:px-20">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl text-[#A900A1] font-['Anton'] uppercase mb-6 md:mb-8 text-center">
                   INFORMACION DEL STAND
                 </h3>
 
-                <div className="text-center mb-8 border-b border-[#54F6C5] pb-4">
-                  <p className="text-[#6b7280] font-['Gotham'] text-sm uppercase tracking-widest mb-1">
+                <div className="text-center mb-10 md:mb-12 border-b-2 border-[#54F6C5] pb-5 md:pb-6">
+                  <p className="text-[#6b7280] font-['Gotham'] text-xs md:text-sm uppercase tracking-widest mb-3">
                     Zona seleccionada
                   </p>
+                  <span className="text-[#000000] font-bold text-xl md:text-2xl font-['Anton'] uppercase">
+                    {selectedStand.title}
+                  </span>
                 </div>
 
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col gap-8 font-['Gotham']"
+                  className="flex flex-col gap-8 md:gap-10 font-['Gotham']"
                 >
                   <div>
-                    <label className="block text-[#A900A1] font-['Anton'] text-lg uppercase mb-3 tracking-wide">
+                    <label className="block text-[#A900A1] font-['Anton'] text-lg md:text-xl uppercase mb-4 md:mb-5 tracking-wide">
                       Tu Nombre
                     </label>
                     <input
                       type="text"
                       required
                       placeholder="Escribe tu nombre"
-                      className="w-full border-2 border-[#e5e7eb] focus:border-[#54F6C5] rounded-xl px-5 py-4 outline-none transition-colors text-lg placeholder-[#9ca3af]"
+                      className="w-full border-2 border-[#e5e7eb] focus:border-[#54F6C5] rounded-xl px-6 md:px-8 py-5 md:py-6 outline-none transition-colors text-base md:text-lg placeholder-[#9ca3af] focus:shadow-md"
                       style={{ backgroundColor: "#f9fafb", color: "#000000" }}
                       value={formData.nombre}
                       onChange={(e) =>
@@ -173,7 +178,7 @@ function Stand() {
                   </div>
 
                   <div>
-                    <label className="block text-[#A900A1] font-['Anton'] text-lg uppercase mb-3 tracking-wide">
+                    <label className="block text-[#A900A1] font-['Anton'] text-lg md:text-xl uppercase mb-4 md:mb-5 tracking-wide">
                       Número de Stand
                     </label>
                     <input
@@ -181,7 +186,7 @@ function Stand() {
                       inputMode="numeric"
                       required
                       placeholder="Ej: 14"
-                      className="w-full border-2 border-[#e5e7eb] focus:border-[#54F6C5] rounded-xl px-5 py-4 outline-none transition-colors text-lg placeholder-[#9ca3af]"
+                      className="w-full border-2 border-[#e5e7eb] focus:border-[#54F6C5] rounded-xl px-6 md:px-8 py-5 md:py-6 outline-none transition-colors text-base md:text-lg placeholder-[#9ca3af] focus:shadow-md"
                       style={{ backgroundColor: "#f9fafb", color: "#000000" }}
                       value={formData.numeroStand}
                       onChange={(e) =>
@@ -195,12 +200,12 @@ function Stand() {
 
                   <button
                     type="submit"
-                    className="w-full font-['Anton'] text-xl py-5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] transition-all flex items-center justify-center gap-3 uppercase tracking-wider mt-4"
+                    className="w-full font-['Anton'] text-lg md:text-xl lg:text-2xl py-5 md:py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] transition-all flex items-center justify-center gap-3 uppercase tracking-wider mt-4 md:mt-6"
                     style={{ backgroundColor: "#25D366", color: "#ffffff" }}
                   >
                     <span>Enviar a WhatsApp</span>
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5 md:w-6 md:h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
