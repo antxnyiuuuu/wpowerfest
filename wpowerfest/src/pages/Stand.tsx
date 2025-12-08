@@ -85,10 +85,6 @@ function Stand() {
         <div className="flex flex-col items-center gap-20">
           {standsData.map((stand) => (
             <div key={stand.id} className="w-full max-w-5xl">
-              <h2 className="text-3xl md:text-4xl text-[#A900A1] font-['Anton'] mb-6 text-center md:text-left border-l-8 border-[#54F6C5] pl-4">
-                {stand.title}
-              </h2>
-
               <div
                 onClick={() => handleImageClick(stand)}
                 className="cursor-pointer active:scale-[0.98] transition-transform hover:shadow-xl rounded-xl overflow-hidden border border-[#eeeeee]"
@@ -153,9 +149,6 @@ function Stand() {
                   <p className="text-[#6b7280] font-['Gotham'] text-sm uppercase tracking-widest mb-1">
                     Zona seleccionada
                   </p>
-                  <span className="text-[#000000] font-bold text-xl font-['Anton'] uppercase">
-                    {selectedStand.title}
-                  </span>
                 </div>
 
                 <form
