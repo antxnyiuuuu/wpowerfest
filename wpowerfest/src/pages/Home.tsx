@@ -432,7 +432,7 @@ function Home() {
                 </svg>
               </a>
               <a
-                href="https://www.tiktok.com/@warmi.power.fest?_r=1&_t=ZM-91yTssjWal9"
+                href="https://www.tiktok.com/@warmipowerfest?_r=1&_t=ZM-925NkKxnCoN"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-[#B018A9] transition-colors duration-300"

@@ -7,7 +7,7 @@ function PassportButton() {
 
   return (
     <div
-      className="fixed bottom-6 left-6 md:left-10 z-50"
+      className="hidden md:block fixed bottom-6 left-6 md:left-10 z-50"
       onMouseEnter={() => {
         setIsHovering(true);
         setShowTooltip(true);
