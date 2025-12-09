@@ -108,8 +108,8 @@ function Auspiciante() {
                   {/* Imagen */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/Neisi Dajomes.jpg"
-                      alt="Neisi Dajomes"
+                      src="/images/Jefferson perez.jpg"
+                      alt="Jefferson Pérez"
                       className="w-full h-auto object-cover rounded-2xl relative z-10 shadow-2xl"
                       style={{
                         border: "5px solid white",
