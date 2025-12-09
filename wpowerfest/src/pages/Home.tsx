@@ -177,7 +177,7 @@ function Home() {
                         marginBottom: "10px",
                       }}
                     >
-                      {String(timeLeft.days).padStart(3, "0")}
+                      {String(timeLeft.days).padStart(2, "0")}
                     </div>
                     <span
                       className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"

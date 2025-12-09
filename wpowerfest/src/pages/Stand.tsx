@@ -111,20 +111,19 @@ function Stand() {
         selectedStand &&
         createPortal(
           <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-6 bg-[#000000]/60 backdrop-blur-md h-screen w-screen"
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md"
             onClick={(e) => {
               if (e.target === e.currentTarget) handleClose();
             }}
           >
-            {/* Botón X en la esquina superior derecha */}
+            {/* Botón Cerrar - Fuera del modal */}
             <button
               onClick={handleClose}
-              className="absolute top-6 right-6 bg-white text-gray-700 hover:text-[#A900A1] hover:bg-gray-100 rounded-full p-3 md:p-4 transition-all duration-300 z-10 shadow-xl"
+              className="absolute top-8 right-8 z-[10000] p-3 bg-white text-gray-700 hover:text-[#A900A1] hover:bg-gray-100 rounded-full transition-all shadow-lg"
               aria-label="Cerrar"
-              style={{ minWidth: "48px", minHeight: "48px" }}
             >
               <svg
-                className="w-6 h-6 md:w-7 md:h-7"
+                className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -139,37 +138,41 @@ function Stand() {
             </button>
 
             <div
-              className="rounded-3xl w-full max-w-2xl relative border-t-8 border-[#A900A1] shadow-2xl animate-fadeInUp"
-              style={{ backgroundColor: "#ffffff" }}
+              className="relative w-full max-w-[340px] md:max-w-[500px] bg-white rounded-[2rem] md:rounded-[3rem] shadow-2xl overflow-hidden animate-fadeInUp"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="py-10 md:py-12 px-10 md:px-16 lg:px-20">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl text-[#A900A1] font-['Anton'] uppercase mb-6 md:mb-8 text-center">
-                  INFORMACION DEL STAND
-                </h3>
-
-                <div className="text-center mb-10 md:mb-12 border-b-2 border-[#54F6C5] pb-5 md:pb-6">
-                  <p className="text-[#6b7280] font-['Gotham'] text-xs md:text-sm uppercase tracking-widest mb-3">
-                    Zona seleccionada
-                  </p>
-                  <span className="text-[#000000] font-bold text-xl md:text-2xl font-['Anton'] uppercase">
-                    {selectedStand.title}
-                  </span>
+              <div className="px-3 py-6 md:px-24 md:py-20">
+                {/* Header Minimalista */}
+                <div className="text-center mb-16">
+                  <h3
+                    className="text-xl md:text-5xl text-[#A900A1] font-['Anton'] uppercase mb-8 md:mb-12 tracking-wide"
+                    style={{ marginTop: "16px" }}
+                  >
+                    Cotiza tu Stand
+                  </h3>
+                  <div
+                    className="inline-block px-3 py-1.5 md:px-8 md:py-4 bg-gray-50 rounded-full border border-gray-100"
+                    style={{ marginBottom: "24px" }}
+                  >
+                    <div className="flex items-center justify-center gap-2 md:gap-3 text-xs md:text-lg text-gray-500 font-['Gotham']">
+                      <span className="uppercase tracking-widest font-medium">Zona:</span>
+                      <span className="font-bold text-[#A900A1] text-base md:text-xl">{selectedStand.title}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex flex-col gap-8 md:gap-10 font-['Gotham']"
-                >
-                  <div>
-                    <label className="block text-[#A900A1] font-['Anton'] text-lg md:text-xl uppercase mb-4 md:mb-5 tracking-wide">
+                {/* Formulario Centrado y Más Angosto */}
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6 md:gap-12 font-['Gotham'] w-full items-center">
+                  <div className="space-y-3 md:space-y-5 w-full max-w-[260px] md:max-w-sm">
+                    <label className="block text-sm font-bold text-gray-400 uppercase tracking-wider text-left" style={{ marginBottom: "20px" }}>
                       Tu Nombre
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Escribe tu nombre"
-                      className="w-full border-2 border-[#e5e7eb] focus:border-[#54F6C5] rounded-xl px-6 md:px-8 py-5 md:py-6 outline-none transition-colors text-base md:text-lg placeholder-[#9ca3af] focus:shadow-md"
-                      style={{ backgroundColor: "#f9fafb", color: "#000000" }}
+                      placeholder="Escribe tu nombre aquí"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-4 focus:ring-[#A900A1]/5 focus:border-[#A900A1] transition-all duration-300 text-sm md:text-lg text-left"
+                      style={{ paddingTop: "10px", paddingBottom: "10px", paddingLeft: "14px", paddingRight: "14px" }}
                       value={formData.nombre}
                       onChange={(e) =>
                         setFormData({ ...formData, nombre: e.target.value })
@@ -177,8 +180,8 @@ function Stand() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-[#A900A1] font-['Anton'] text-lg md:text-xl uppercase mb-4 md:mb-5 tracking-wide">
+                  <div className="space-y-3 md:space-y-5 w-full max-w-[260px] md:max-w-sm">
+                    <label className="block text-sm font-bold text-gray-400 uppercase tracking-wider text-left" style={{ marginBottom: "20px" }}>
                       Número de Stand
                     </label>
                     <input
@@ -186,8 +189,8 @@ function Stand() {
                       inputMode="numeric"
                       required
                       placeholder="Ej: 14"
-                      className="w-full border-2 border-[#e5e7eb] focus:border-[#54F6C5] rounded-xl px-6 md:px-8 py-5 md:py-6 outline-none transition-colors text-base md:text-lg placeholder-[#9ca3af] focus:shadow-md"
-                      style={{ backgroundColor: "#f9fafb", color: "#000000" }}
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-4 focus:ring-[#A900A1]/5 focus:border-[#A900A1] transition-all duration-300 text-sm md:text-lg text-left"
+                      style={{ paddingTop: "10px", paddingBottom: "10px", paddingLeft: "14px", paddingRight: "14px" }}
                       value={formData.numeroStand}
                       onChange={(e) =>
                         setFormData({
@@ -200,12 +203,23 @@ function Stand() {
 
                   <button
                     type="submit"
-                    className="w-full font-['Anton'] text-lg md:text-xl lg:text-2xl py-5 md:py-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] transition-all flex items-center justify-center gap-3 uppercase tracking-wider mt-4 md:mt-6"
-                    style={{ backgroundColor: "#25D366", color: "#ffffff" }}
+                    className="w-full max-w-[260px] md:max-w-sm font-['Anton'] text-base md:text-xl rounded-xl md:rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 uppercase tracking-wide"
+                    style={{
+                      backgroundColor: "#25D366",
+                      color: "#ffffff",
+                      marginTop: "0px",
+                      marginBottom: "32px",
+                      paddingTop: "10px",
+                      paddingBottom: "10px",
+                      paddingLeft: "16px",
+                      paddingRight: "16px",
+                      border: "none",
+                      borderRadius: "12px"
+                    }}
                   >
                     <span>Enviar a WhatsApp</span>
                     <svg
-                      className="w-5 h-5 md:w-6 md:h-6"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -217,8 +231,9 @@ function Stand() {
             </div>
           </div>,
           document.body
-        )}
-    </div>
+        )
+      }
+    </div >
   );
 }
 

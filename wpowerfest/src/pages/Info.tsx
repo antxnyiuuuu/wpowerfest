@@ -37,7 +37,7 @@ function Info() {
                 {/* Imagen principal */}
                 <div className="relative overflow-visible rounded-2xl">
                   <img
-                    src="/images/Chica Runner.jpg"
+                    src="/images/con-chica-runner.jpg"
                     alt="Warmi Power Fest"
                     className="w-full h-auto object-cover rounded-2xl relative z-10"
                     style={{
@@ -57,7 +57,7 @@ function Info() {
                     }}
                   >
                     <img
-                      src="/images/con-chica-runner.jpg"
+                      src="/images/Chica Runner.jpg"
                       alt="Collage Warmi"
                       className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 object-cover rounded-lg"
                       style={{
@@ -191,7 +191,7 @@ function Info() {
                 <div>
                   <Link to="/mapa">
                     <h3
-                      className="text-lg sm:text-xl md:text-2xl font-medium text-[#B018A9] hover:text-[#54F6C5] transition-colors duration-200"
+                      className="text-xl sm:text-2xl md:text-3xl font-medium text-[#B018A9] hover:text-[#54F6C5] transition-colors duration-200"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
                         marginTop: "20px",
@@ -258,7 +258,7 @@ function Info() {
                 <div>
                   <Link to="/warmi-talks">
                     <h3
-                      className="text-lg sm:text-xl md:text-2xl font-medium text-[#B018A9] hover:text-[#54F6C5] transition-colors duration-200"
+                      className="text-xl sm:text-2xl md:text-3xl font-medium text-[#B018A9] hover:text-[#54F6C5] transition-colors duration-200"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
                         marginTop: "20px",

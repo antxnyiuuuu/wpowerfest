@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 function CountdownTimer() {
   const location = useLocation()
-  
+
   // No mostrar en la página de inicio
   if (location.pathname === '/') {
     return null
@@ -45,9 +45,9 @@ function CountdownTimer() {
   }, [])
 
   return (
-    <div 
+    <div
       className="fixed bottom-4 left-4 md:bottom-2 md:left-auto md:right-6 z-50 bg-white rounded-lg shadow-lg border border-gray-200 text-center hidden md:block"
-      style={{ 
+      style={{
         minWidth: '160px',
         maxWidth: '220px',
         padding: '12px 16px',
@@ -60,7 +60,7 @@ function CountdownTimer() {
       <div className="flex items-center justify-center gap-1.5 md:gap-2" style={{ marginTop: '5px', marginBottom: '5px' }}>
         <div className="flex flex-col items-center">
           <div className="text-lg md:text-xl font-mono font-light text-[#B018A9]" style={{ fontFamily: 'monospace', letterSpacing: '1px', marginTop: '5px', marginBottom: '5px' }}>
-            {String(timeLeft.days).padStart(3, '0')}
+            {String(timeLeft.days).padStart(2, '0')}
           </div>
           <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Días</span>
         </div>
@@ -86,7 +86,7 @@ function CountdownTimer() {
           <span className="text-[10px] text-gray-500 font-light uppercase tracking-wider" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>Seg</span>
         </div>
       </div>
-      
+
       <p className="text-gray-400 text-[10px] font-light" style={{ fontFamily: "'Gotham', sans-serif", marginTop: '5px', marginBottom: '5px' }}>6 de marzo 2026</p>
     </div>
   )

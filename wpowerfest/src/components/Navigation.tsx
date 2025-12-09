@@ -11,8 +11,9 @@ function Navigation() {
 
   const categories = [
     { name: "Sobre el Evento", path: "/info" },
-    { name: "Salon Warmi Challenge", path: "/mapa" },
+    { name: "Salón Warmi Challenge", path: "/mapa" },
     { name: "Warmi Talks", path: "/warmi-talks" },
+    { name: "Auspiciantes", path: "/auspiciante" },
     { name: "Stands", path: "/stand" },
   ];
 
@@ -78,9 +79,8 @@ function Navigation() {
             }}
           >
             <svg
-              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${
-                isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
-              }`}
+              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
+                }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -151,26 +151,23 @@ function Navigation() {
 
       {/* Menú móvil - solo visible en móviles cuando está abierto */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="px-5 py-6 space-y-4 border-t border-gray-100">
           <Link
             to="/"
             onClick={() => setIsMobileMenuOpen(false)}
-            className={`block py-4 px-5 rounded-xl transition-all duration-200 ${
-              location.pathname === "/"
-                ? "bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20"
-                : "text-gray-700 hover:bg-gray-50 active:bg-gray-100"
-            }`}
+            className={`block py-4 px-5 rounded-xl transition-all duration-200 ${location.pathname === "/"
+              ? "bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20"
+              : "text-gray-700 hover:bg-gray-50 active:bg-gray-100"
+              }`}
             style={{ fontFamily: "'Gotham', sans-serif", padding: "10px" }}
           >
             <div className="flex items-center gap-3">
               <div
-                className={`p-2 rounded-lg ${
-                  location.pathname === "/" ? "bg-[#B018A9]/10" : "bg-gray-100"
-                }`}
+                className={`p-2 rounded-lg ${location.pathname === "/" ? "bg-[#B018A9]/10" : "bg-gray-100"
+                  }`}
               >
                 <svg
                   className="w-5 h-5"
@@ -191,11 +188,10 @@ function Navigation() {
                 key={category.path}
                 to={category.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block py-4 px-5 rounded-xl transition-all duration-200 ${
-                  isActive
-                    ? "bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20"
-                    : "text-gray-700 hover:bg-gray-50 active:bg-gray-100"
-                }`}
+                className={`block py-4 px-5 rounded-xl transition-all duration-200 ${isActive
+                  ? "bg-gradient-to-r from-[#B018A9]/10 to-[#54F6C5]/10 text-[#B018A9] font-semibold border border-[#B018A9]/20"
+                  : "text-gray-700 hover:bg-gray-50 active:bg-gray-100"
+                  }`}
                 style={{ fontFamily: "'Gotham', sans-serif", padding: "10px" }}
               >
                 <span className="text-base block">{category.name}</span>
@@ -207,11 +203,10 @@ function Navigation() {
 
       {/* Menú desktop - solo visible en pantallas grandes */}
       <div
-        className={`hidden md:block transition-all duration-300 ${
-          showText
-            ? "opacity-100 max-h-96"
-            : "opacity-0 max-h-0 overflow-hidden"
-        }`}
+        className={`hidden md:block transition-all duration-300 ${showText
+          ? "opacity-100 max-h-96"
+          : "opacity-0 max-h-0 overflow-hidden"
+          }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -232,11 +227,10 @@ function Navigation() {
               }}
             >
               <span
-                className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
-                  location.pathname === "/"
-                    ? "text-[#B018A9]"
-                    : "text-gray-500 hover:text-[#54F6C5]"
-                }`}
+                className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${location.pathname === "/"
+                  ? "text-[#B018A9]"
+                  : "text-gray-500 hover:text-[#54F6C5]"
+                  }`}
                 style={{
                   textDecoration:
                     location.pathname === "/" ? "underline" : "none",
@@ -273,11 +267,10 @@ function Navigation() {
                   }}
                 >
                   <span
-                    className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${
-                      isActive
-                        ? "text-[#B018A9]"
-                        : "text-gray-500 hover:text-[#54F6C5]"
-                    }`}
+                    className={`text-base lg:text-xl xl:text-2xl font-light whitespace-nowrap transition-all duration-300 nav-category-text ${isActive
+                      ? "text-[#B018A9]"
+                      : "text-gray-500 hover:text-[#54F6C5]"
+                      }`}
                     style={{
                       textDecoration: isActive ? "underline" : "none",
                       textDecorationThickness: "2px",
