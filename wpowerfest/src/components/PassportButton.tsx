@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function PassportButton() {
+interface PassportButtonProps {
+  mobileOnly?: boolean;
+}
+
+function PassportButton({ mobileOnly = false }: PassportButtonProps) {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
   return (
     <div
-      className="hidden md:block fixed bottom-6 left-6 md:left-10 z-50"
+      className={
+        mobileOnly
+          ? "md:hidden fixed bottom-6 left-6 z-50"
+          : "hidden md:block fixed bottom-6 left-6 md:left-10 z-50"
+      }
       onMouseEnter={() => {
         setIsHovering(true);
         setShowTooltip(true);

@@ -33,8 +33,9 @@ function Auspiciante() {
               <div className="space-y-12 order-2 lg:order-1">
                 {/* Primer párrafo */}
                 <p
-                  className="text-2xl md:text-3xl lg:text-4xl text-center lg:text-left leading-relaxed font-['Gotham']"
+                  className="text-2xl md:text-3xl lg:text-4xl text-center lg:text-left leading-relaxed"
                   style={{
+                    fontFamily: "'Gotham', sans-serif",
                     color: "#B018A9",
                     fontWeight: 700,
                     marginBottom: "40px",
@@ -45,30 +46,33 @@ function Auspiciante() {
 
                 {/* Segundo párrafo */}
                 <p
-                  className="text-xl md:text-2xl lg:text-3xl text-center lg:text-left leading-relaxed font-['Gotham']"
+                  className="text-xl md:text-2xl lg:text-3xl text-center lg:text-left leading-relaxed"
                   style={{
+                    fontFamily: "'Gotham', sans-serif",
                     color: "#B018A9",
                     fontWeight: 500,
                     lineHeight: "2",
                     marginBottom: "30px",
                   }}
                 >
-                  En esta edición histórica, la Warmi Runner 2026 rendirá homenaje
-                  a mujeres que han dejado huella en el camino recorrido durante
-                  estos 15 años.
+                  En esta edición histórica, la Warmi Runner 2026 rendirá
+                  homenaje a mujeres que han dejado huella en el camino
+                  recorrido durante estos 15 años.
                 </p>
 
                 {/* Tercer párrafo - Mensaje motivador */}
                 <p
-                  className="text-xl md:text-2xl lg:text-3xl text-center lg:text-left leading-relaxed font-['Gotham']"
+                  className="text-xl md:text-2xl lg:text-3xl text-center lg:text-left leading-relaxed"
                   style={{
+                    fontFamily: "'Gotham', sans-serif",
                     color: "#B018A9",
                     fontWeight: 600,
                     lineHeight: "2",
                     marginBottom: "50px",
                   }}
                 >
-                  ¡Únete a esta celebración única y haz que tu marca brille junto a las mujeres más inspiradoras del país!
+                  ¡Únete a esta celebración única y haz que tu marca brille
+                  junto a las mujeres más inspiradoras del país!
                 </p>
 
                 {/* Botón mejorado - MÁS GRANDE Y CENTRADO */}
@@ -79,17 +83,16 @@ function Auspiciante() {
                     rel="noopener noreferrer"
                     className="group relative inline-block"
                   >
-                    <div
-                      className="absolute inset-0 bg-gradient-to-r from-[#B018A9] to-[#54F6C5] rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"
-                    ></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#B018A9] to-[#54F6C5] rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
                     <button
                       className="relative px-20 py-10 text-white font-bold text-3xl md:text-4xl lg:text-5xl rounded-full shadow-2xl transform group-hover:scale-110 transition-all duration-300"
                       style={{
+                        fontFamily: "'Gotham', sans-serif",
                         backgroundColor: "#B018A9",
-                        fontFamily: "Gotham, sans-serif",
                         letterSpacing: "4px",
                         border: "5px solid #B018A9",
-                        boxShadow: "0 15px 50px rgba(176, 24, 169, 0.5), 0 0 30px rgba(84, 246, 197, 0.4)",
+                        boxShadow:
+                          "0 15px 50px rgba(176, 24, 169, 0.5), 0 0 30px rgba(84, 246, 197, 0.4)",
                       }}
                     >
                       SER AUSPICIANTE
@@ -113,7 +116,8 @@ function Auspiciante() {
                       className="w-full h-auto object-cover rounded-2xl relative z-10 shadow-2xl"
                       style={{
                         border: "5px solid white",
-                        boxShadow: "0 20px 50px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(0, 0, 0, 0.2)",
+                        boxShadow:
+                          "0 20px 50px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(0, 0, 0, 0.2)",
                       }}
                     />
                     {/* Overlay sutil */}

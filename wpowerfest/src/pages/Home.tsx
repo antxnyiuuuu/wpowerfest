@@ -455,8 +455,8 @@ function Home() {
       {/* Botón de WhatsApp solo para la página de inicio */}
       <WhatsAppButtonHome />
 
-      {/* Botón de Pasaporte solo para la página de inicio */}
-      <PassportButton />
+      {/* Botón de Pasaporte flotante solo en móvil/Android */}
+      <PassportButton mobileOnly={true} />
     </div>
   );
 }

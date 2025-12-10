@@ -12,6 +12,7 @@ import WS from "./pages/WS";
 import PageTransition from "./components/PageTransition";
 import WhatsAppButton from "./components/WhatsAppButton";
 import CountdownTimer from "./components/CountdownTimer";
+import PassportButton from "./components/PassportButton";
 
 function App() {
   return (
@@ -90,6 +91,7 @@ function App() {
       </Routes>
       <WhatsAppButton />
       <CountdownTimer />
+      <PassportButton />
     </BrowserRouter>
   );
 }
