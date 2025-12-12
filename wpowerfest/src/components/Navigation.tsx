@@ -60,18 +60,18 @@ function Navigation() {
       {/* Header principal - siempre visible */}
       <div
         className="w-full max-w-full mx-auto px-5"
-        style={{ paddingTop: "12px", paddingBottom: "12px" }}
+        style={{ paddingTop: "8px", paddingBottom: "8px" }}
       >
         {/* Layout móvil - centrado */}
         <div className="md:hidden flex items-center justify-center gap-4 relative">
           {/* Botón menú móvil */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-3 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
+            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
             aria-label="Toggle menu"
             style={{
-              minWidth: "48px",
-              minHeight: "48px",
+              minWidth: "40px",
+              minHeight: "40px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -79,7 +79,7 @@ function Navigation() {
             }}
           >
             <svg
-              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
+              className={`w-5 h-5 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
                 }`}
               fill="none"
               stroke="currentColor"
@@ -117,7 +117,7 @@ function Navigation() {
             <img
               src="/images/logo-header.jpeg"
               alt="Logo Header"
-              className="h-10 object-contain"
+              className="h-8 object-contain"
             />
           </Link>
 
