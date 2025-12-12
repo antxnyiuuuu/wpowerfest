@@ -56,7 +56,7 @@ function Navigation() {
   };
 
   return (
-    <nav className="w-full bg-white shadow-sm z-50 relative border-b border-[#54F6C5]/20">
+    <nav className="w-full bg-white shadow-sm z-50 sticky top-0 border-b border-[#54F6C5]/20" style={{ backgroundColor: '#ffffff' }}>
       {/* Header principal - siempre visible */}
       <div
         className="w-full max-w-full mx-auto px-5"
@@ -67,11 +67,11 @@ function Navigation() {
           {/* Botón menú móvil */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-3 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-all duration-200"
+            className="p-4 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
             aria-label="Toggle menu"
             style={{
-              minWidth: "48px",
-              minHeight: "48px",
+              minWidth: "60px",
+              minHeight: "60px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -79,7 +79,7 @@ function Navigation() {
             }}
           >
             <svg
-              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
+              className={`w-8 h-8 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
                 }`}
               fill="none"
               stroke="currentColor"

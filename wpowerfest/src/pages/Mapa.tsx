@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 function Mapa() {
   const navigate = useNavigate();
@@ -155,7 +156,7 @@ function Mapa() {
       // Detectar si el mouse se movió significativamente (más de 5px)
       const moveDistance = Math.sqrt(
         Math.pow(e.clientX - clickStartRef.current.x, 2) +
-          Math.pow(e.clientY - clickStartRef.current.y, 2)
+        Math.pow(e.clientY - clickStartRef.current.y, 2)
       );
       if (moveDistance > 5) {
         setHasMoved(true);
@@ -227,7 +228,7 @@ function Mapa() {
       const touch2 = e.touches[1];
       const distance = Math.sqrt(
         Math.pow(touch2.clientX - touch1.clientX, 2) +
-          Math.pow(touch2.clientY - touch1.clientY, 2)
+        Math.pow(touch2.clientY - touch1.clientY, 2)
       );
       initialDistanceRef.current = distance;
       initialScaleRef.current = scaleRef.current;
@@ -257,7 +258,7 @@ function Mapa() {
       const touch2 = e.touches[1];
       const currentDistance = Math.sqrt(
         Math.pow(touch2.clientX - touch1.clientX, 2) +
-          Math.pow(touch2.clientY - touch1.clientY, 2)
+        Math.pow(touch2.clientY - touch1.clientY, 2)
       );
 
       const scaleChange = currentDistance / initialDistanceRef.current;
@@ -297,7 +298,7 @@ function Mapa() {
       // Detectar si el touch se movió significativamente (más de 5px)
       const moveDistance = Math.sqrt(
         Math.pow(e.touches[0].clientX - clickStartRef.current.x, 2) +
-          Math.pow(e.touches[0].clientY - clickStartRef.current.y, 2)
+        Math.pow(e.touches[0].clientY - clickStartRef.current.y, 2)
       );
       if (moveDistance > 5) {
         setHasMoved(true);
@@ -539,7 +540,7 @@ function Mapa() {
 
     return () => {
       imageRef.current?.removeEventListener("load", handleImageLoad);
-      imageRef.current?.removeEventListener("error", () => {});
+      imageRef.current?.removeEventListener("error", () => { });
     };
   }, [activeMaqueta]);
 
@@ -700,40 +701,6 @@ function Mapa() {
             </div>
           )}
 
-          {/* Texto de instrucciones sobre la maqueta */}
-          {showWelcomeOverlay && (
-            <>
-              {/* Fondo oscuro */}
-              <div className="absolute inset-0 z-40 bg-black/60 animate-fade-in" />
-              {/* Texto */}
-              <div
-                className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none animate-fade-in"
-                style={{ fontFamily: "'Gotham', sans-serif" }}
-              >
-                <p
-                  className="text-white text-sm md:text-base font-medium text-center px-4 drop-shadow-lg"
-                  style={{ textShadow: "0 2px 8px rgba(0,0,0,0.8)" }}
-                >
-                  Puedes{" "}
-                  <span className="font-semibold text-[#54F6C5]">
-                    arrastrar
-                  </span>{" "}
-                  y{" "}
-                  <span className="font-semibold text-[#54F6C5]">agrandar</span>{" "}
-                  esta imagen
-                  <br />
-                  <span className="text-xs md:text-sm opacity-90">
-                    {/* --- MODIFICACIÓN: Texto actualizado --- */}
-                    <span className="font-semibold text-[#54F6C5]">
-                      Shift + Rueda
-                    </span>{" "}
-                    o <span className="font-semibold">pellizco</span> para
-                    agrandar
-                  </span>
-                </p>
-              </div>
-            </>
-          )}
           <div
             ref={imageTransformRef}
             style={{
@@ -868,12 +835,12 @@ function Mapa() {
           display: "block",
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center px-6 md:px-12 py-8 md:py-12">
-          {/* Lado izquierdo - Texto */}
-          <div className="order-2 lg:order-1 lg:text-left">
+        <div className="flex justify-center px-6 md:px-12 py-8 md:py-12">
+          {/* Contenedor de texto centrado */}
+          <div className="max-w-3xl w-full">
             {/* Título */}
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-center"
               style={{
                 fontFamily: "'Anton', sans-serif",
                 color: "#B018A9",
@@ -887,7 +854,7 @@ function Mapa() {
             </h2>
 
             {/* Párrafos */}
-            <div className="space-y-16 md:space-y-20">
+            <div className="space-y-6 md:space-y-8">
               <p
                 className="text-base md:text-lg text-[#B018A9] leading-relaxed"
                 style={{
@@ -926,36 +893,11 @@ function Mapa() {
               </p>
             </div>
           </div>
-
-          {/* Lado derecho - Imagen */}
-          <div className="relative flex items-center justify-center order-1 lg:order-2">
-            <div
-              className="relative w-full max-w-xs sm:max-w-sm md:max-w-md"
-              style={{ overflow: "visible" }}
-            >
-              {/* Decoración sutil de fondo */}
-              <div className="absolute -top-6 -left-6 sm:-top-8 sm:-left-8 w-24 h-24 sm:w-32 sm:h-32 bg-[#B018A9]/5 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 w-32 h-32 sm:w-40 sm:h-40 bg-[#54F6C5]/5 rounded-full blur-3xl"></div>
-
-              {/* Imagen principal */}
-              <div className="relative overflow-visible rounded-2xl">
-                <img
-                  src="/images/Chica-Pasaporte.png"
-                  alt="Salón Warmi Challenge"
-                  className="w-full h-auto object-cover rounded-2xl relative z-10"
-                  style={{
-                    border: "5px solid white",
-                    boxShadow:
-                      "0 20px 50px rgba(0, 0, 0, 0.5), 0 10px 25px rgba(0, 0, 0, 0.3)",
-                  }}
-                />
-                {/* Overlay sutil para dar profundidad */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-20"></div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

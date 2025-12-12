@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 function Stand() {
   // DATA
   const standsData = [
     {
       id: 1,
-      src: "/images/14.png",
-      title: "ZONA NUTRITIVA",
+      src: "/images/13.png",
+      title: "SALÓN WARMI CHALLENGE",
     },
     {
       id: 2,
-      src: "/images/13.png",
-      title: "SALÓN WARMI CHALLENGE",
+      src: "/images/14.png",
+      title: "ZONA NUTRITIVA",
     },
   ];
 
@@ -233,6 +234,9 @@ function Stand() {
           document.body
         )
       }
+
+      {/* Footer */}
+      <Footer />
     </div >
   );
 }

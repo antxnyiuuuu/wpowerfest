@@ -13,86 +13,93 @@ import PageTransition from "./components/PageTransition";
 import WhatsAppButton from "./components/WhatsAppButton";
 import CountdownTimer from "./components/CountdownTimer";
 import PassportButton from "./components/PassportButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
+    <div
+      style={{ minHeight: "100dvh", backgroundColor: "#ffffff" }}
+      className="min-h-screen"
     >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/info"
-          element={
-            <PageTransition>
-              <Info />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/mapa"
-          element={
-            <PageTransition>
-              <Mapa />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/auspiciante"
-          element={
-            <PageTransition>
-              <Auspiciante />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/warmi-talks"
-          element={
-            <PageTransition>
-              <WarmiTalks />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/pasaporte"
-          element={
-            <PageTransition>
-              <Pasaporte />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/premios"
-          element={
-            <PageTransition>
-              <Premios />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/stand"
-          element={
-            <PageTransition>
-              <Stand />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/ws"
-          element={
-            <PageTransition>
-              <WS />
-            </PageTransition>
-          }
-        />
-      </Routes>
-      <WhatsAppButton />
-      <CountdownTimer />
-      <PassportButton />
-    </BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/info"
+            element={
+              <PageTransition>
+                <Info />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/mapa"
+            element={
+              <PageTransition>
+                <Mapa />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/auspiciante"
+            element={
+              <PageTransition>
+                <Auspiciante />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/warmi-talks"
+            element={
+              <PageTransition>
+                <WarmiTalks />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/pasaporte"
+            element={
+              <PageTransition>
+                <Pasaporte />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/premios"
+            element={
+              <PageTransition>
+                <Premios />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/stand"
+            element={
+              <PageTransition>
+                <Stand />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/ws"
+            element={
+              <PageTransition>
+                <WS />
+              </PageTransition>
+            }
+          />
+        </Routes>
+        <WhatsAppButton />
+        <CountdownTimer />
+        <PassportButton />
+        <ScrollToTop />
+      </BrowserRouter>
+    </div>
   );
 }
 

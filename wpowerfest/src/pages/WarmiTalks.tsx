@@ -1,12 +1,13 @@
 import Navigation from '../components/Navigation'
+import Footer from '../components/Footer'
 
 function WarmiTalks() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
+
       {/* Contenedor para la imagen centrada */}
-      <div 
+      <div
         className="w-full flex items-start justify-center"
         style={{
           paddingTop: '20px',
@@ -27,6 +28,9 @@ function WarmiTalks() {
           }}
         />
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

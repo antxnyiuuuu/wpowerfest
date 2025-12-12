@@ -1,4 +1,5 @@
 import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 function Auspiciante() {
   return (
@@ -17,11 +18,12 @@ function Auspiciante() {
           <div className="p-12 md:p-20 lg:p-24">
             {/* Título principal */}
             <h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-24"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-32"
               style={{
                 fontFamily: "'Anton', sans-serif",
                 color: "#B018A9",
                 letterSpacing: "2px",
+                marginBottom: "128px"
               }}
             >
               AUSPICIANTES
@@ -33,12 +35,13 @@ function Auspiciante() {
               <div className="space-y-12 order-2 lg:order-1">
                 {/* Primer párrafo */}
                 <p
-                  className="text-2xl md:text-3xl lg:text-4xl text-center lg:text-left leading-relaxed"
+                  className="text-2xl md:text-3xl lg:text-4xl leading-relaxed"
                   style={{
                     fontFamily: "'Gotham', sans-serif",
                     color: "#B018A9",
                     fontWeight: 700,
                     marginBottom: "40px",
+                    textAlign: "justify"
                   }}
                 >
                   Tu marca estará presente en la entrega de los Premios Warmi.
@@ -46,13 +49,14 @@ function Auspiciante() {
 
                 {/* Segundo párrafo */}
                 <p
-                  className="text-xl md:text-2xl lg:text-3xl text-center lg:text-left leading-relaxed"
+                  className="text-xl md:text-2xl lg:text-3xl leading-relaxed"
                   style={{
                     fontFamily: "'Gotham', sans-serif",
                     color: "#B018A9",
                     fontWeight: 500,
                     lineHeight: "2",
                     marginBottom: "30px",
+                    textAlign: "justify"
                   }}
                 >
                   En esta edición histórica, la Warmi Runner 2026 rendirá
@@ -62,13 +66,14 @@ function Auspiciante() {
 
                 {/* Tercer párrafo - Mensaje motivador */}
                 <p
-                  className="text-xl md:text-2xl lg:text-3xl text-center lg:text-left leading-relaxed"
+                  className="text-xl md:text-2xl lg:text-3xl leading-relaxed"
                   style={{
                     fontFamily: "'Gotham', sans-serif",
                     color: "#B018A9",
                     fontWeight: 600,
                     lineHeight: "2",
                     marginBottom: "50px",
+                    textAlign: "justify"
                   }}
                 >
                   ¡Únete a esta celebración única y haz que tu marca brille
@@ -135,6 +140,9 @@ function Auspiciante() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

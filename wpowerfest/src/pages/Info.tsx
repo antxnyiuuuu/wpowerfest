@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import RuletaInfo from "../components/RuletaInfo";
+import Footer from "../components/Footer";
 
 function Info() {
   return (
@@ -417,6 +418,9 @@ function Info() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
