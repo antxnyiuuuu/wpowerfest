@@ -67,11 +67,11 @@ function Navigation() {
           {/* Botón menú móvil */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-4 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
+            className="p-3 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
             aria-label="Toggle menu"
             style={{
-              minWidth: "60px",
-              minHeight: "60px",
+              minWidth: "48px",
+              minHeight: "48px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -79,7 +79,7 @@ function Navigation() {
             }}
           >
             <svg
-              className={`w-8 h-8 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
+              className={`w-6 h-6 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
                 }`}
               fill="none"
               stroke="currentColor"

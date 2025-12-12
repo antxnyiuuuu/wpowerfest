@@ -219,6 +219,19 @@ button:focus-visible {
   [class*="fixed"] {
     z-index: 50;
   }
+
+  /* Eliminar fondos no deseados en botones para Android */
+  button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  /* Asegurar que el botón de scroll to top no tenga fondo en Android */
+  button[aria-label="Volver arriba"] {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
 }
 
 @keyframes fadeIn {

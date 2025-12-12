@@ -33,14 +33,18 @@ function ScrollToTop() {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-36 left-8 z-[110] group rounded-full p-0 bg-transparent overflow-hidden"
+                    className="fixed bottom-36 left-8 z-[110] group overflow-hidden"
                     aria-label="Volver arriba"
                     style={{
                         animation: 'fadeInUp 0.3s ease-out',
                         borderRadius: '100%',
                         border: 'none',
                         outline: 'none',
-                        boxShadow: 'none'
+                        boxShadow: 'none',
+                        background: 'transparent !important',
+                        backgroundColor: 'transparent !important',
+                        padding: '0',
+                        margin: '0'
                     }}
                 >
                     {/* Botón principal */}
