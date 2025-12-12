@@ -379,8 +379,14 @@ function Mapa() {
     const scaleX = containerWidth / imgWidth;
     const scaleY = containerHeight / imgHeight;
 
+    // Detectar si es móvil (ancho menor a 768px)
+    const isMobile = window.innerWidth < 768;
+
+    // En móvil, usar un zoom SÚPER extremo (25x), en desktop mantener el margen (0.95x)
+    const zoomMultiplier = isMobile ? 25 : 0.95;
+
     // Usar el menor para que la imagen quepa completamente
-    return Math.min(scaleX, scaleY) * 0.95; // 0.95 para dejar un poco de margen
+    return Math.min(scaleX, scaleY) * zoomMultiplier;
   };
 
   const resetView = () => {

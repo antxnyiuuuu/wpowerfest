@@ -60,26 +60,46 @@ function Navigation() {
       {/* Header principal - siempre visible */}
       <div
         className="w-full max-w-full mx-auto px-5"
-        style={{ paddingTop: "8px", paddingBottom: "8px" }}
+        style={{ paddingTop: "4px", paddingBottom: "4px" }}
       >
-        {/* Layout móvil - centrado */}
-        <div className="md:hidden flex items-center justify-center gap-4 relative">
-          {/* Botón menú móvil */}
+        {/* Layout móvil - vertical */}
+        <div className="md:hidden flex flex-col items-center justify-center gap-2 relative">
+          {/* Logo arriba */}
+          <Link
+            to="/"
+            className="flex items-center justify-center flex-shrink-0"
+            onClick={() => setIsMobileMenuOpen(false)}
+            style={{
+              paddingTop: "2px",
+              paddingBottom: "2px",
+              paddingLeft: "4px",
+              paddingRight: "4px",
+            }}
+          >
+            <img
+              src="/images/logo-header.jpeg"
+              alt="Logo Header"
+              className="h-8 object-contain"
+            />
+          </Link>
+
+          {/* Botón menú móvil debajo */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 transition-all duration-200"
+            className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#B018A9] to-[#8B1A8F] hover:from-[#9A1591] hover:to-[#7A1680] active:from-[#8B1482] active:to-[#6B1370] transition-all duration-200 shadow-md hover:shadow-lg"
             aria-label="Toggle menu"
             style={{
-              minWidth: "40px",
-              minHeight: "40px",
+              minWidth: "100px",
+              minHeight: "36px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              gap: "8px",
               fontFamily: "'Gotham', sans-serif",
             }}
           >
             <svg
-              className={`w-5 h-5 text-gray-700 transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
+              className={`w-5 h-5 text-white transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
                 }`}
               fill="none"
               stroke="currentColor"
@@ -100,29 +120,8 @@ function Navigation() {
                 />
               )}
             </svg>
+            <span className="text-sm text-white font-semibold">Menú</span>
           </button>
-
-          {/* Logo centrado */}
-          <Link
-            to="/"
-            className="flex items-center justify-center flex-shrink-0"
-            onClick={() => setIsMobileMenuOpen(false)}
-            style={{
-              paddingTop: "4px",
-              paddingBottom: "4px",
-              paddingLeft: "8px",
-              paddingRight: "8px",
-            }}
-          >
-            <img
-              src="/images/logo-header.jpeg"
-              alt="Logo Header"
-              className="h-8 object-contain"
-            />
-          </Link>
-
-          {/* Espaciador invisible para balancear */}
-          <div className="w-12"></div>
         </div>
 
         {/* Layout desktop - original */}

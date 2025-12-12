@@ -8,37 +8,37 @@ function RuletaInfo() {
 
   // 5 secciones con información sobre los ejes
   const sections = [
-    { 
-      id: 1, 
-      image: '/images/Rueda-1.png', 
+    {
+      id: 1,
+      image: '/images/Rueda-1.png',
       rotation: 0,
       title: 'Deporte',
       description: 'Actividades deportivas y competencias diseñadas para empoderar a las mujeres a través del movimiento y la actividad física.'
     },
-    { 
-      id: 2, 
-      image: '/images/Rueda-2.png', 
+    {
+      id: 2,
+      image: '/images/Rueda-2.png',
       rotation: 72,
       title: 'Fitness y Wellness',
       description: 'Espacios dedicados al bienestar integral, incluyendo entrenamientos, yoga, meditación y prácticas de autocuidado.'
     },
-    { 
-      id: 3, 
-      image: '/images/Rueda-3.png', 
+    {
+      id: 3,
+      image: '/images/Rueda-3.png',
       rotation: 144,
       title: 'Moda y Equipamientos',
       description: 'Tendencias en moda deportiva y equipamientos especializados para la mujer activa y moderna.'
     },
-    { 
-      id: 4, 
-      image: '/images/Rueda-4.png', 
+    {
+      id: 4,
+      image: '/images/Rueda-4.png',
       rotation: 216,
       title: 'Belleza',
       description: 'Productos y servicios de belleza que realzan la confianza y el cuidado personal de cada mujer.'
     },
-    { 
-      id: 5, 
-      image: '/images/Rueda-5.png', 
+    {
+      id: 5,
+      image: '/images/Rueda-5.png',
       rotation: 288,
       title: 'Salud y Nutrición',
       description: 'Información y recursos sobre alimentación saludable, nutrición deportiva y bienestar nutricional.'
@@ -49,7 +49,7 @@ function RuletaInfo() {
 
   // Detectar si es móvil (tablet y móvil)
   const [isMobile, setIsMobile] = useState(false)
-  
+
   // Estados para detectar scroll vs tap
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null)
   const hasMovedRef = useRef(false)
@@ -58,10 +58,10 @@ function RuletaInfo() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
-    
+
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
@@ -146,16 +146,16 @@ function RuletaInfo() {
     <div className="w-full flex items-center justify-center" style={{ paddingTop: '35px', paddingBottom: '35px' }}>
       <div className="max-w-7xl w-full" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-8 lg:gap-12">
-          
+
           {/* Card de información - estilo minimalista */}
           <div className="p-8 sm:p-8 md:p-10 order-2 lg:order-2">
             <div className="flex flex-col h-full justify-center">
               {hoveredEje ? (
                 <>
                   {/* Título del eje con hover */}
-                  <p 
+                  <p
                     className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
-                    style={{ 
+                    style={{
                       fontFamily: "'Anton', sans-serif",
                       lineHeight: '1.7',
                       fontWeight: 400,
@@ -166,13 +166,13 @@ function RuletaInfo() {
                   >
                     <span className="text-[#B018A9]">{hoveredEje.title}</span>
                   </p>
-                  
+
                   <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#B018A9]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
-                  
+
                   {/* Descripción del eje */}
-                  <p 
+                  <p
                     className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                    style={{ 
+                    style={{
                       fontFamily: "'Gotham', sans-serif",
                       lineHeight: '1.8',
                       fontWeight: 300,
@@ -193,9 +193,9 @@ function RuletaInfo() {
               ) : (
                 <>
                   {/* Texto inicial cuando no hay hover */}
-                  <p 
+                  <p
                     className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
-                    style={{ 
+                    style={{
                       fontFamily: "'Anton', sans-serif",
                       lineHeight: '1.7',
                       fontWeight: 400,
@@ -206,12 +206,12 @@ function RuletaInfo() {
                   >
                     <span className="font-medium text-[#B018A9] ">NUESTROS  EJES</span>
                   </p>
-                  
+
                   <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#B018A9]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
-                  
-                  <p 
+
+                  <p
                     className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                    style={{ 
+                    style={{
                       fontFamily: "'Gotham', sans-serif",
                       lineHeight: '1.8',
                       fontWeight: 300,
@@ -248,7 +248,7 @@ function RuletaInfo() {
                   const angleRad = (section.rotation * Math.PI) / 180
                   const x = 50 + radius * Math.sin(angleRad)
                   const y = 50 - radius * Math.cos(angleRad)
-                  
+
                   return (
                     <div
                       key={section.id}
@@ -271,11 +271,10 @@ function RuletaInfo() {
                       <img
                         src={section.image}
                         alt={`Sección ${section.id}`}
-                        className={`w-full h-full object-contain transition-all duration-300 ease-out ${
-                          hoveredSection === section.id
+                        className={`w-full h-full object-contain transition-all duration-300 ease-out ${hoveredSection === section.id
                             ? 'scale-110 brightness-110 drop-shadow-lg'
                             : 'scale-100 brightness-100'
-                        }`}
+                          }`}
                         style={{
                           transform: `rotate(${-section.rotation}deg)`,
                           transformOrigin: 'center center',
@@ -285,8 +284,8 @@ function RuletaInfo() {
                   )
                 })}
 
-                {/* Logo central - encima de todo */}
-                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                {/* Logo central - encima de todo - oculto en móvil */}
+                <div className="absolute inset-0 hidden md:flex items-center justify-center z-10 pointer-events-none">
                   <img
                     src="/images/logo-solo-warmi.png"
                     alt="Warmi Logo"

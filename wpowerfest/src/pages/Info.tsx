@@ -84,9 +84,9 @@ function Info() {
 
             {/* Lado derecho - Contenido minimalista */}
             <div className="flex flex-col space-y-10 md:space-y-8 order-2 lg:order-1 items-center text-center lg:text-left lg:items-start">
-              {/* Logo pequeño y discreto - centrado */}
+              {/* Logo pequeño y discreto - centrado - oculto en móvil */}
               <div
-                className="flex justify-center lg:justify-center w-full"
+                className="hidden md:flex justify-center lg:justify-center w-full"
                 style={{ marginTop: "20px", marginBottom: "30px" }}
               >
                 <img
