@@ -60,7 +60,7 @@ function Navigation() {
       {/* Header principal - siempre visible */}
       <div
         className="w-full max-w-full mx-auto px-5"
-        style={{ paddingTop: "20px", paddingBottom: "20px" }}
+        style={{ paddingTop: "12px", paddingBottom: "12px" }}
       >
         {/* Layout móvil - centrado */}
         <div className="md:hidden flex items-center justify-center gap-4 relative">
@@ -108,16 +108,16 @@ function Navigation() {
             className="flex items-center justify-center flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(false)}
             style={{
-              paddingTop: "7px",
-              paddingBottom: "7px",
-              paddingLeft: "10px",
-              paddingRight: "10px",
+              paddingTop: "4px",
+              paddingBottom: "4px",
+              paddingLeft: "8px",
+              paddingRight: "8px",
             }}
           >
             <img
               src="/images/logo-header.jpeg"
               alt="Logo Header"
-              className="h-12 sm:h-14 object-contain"
+              className="h-10 object-contain"
             />
           </Link>
 
