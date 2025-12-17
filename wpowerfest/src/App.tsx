@@ -14,6 +14,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import CountdownTimer from "./components/CountdownTimer";
 import PassportButton from "./components/PassportButton";
 import ScrollToTop from "./components/ScrollToTop";
+import BackButton from "./components/BackButton";
 
 function App() {
   return (
@@ -94,6 +95,7 @@ function App() {
             }
           />
         </Routes>
+        <BackButton />
         <WhatsAppButton />
         <CountdownTimer />
         <PassportButton />

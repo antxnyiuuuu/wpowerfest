@@ -52,11 +52,10 @@ function Auspiciante() {
                   className="text-xl md:text-2xl lg:text-3xl leading-relaxed"
                   style={{
                     fontFamily: "'Gotham', sans-serif",
-                    color: "#B018A9",
-                    fontWeight: 500,
-                    lineHeight: "2",
-                    marginBottom: "30px",
-                    textAlign: "justify"
+                    color: "#000000ff",
+                    textAlign: "justify",
+                    fontSize: "30px",
+                    marginBottom: "px",
                   }}
                 >
                   En esta edición histórica, la Warmi Runner 2026 rendirá
@@ -86,11 +85,11 @@ function Auspiciante() {
                     href="https://forms.office.com/r/iCDQaAQjjS?origin=lprLink"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative inline-block"
+                    className="group relative inline-block  "
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-[#B018A9] to-[#54F6C5] rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
                     <button
-                      className="relative px-20 py-10 text-white font-bold text-3xl md:text-4xl lg:text-5xl rounded-full shadow-2xl transform group-hover:scale-110 transition-all duration-300"
+                      className="relative px-25 py-15 text-white font-bold text-3xl md:text-4xl lg:text-5xl rounded-full shadow-2xl transform group-hover:scale-110 transition-all duration-300"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
                         backgroundColor: "#B018A9",
@@ -98,6 +97,11 @@ function Auspiciante() {
                         border: "5px solid #B018A9",
                         boxShadow:
                           "0 15px 50px rgba(176, 24, 169, 0.5), 0 0 30px rgba(84, 246, 197, 0.4)",
+                        paddingLeft: "85px",
+                        paddingRight: "85px",
+                        paddingTop: "45px",
+                        paddingBottom: "45px",
+                        fontSize: "20px",
                       }}
                     >
                       SER AUSPICIANTE
@@ -116,7 +120,7 @@ function Auspiciante() {
                   {/* Imagen */}
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src="/images/Jefferson perez.jpg"
+                      src="/images/Chica-fit.jpg"
                       alt="Jefferson Pérez"
                       className="w-full h-auto object-cover rounded-2xl relative z-10 shadow-2xl"
                       style={{

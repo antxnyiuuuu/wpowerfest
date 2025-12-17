@@ -17,6 +17,15 @@ function Navigation() {
     { name: "Stands", path: "/stand" },
   ];
 
+  // Sincronizar estado del menú móvil con el body
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.setAttribute('data-mobile-menu-open', 'true');
+    } else {
+      document.body.removeAttribute('data-mobile-menu-open');
+    }
+  }, [isMobileMenuOpen]);
+
   // Siempre mostrar el header
   useEffect(() => {
     // Siempre mostrar el texto del header
@@ -60,68 +69,79 @@ function Navigation() {
       {/* Header principal - siempre visible */}
       <div
         className="w-full max-w-full mx-auto px-5"
-        style={{ paddingTop: "4px", paddingBottom: "4px" }}
+        style={{ paddingTop: "12px", paddingBottom: "16px" }}
       >
-        {/* Layout móvil - vertical */}
-        <div className="md:hidden flex flex-col items-center justify-center gap-2 relative">
-          {/* Logo arriba */}
+        {/* Layout móvil - horizontal */}
+        <div className="md:hidden flex flex-row items-center justify-start w-full px-2 relative">
+          {/* Botón menú móvil a la izquierda - 3 líneas con divs */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="rounded-lg bg-gradient-to-r from-[#B018A9] to-[#8B1A8F] hover:from-[#9A1591] hover:to-[#7A1680] transition-all duration-200 shadow-md hover:shadow-lg"
+            aria-label="Toggle menu"
+            style={{
+              width: "40px",
+              height: "40px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "5px",
+              marginLeft: "8px",
+              padding: "10px",
+            }}
+          >
+            {isMobileMenuOpen ? (
+              // X para cerrar
+              <div style={{ position: "relative", width: "20px", height: "20px" }}>
+                <div style={{
+                  position: "absolute",
+                  width: "20px",
+                  height: "3px",
+                  backgroundColor: "white",
+                  transform: "rotate(45deg)",
+                  top: "8px",
+                  borderRadius: "2px"
+                }}></div>
+                <div style={{
+                  position: "absolute",
+                  width: "20px",
+                  height: "3px",
+                  backgroundColor: "white",
+                  transform: "rotate(-45deg)",
+                  top: "8px",
+                  borderRadius: "2px"
+                }}></div>
+              </div>
+            ) : (
+              // 3 líneas horizontales
+              <>
+                <div style={{ width: "20px", height: "3px", backgroundColor: "white", borderRadius: "2px" }}></div>
+                <div style={{ width: "20px", height: "3px", backgroundColor: "white", borderRadius: "2px" }}></div>
+                <div style={{ width: "20px", height: "3px", backgroundColor: "white", borderRadius: "2px" }}></div>
+              </>
+            )}
+          </button>
+
+          {/* Logo centrado */}
           <Link
             to="/"
             className="flex items-center justify-center flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(false)}
             style={{
-              paddingTop: "2px",
-              paddingBottom: "2px",
-              paddingLeft: "4px",
-              paddingRight: "4px",
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+              paddingTop: "4px",
+              paddingBottom: "4px",
             }}
           >
             <img
               src="/images/logo-header.jpeg"
               alt="Logo Header"
-              className="h-8 object-contain"
+              className="object-contain"
+              style={{ height: "32px", maxWidth: "200px" }}
             />
           </Link>
-
-          {/* Botón menú móvil debajo */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#B018A9] to-[#8B1A8F] hover:from-[#9A1591] hover:to-[#7A1680] active:from-[#8B1482] active:to-[#6B1370] transition-all duration-200 shadow-md hover:shadow-lg"
-            aria-label="Toggle menu"
-            style={{
-              minWidth: "100px",
-              minHeight: "36px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "8px",
-              fontFamily: "'Gotham', sans-serif",
-            }}
-          >
-            <svg
-              className={`w-5 h-5 text-white transition-all duration-300 ${isMobileMenuOpen ? "rotate-90 opacity-70" : "opacity-100"
-                }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-            >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-            <span className="text-sm text-white font-semibold">Menú</span>
-          </button>
         </div>
 
         {/* Layout desktop - original */}
@@ -142,7 +162,7 @@ function Navigation() {
             <img
               src="/images/logo-header.jpeg"
               alt="Logo Header"
-              className="h-16 lg:h-20 object-contain"
+              className="h-20 lg:h-24 object-contain"
             />
           </Link>
         </div>
@@ -150,10 +170,10 @@ function Navigation() {
 
       {/* Menú móvil - solo visible en móviles cuando está abierto */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
-        <div className="px-5 py-6 space-y-4 border-t border-gray-100">
+        <div className="px-5 py-4 space-y-3 border-t border-gray-100">
           <Link
             to="/"
             onClick={() => setIsMobileMenuOpen(false)}
@@ -241,7 +261,7 @@ function Navigation() {
                 }}
               >
                 <svg
-                  className="w-5 h-5 lg:w-6 lg:h-6 xl:w-8 xl:h-8 inline-block"
+                  className="w-6 h-6 lg:w-7 lg:h-7 xl:w-9 xl:h-9 inline-block"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   style={{ verticalAlign: "middle" }}

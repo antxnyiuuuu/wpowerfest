@@ -150,86 +150,104 @@ function RuletaInfo() {
           {/* Card de información - estilo minimalista */}
           <div className="p-8 sm:p-8 md:p-10 order-2 lg:order-2">
             <div className="flex flex-col h-full justify-center">
-              {hoveredEje ? (
-                <>
-                  {/* Título del eje con hover */}
-                  <p
-                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
-                    style={{
-                      fontFamily: "'Anton', sans-serif",
-                      lineHeight: '1.7',
-                      fontWeight: 400,
-                      letterSpacing: '2px',
-                      marginTop: '20px',
-                      marginBottom: '30px'
-                    }}
-                  >
-                    <span className="text-[#B018A9]">{hoveredEje.title}</span>
-                  </p>
+              {/* Card contenedor con diseño minimalista */}
+              <div
+                className="relative bg-white rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden"
+                style={{
+                  padding: "40px 30px",
+                  borderLeft: hoveredEje ? "4px solid #B018A9" : "4px solid #54F6C5",
+                  transition: "all 0.5s ease"
+                }}
+              >
+                {/* Decoración de fondo sutil */}
+                <div
+                  className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-10 transition-opacity duration-500"
+                  style={{
+                    background: hoveredEje ? "#B018A9" : "#54F6C5",
+                  }}
+                ></div>
 
-                  <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#B018A9]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
+                {/* Contenido */}
+                <div
+                  key={hoveredEje?.id || 'default'}
+                  className="relative z-10"
+                >
+                  {hoveredEje ? (
+                    <>
+                      {/* Título del eje con hover */}
+                      <p
+                        className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
+                        style={{
+                          fontFamily: "'Anton', sans-serif",
+                          lineHeight: '1.7',
+                          fontWeight: 400,
+                          letterSpacing: '2px',
+                          marginBottom: '20px'
+                        }}
+                      >
+                        <span className="text-[#B018A9]">{hoveredEje.title}</span>
+                      </p>
 
-                  {/* Descripción del eje */}
-                  <p
-                    className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                    style={{
-                      fontFamily: "'Gotham', sans-serif",
-                      lineHeight: '1.8',
-                      fontWeight: 300,
-                      letterSpacing: '0.2px',
-                      marginTop: '20px',
-                      marginBottom: '30px'
-                    }}
-                  >
-                    {hoveredEje.description}
-                  </p>
+                      <div className="h-px w-16 bg-gradient-to-r from-[#B018A9] via-[#B018A9]/50 to-transparent mb-6"></div>
 
-                  {/* Elemento decorativo */}
-                  <div className="flex items-center gap-3" style={{ marginTop: '30px', marginBottom: '20px' }}>
-                    <div className="h-1 w-12 bg-[#54F6C5]"></div>
-                    <div className="h-1 w-6 bg-[#B018A9]"></div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* Texto inicial cuando no hay hover */}
-                  <p
-                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
-                    style={{
-                      fontFamily: "'Anton', sans-serif",
-                      lineHeight: '1.7',
-                      fontWeight: 400,
-                      letterSpacing: '2px',
-                      marginTop: '20px',
-                      marginBottom: '30px'
-                    }}
-                  >
-                    <span className="font-medium text-[#B018A9] ">NUESTROS  EJES</span>
-                  </p>
+                      {/* Descripción del eje */}
+                      <p
+                        className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
+                        style={{
+                          fontFamily: "'Gotham', sans-serif",
+                          lineHeight: '1.8',
+                          fontWeight: 300,
+                          letterSpacing: '0.2px',
+                        }}
+                      >
+                        {hoveredEje.description}
+                      </p>
 
-                  <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-[#B018A9]/30 to-transparent" style={{ marginTop: '20px', marginBottom: '30px' }}></div>
+                      {/* Elemento decorativo */}
+                      <div className="flex items-center gap-3 mt-8">
+                        <div className="h-1 w-12 bg-[#B018A9] rounded-full"></div>
+                        <div className="h-1 w-6 bg-[#54F6C5] rounded-full"></div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Texto inicial cuando no hay hover */}
+                      <p
+                        className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 leading-relaxed"
+                        style={{
+                          fontFamily: "'Anton', sans-serif",
+                          lineHeight: '1.7',
+                          fontWeight: 400,
+                          letterSpacing: '2px',
+                          marginBottom: '20px'
+                        }}
+                      >
+                        <span className="font-medium text-[#54F6C5]">NUESTROS EJES</span>
+                      </p>
 
-                  <p
-                    className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed"
-                    style={{
-                      fontFamily: "'Gotham', sans-serif",
-                      lineHeight: '1.8',
-                      fontWeight: 300,
-                      letterSpacing: '0.2px',
-                      marginTop: '20px',
-                      marginBottom: '30px'
-                    }}
-                  >
-                    Toca cada sección de la ruleta para conocer los diferentes ejes que componen el Warmi Power Fest.
-                  </p>
+                      <div className="h-px w-16 bg-gradient-to-r from-[#54F6C5] via-[#54F6C5]/50 to-transparent mb-6"></div>
 
-                  {/* Elemento decorativo */}
-                  <div className="flex items-center gap-3" style={{ marginTop: '30px', marginBottom: '20px' }}>
-                    <div className="h-1 w-12 bg-[#54F6C5]"></div>
-                    <div className="h-1 w-6 bg-[#B018A9]"></div>
-                  </div>
-                </>
-              )}
+                      <p
+                        className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
+                        style={{
+                          fontFamily: "'Gotham', sans-serif",
+                          lineHeight: '1.8',
+                          fontWeight: 300,
+                          letterSpacing: '0.2px',
+                        }}
+                      >
+                        Toca cada sección de la ruleta para conocer los diferentes ejes que componen el Warmi Power Fest.
+                      </p>
+
+                      {/* Elemento decorativo */}
+                      <div className="flex items-center gap-3 mt-8">
+                        <div className="h-1 w-12 bg-[#54F6C5] rounded-full"></div>
+                        <div className="h-1 w-6 bg-[#B018A9] rounded-full"></div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
@@ -272,8 +290,8 @@ function RuletaInfo() {
                         src={section.image}
                         alt={`Sección ${section.id}`}
                         className={`w-full h-full object-contain transition-all duration-300 ease-out ${hoveredSection === section.id
-                            ? 'scale-110 brightness-110 drop-shadow-lg'
-                            : 'scale-100 brightness-100'
+                          ? 'scale-125 brightness-110 drop-shadow-2xl'
+                          : 'scale-100 brightness-100'
                           }`}
                         style={{
                           transform: `rotate(${-section.rotation}deg)`,
@@ -308,7 +326,7 @@ function RuletaInfo() {
           }}
         >
           <div
-            className="rounded-3xl w-full max-w-md relative border-t-8 border-[#B018A9] shadow-2xl animate-fadeInUp m-auto overflow-hidden"
+            className="rounded-3xl w-full max-w-xl relative border-t-8 border-[#B018A9] shadow-2xl animate-fadeInUp m-auto overflow-hidden"
             style={{ backgroundColor: '#ffffff' }}
           >
             {/* Botón cerrar */}
@@ -336,7 +354,7 @@ function RuletaInfo() {
             <div className="py-10 px-6 md:px-10">
               {/* Imagen del eje */}
               <div className="flex justify-center mb-6">
-                <div className="w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
+                <div className="w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
                   <img
                     src={selectedEje.image}
                     alt={selectedEje.title}

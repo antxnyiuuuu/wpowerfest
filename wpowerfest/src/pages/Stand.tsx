@@ -20,7 +20,7 @@ function Stand() {
 
   // ESTADOS
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedStand, setSelectedStand] = useState(null);
+  const [selectedStand, setSelectedStand] = useState<any>(null);
   const [formData, setFormData] = useState({
     nombre: "",
     numeroStand: "",
@@ -78,32 +78,178 @@ function Stand() {
     >
       <Navigation />
 
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl md:text-6xl text-center text-[#A900A1] font-['Anton'] uppercase mb-12 mt-4">
+      <div className="container mx-auto px-4 py-8" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        width: '100%',
+        maxWidth: '1280px',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+      }}>
+        <h1 className="text-4xl md:text-6xl text-center text-[#A900A1] font-['Anton'] uppercase mb-12 mt-4" style={{
+          width: '100%',
+          textAlign: 'center',
+          marginTop: '80px',
+          marginBottom: '20px'
+        }}>
           RESERVA TU ESPACIO
         </h1>
 
-        <div className="flex flex-col items-center gap-20">
-          {standsData.map((stand) => (
-            <div key={stand.id} className="w-full max-w-5xl">
-              <div
-                onClick={() => handleImageClick(stand)}
-                className="cursor-pointer active:scale-[0.98] transition-transform hover:shadow-xl rounded-xl overflow-hidden border border-[#eeeeee]"
-              >
-                <img
-                  src={stand.src}
-                  alt={stand.title}
-                  className="w-full h-auto block"
-                />
-                <p
-                  className="text-[#ffffff] text-center py-3 font-['Gotham'] text-sm tracking-wide uppercase"
-                  style={{ backgroundColor: "#A900A1", color: "#ffffff" }}
-                >
-                  Toca la imagen para cotizar esta zona
-                </p>
-              </div>
+        {/* Subtítulo instructivo */}
+        <p className="text-sm md:text-lg text-center text-gray-600 font-['Gotham'] mb-12" style={{
+          width: '100%',
+          textAlign: 'center',
+          marginBottom: '60px',
+          fontWeight: 400
+        }}>
+          Haz click en el stand de tu preferencia
+        </p>
+
+        <div style={{
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: window.innerWidth >= 768 ? '70% 30%' : '1fr',
+          gap: '40px',
+          alignItems: 'start',
+          justifyContent: 'center'
+        }}>
+          {/* Card 1 - Maqueta del Stand (más grande) */}
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <div
+              onClick={() => {
+                setSelectedStand({ id: 1, title: "SALÓN WARMI CHALLENGE" });
+                setIsModalOpen(true);
+              }}
+              className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 cursor-pointer hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '32px'
+              }}>
+              <img
+                src="/images/Stand-Warmi.png"
+                alt="Maqueta Salón Warmi Challenge"
+                className="w-full h-auto block"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  margin: '0 auto'
+                }}
+              />
             </div>
-          ))}
+          </div>
+
+          {/* Card 2 - Costos de los Stands (más pequeño) */}
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6" style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '16px'
+            }}>
+              <img
+                src="/images/Stands-Warmi-Costos.png"
+                alt="Costos Stands Warmi"
+                className="w-full h-auto block"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  margin: '0 auto'
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Segundo Grid - Zona Nutritiva */}
+        <div style={{
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: window.innerWidth >= 768 ? '70% 30%' : '1fr',
+          gap: '40px',
+          alignItems: 'start',
+          justifyContent: 'center',
+          marginTop: '60px'
+        }}>
+          {/* Card 1 - Maqueta del Stand Nutritivo (más grande) */}
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <div
+              onClick={() => {
+                setSelectedStand({ id: 2, title: " NUTRITIVA" });
+                setIsModalOpen(true);
+              }}
+              className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 cursor-pointer hover:shadow-xl transition-all duration-300 active:scale-[0.98]"
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '32px'
+              }}>
+              <img
+                src="/images/Stand-Nutritivo-Warmi.png"
+                alt="Maqueta Zona Nutritiva"
+                className="w-full h-auto block"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  margin: '0 auto'
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Card 2 - Costos de los Stands Nutritivos (más pequeño) */}
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6" style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: '16px'
+            }}>
+              <img
+                src="/images/Stands-Nutritivo-Costos.png"
+                alt="Costos Stands Nutritivos"
+                className="w-full h-auto block"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  margin: '0 auto'
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 

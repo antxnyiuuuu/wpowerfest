@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false);
+    const location = useLocation();
 
     // Mostrar el botón cuando el usuario hace scroll hacia abajo
     useEffect(() => {
@@ -20,6 +22,11 @@ function ScrollToTop() {
         };
     }, []);
 
+    // No mostrar en la página de inicio
+    if (location.pathname === '/') {
+        return null;
+    }
+
     // Función para hacer scroll hacia arriba
     const scrollToTop = () => {
         window.scrollTo({
@@ -33,7 +40,7 @@ function ScrollToTop() {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-36 left-8 z-[110] group overflow-hidden"
+                    className="fixed bottom-6 md:bottom-36 left-8 z-[110] group overflow-hidden"
                     aria-label="Volver arriba"
                     style={{
                         animation: 'fadeInUp 0.3s ease-out',
@@ -47,9 +54,8 @@ function ScrollToTop() {
                         margin: '0'
                     }}
                 >
-                    {/* Botón principal */}
                     <div
-                        className="relative w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-[#B018A9] to-[#54F6C5]"
+                        className="relative w-9 h-9 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-[#B018A9] to-[#54F6C5]"
                         style={{
                             borderRadius: '100%',
                             border: 'none'
@@ -57,7 +63,7 @@ function ScrollToTop() {
                     >
                         {/* Icono de flecha */}
                         <svg
-                            className="w-6 h-6 md:w-7 md:h-7 text-white"
+                            className="w-5 h-5 md:w-7 md:h-7 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"

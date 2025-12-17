@@ -17,13 +17,25 @@ function WhatsAppButton() {
       className="fixed bottom-6 md:bottom-[calc(0.5rem+180px+0.5rem)] right-6 z-50 group"
       aria-label="Contactar por WhatsApp"
     >
-      <div className="relative w-16 h-16 md:w-20 md:h-20">
+      {/* Mensaje "CONTÁCTANOS" */}
+      <div className="absolute right-full mr-4 md:mr-8 top-1/2 -translate-y-1/2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+        <div className="bg-white rounded-2xl shadow-xl px-3 py-2 md:px-4 md:py-3 border-2 border-[#ffffff00] relative animate-bounce">
+          <p className="text-[#25D366] font-bold whitespace-nowrap text-xs md:text-lg" style={{ fontFamily: "'Gotham', sans-serif", color: "#000000", }}>
+            CONTÁCTANOS
+          </p>
+          {/* Flecha del mensaje */}
+          <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-white"></div>
+          <div className="absolute top-1/2 -right-[10px] -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-[#25D366]"></div>
+        </div>
+      </div>
+
+      <div className="relative w-10 h-10 md:w-20 md:h-20">
         {/* Efecto de pulso/anillo exterior solo en hover */}
         <div className="absolute inset-0 bg-[#25D366]/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></div>
-        
+
         {/* Círculo exterior blanco con borde verde */}
         <div className="absolute inset-0 bg-white rounded-full border-[3px] border-[#25D366] shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-[#25D366]/50"></div>
-        
+
         {/* Círculo interior verde con icono */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#25D366] to-[#20BA5A] rounded-full m-2.5 transition-all duration-300 group-hover:from-[#20BA5A] group-hover:to-[#1DA851] flex items-center justify-center">
           <svg

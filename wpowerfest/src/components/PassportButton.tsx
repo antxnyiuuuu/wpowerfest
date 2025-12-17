@@ -33,8 +33,8 @@ function PassportButton({ mobileOnly = false }: PassportButtonProps) {
         <div
           className="relative"
           style={{
-            width: isHovering ? "100px" : "86px",
-            height: isHovering ? "100" : "90",
+            width: isHovering ? "100px" : mobileOnly ? "60px" : "86px",
+            height: isHovering ? "100" : mobileOnly ? "70" : "90",
           }}
         >
           <img
@@ -46,8 +46,8 @@ function PassportButton({ mobileOnly = false }: PassportButtonProps) {
             alt="Pasaporte Warmi Power Fest"
             className="w-full h-full object-contain transition-all duration-500 ease-in-out group-hover:scale-90 drop-shadow-lg"
             style={{
-              width: isHovering ? "90px" : "96px",
-              height: "100px",
+              width: isHovering ? "90px" : mobileOnly ? "60px" : "96px",
+              height: mobileOnly ? "70px" : "100px",
               objectFit: "contain",
             }}
           />

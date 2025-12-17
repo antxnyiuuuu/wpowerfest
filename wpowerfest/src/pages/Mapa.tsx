@@ -23,6 +23,8 @@ function Mapa() {
   const [isChangingMaqueta, setIsChangingMaqueta] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [isMapNavigationActive, setIsMapNavigationActive] = useState(false); // Nuevo estado para activar navegación del mapa
+  const longPressTimeoutRef = useRef<number | null>(null); // Timeout para detectar long press
 
   const maquetas = {
     salon: {
@@ -222,8 +224,16 @@ function Mapa() {
   const handleTouchStart = (e: React.TouchEvent) => {
     // Si hay dos dedos, es un gesto de pinch to zoom
     if (e.touches.length === 2) {
+      // Limpiar el timeout de long press si existe
+      if (longPressTimeoutRef.current) {
+        clearTimeout(longPressTimeoutRef.current);
+        longPressTimeoutRef.current = null;
+      }
+
       setIsDragging(false);
       setIsZooming(true);
+      setIsMapNavigationActive(true); // Activar navegación inmediatamente para pinch zoom
+
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
       const distance = Math.sqrt(
@@ -235,18 +245,19 @@ function Mapa() {
       return;
     }
 
-    // Un solo dedo para arrastrar
+    // Un solo dedo - activar navegación INMEDIATAMENTE
     if (e.touches.length === 1) {
-      setIsDragging(true);
       setHasMoved(false);
-      setDragStart({
-        x: e.touches[0].clientX - position.x,
-        y: e.touches[0].clientY - position.y,
-      });
+      setIsMapNavigationActive(true); // Activar inmediatamente
+      setIsDragging(true); // Activar arrastre inmediatamente
       clickStartRef.current = {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY,
       };
+      setDragStart({
+        x: e.touches[0].clientX - position.x,
+        y: e.touches[0].clientY - position.y,
+      });
     }
   };
 
@@ -291,15 +302,15 @@ function Mapa() {
       return;
     }
 
-    // Un solo dedo para arrastrar
-    if (isDragging && e.touches.length === 1) {
-      e.preventDefault(); // Prevenir scroll mientras se arrastra
+    // Un solo dedo - si estamos arrastrando, prevenir scroll y mover el mapa
+    if (e.touches.length === 1 && isDragging) {
+      e.preventDefault(); // SIEMPRE prevenir scroll cuando se está arrastrando
 
-      // Detectar si el touch se movió significativamente (más de 5px)
       const moveDistance = Math.sqrt(
         Math.pow(e.touches[0].clientX - clickStartRef.current.x, 2) +
         Math.pow(e.touches[0].clientY - clickStartRef.current.y, 2)
       );
+
       if (moveDistance > 5) {
         setHasMoved(true);
       }
@@ -312,6 +323,15 @@ function Mapa() {
   };
 
   const handleTouchEnd = (e?: React.TouchEvent) => {
+    // Limpiar el timeout de long press
+    if (longPressTimeoutRef.current) {
+      clearTimeout(longPressTimeoutRef.current);
+      longPressTimeoutRef.current = null;
+    }
+
+    // Resetear el estado de navegación del mapa
+    setIsMapNavigationActive(false);
+
     // Limpiar estado de pinch to zoom
     if (initialDistanceRef.current !== null) {
       initialDistanceRef.current = null;
@@ -599,7 +619,11 @@ function Mapa() {
   return (
     <div
       className="min-h-screen bg-white"
-      style={{ paddingTop: "10px", paddingBottom: "10px" }}
+      style={{
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        overscrollBehavior: "none"
+      }}
     >
       <Navigation />
 
@@ -614,18 +638,18 @@ function Mapa() {
           marginLeft: "auto",
           marginRight: "auto",
           display: "block",
-          minHeight: "70vh",
+          minHeight: window.innerWidth < 768 ? "50vh" : "70vh",
         }}
       >
         <div
           ref={containerRef}
           className="relative overflow-hidden bg-gray-100"
           style={{
-            height: "70vh",
-            maxHeight: "800px",
-            minHeight: "400px",
+            height: window.innerWidth < 768 ? "50vh" : "70vh",
+            maxHeight: window.innerWidth < 768 ? "500px" : "800px",
+            minHeight: window.innerWidth < 768 ? "250px" : "400px",
             cursor: isDragging ? "grabbing" : "grab",
-            touchAction: "none",
+            touchAction: "pan-y pinch-zoom", // Permitir scroll vertical y pinch zoom
             willChange: "auto",
             backfaceVisibility: "hidden",
           }}
@@ -865,8 +889,10 @@ function Mapa() {
                 className="text-base md:text-lg text-[#B018A9] leading-relaxed"
                 style={{
                   fontFamily: "'Gotham', sans-serif",
-                  color: "#B018A9",
+                  color: "#000000ff",
                   textAlign: "justify",
+                  fontSize: window.innerWidth < 768 ? "16px" : "25px",
+                  marginBottom: "10px",
                 }}
               >
                 El Salón Warmi Challenge es el corazón del WPF: el punto donde
@@ -878,8 +904,10 @@ function Mapa() {
                 className="text-base md:text-lg text-[#B018A9] leading-relaxed"
                 style={{
                   fontFamily: "'Gotham', sans-serif",
-                  color: "#B018A9",
+                  color: "#000000ff",
                   textAlign: "justify",
+                  fontSize: window.innerWidth < 768 ? "16px" : "25px",
+                  marginBottom: "10px",
                 }}
               >
                 Aquí, tu marca conecta directamente con una audiencia activa.
@@ -889,8 +917,10 @@ function Mapa() {
                 className="text-base md:text-lg text-[#B018A9] leading-relaxed"
                 style={{
                   fontFamily: "'Gotham', sans-serif",
-                  color: "#B018A9",
+                  color: "#000000ff",
                   textAlign: "justify",
+                  fontSize: window.innerWidth < 768 ? "16px" : "25px",
+                  marginBottom: "10px",
                 }}
               >
                 Este espacio acogerá el Warmi Challenge, una experiencia

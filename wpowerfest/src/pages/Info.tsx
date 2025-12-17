@@ -8,10 +8,13 @@ function Info() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
+      {/* Espaciador entre header y contenido */}
+      <div className="w-full h-[80px] md:h-[100px]"></div>
+
       {/* Sección principal - Diseño minimalista */}
       <div
         className="w-full flex items-center justify-center min-h-[calc(100vh-200px)]"
-        style={{ paddingTop: "60px", paddingBottom: "60px" }}
+        style={{ paddingBottom: "60px" }}
       >
         <div
           className="max-w-7xl w-full"
@@ -50,11 +53,11 @@ function Info() {
                   {/* Overlay sutil para dar profundidad */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-20"></div>
 
-                  {/* Imagen de collage en esquina inferior derecha */}
                   <div
-                    className="absolute -bottom-6 -right-6 sm:-bottom-8 sm:-right-8 md:-bottom-10 md:-right-10 lg:-bottom-12 lg:-right-12 z-30"
+                    className="absolute -right-6 sm:-right-8 md:-right-10 lg:-right-12 z-30"
                     style={{
                       filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25))",
+                      bottom: "-80px",
                     }}
                   >
                     <img
@@ -133,7 +136,7 @@ function Info() {
                   }}
                 >
                   Además, celebramos los{" "}
-                  <span className="font-medium text-[#B018A9]">
+                  <span className="font-medium text-[#B018A9] text-2xl">
                     15 años de la Warmi Runner.{" "}
                   </span>
                 </p>
