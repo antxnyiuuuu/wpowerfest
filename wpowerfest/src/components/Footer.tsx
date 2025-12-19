@@ -100,7 +100,7 @@ function Footer() {
                         {/* Con la Participación de + Logo BURÓ */}
                         <div className="flex items-center gap-3 md:gap-4">
                             <p className="text-gray-400 uppercase tracking-wider text-right" style={{ fontFamily: "'Gotham', sans-serif", fontSize: '12px', lineHeight: '1.2' }}>
-                                Con la<br />Participación de
+                                POWERED<br />BY
                             </p>
 
                             <a

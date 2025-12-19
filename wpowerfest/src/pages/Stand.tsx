@@ -25,6 +25,8 @@ function Stand() {
     nombre: "",
     numeroStand: "",
   });
+  const [isPricesModalWarmi, setIsPricesModalWarmi] = useState(false);
+  const [isPricesModalNutritiva, setIsPricesModalNutritiva] = useState(false);
 
   // BLOQUEO DE SCROLL
   useEffect(() => {
@@ -120,7 +122,8 @@ function Stand() {
           <div style={{
             width: '100%',
             display: 'flex',
-            justifyContent: 'center'
+            flexDirection: 'column',
+            gap: '20px'
           }}>
             <div
               onClick={() => {
@@ -148,12 +151,24 @@ function Stand() {
                 }}
               />
             </div>
+
+            {/* Botón Ver Precios - SOLO EN MÓVIL */}
+            <button
+              onClick={() => setIsPricesModalWarmi(true)}
+              className="md:hidden bg-gradient-to-r from-[#B018A9] to-[#8B1A8F] hover:from-[#9A1591] hover:to-[#7A1680] text-white font-['Anton'] text-lg py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              style={{
+                alignSelf: 'center',
+                maxWidth: '300px',
+                width: '100%'
+              }}
+            >
+              Ver Precios
+            </button>
           </div>
 
-          {/* Card 2 - Costos de los Stands (más pequeño) */}
-          <div style={{
+          {/* Card 2 - Costos de los Stands - SIEMPRE VISIBLE EN DESKTOP */}
+          <div className="hidden md:flex" style={{
             width: '100%',
-            display: 'flex',
             justifyContent: 'center'
           }}>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6" style={{
@@ -193,7 +208,8 @@ function Stand() {
           <div style={{
             width: '100%',
             display: 'flex',
-            justifyContent: 'center'
+            flexDirection: 'column',
+            gap: '20px'
           }}>
             <div
               onClick={() => {
@@ -221,12 +237,24 @@ function Stand() {
                 }}
               />
             </div>
+
+            {/* Botón Ver Precios - SOLO EN MÓVIL */}
+            <button
+              onClick={() => setIsPricesModalNutritiva(true)}
+              className="md:hidden bg-gradient-to-r from-[#B018A9] to-[#8B1A8F] hover:from-[#9A1591] hover:to-[#7A1680] text-white font-['Anton'] text-lg py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              style={{
+                alignSelf: 'center',
+                maxWidth: '300px',
+                width: '100%'
+              }}
+            >
+              Ver Precios
+            </button>
           </div>
 
-          {/* Card 2 - Costos de los Stands Nutritivos (más pequeño) */}
-          <div style={{
+          {/* Card 2 - Costos de los Stands Nutritivos - SIEMPRE VISIBLE EN DESKTOP */}
+          <div className="hidden md:flex" style={{
             width: '100%',
-            display: 'flex',
             justifyContent: 'center'
           }}>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6" style={{
@@ -374,6 +402,98 @@ function Stand() {
                     </svg>
                   </button>
                 </form>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )
+      }
+
+      {/* MODAL DE PRECIOS - WARMI CHALLENGE */}
+      {isPricesModalWarmi &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            onClick={() => setIsPricesModalWarmi(false)}
+          >
+            <div
+              className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Botón Cerrar */}
+              <button
+                onClick={() => setIsPricesModalWarmi(false)}
+                className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
+                aria-label="Cerrar"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              {/* Imagen de precios */}
+              <div className="p-6">
+                <img
+                  src="/images/Stands-Warmi-Costos.png"
+                  alt="Costos Stands Warmi"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>,
+          document.body
+        )
+      }
+
+      {/* MODAL DE PRECIOS - ZONA NUTRITIVA */}
+      {isPricesModalNutritiva &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            onClick={() => setIsPricesModalNutritiva(false)}
+          >
+            <div
+              className="relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Botón Cerrar */}
+              <button
+                onClick={() => setIsPricesModalNutritiva(false)}
+                className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
+                aria-label="Cerrar"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              {/* Imagen de precios */}
+              <div className="p-6">
+                <img
+                  src="/images/Stands-Nutritivo-Costos.png"
+                  alt="Costos Stands Nutritivos"
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>,
