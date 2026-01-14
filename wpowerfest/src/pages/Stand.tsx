@@ -62,7 +62,7 @@ function Stand() {
       return;
     }
 
-    const phoneNumber = "593963258709";
+    const phoneNumber = "593998808873";
     const message = `Hola, mi nombre es *${formData.nombre}*. Quiero reservar el *Stand N° ${formData.numeroStand}* de la zona: *${selectedStand.title}*.`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message

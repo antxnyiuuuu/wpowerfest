@@ -14,9 +14,9 @@ function WS() {
               <p className="text-gray-700 mb-6">
                 Escríbenos para más información sobre el Warmi Power Fest
               </p>
-              <a 
-                href="https://wa.me/message/6VRABHAF55GXA1" 
-                target="_blank" 
+              <a
+                href="https://wa.me/message/QXAL5MELZ7BJJ1"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
               >
