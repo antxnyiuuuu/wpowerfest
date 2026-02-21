@@ -88,6 +88,37 @@ function Home() {
           />
         </div>
       </div>
+    
+      {/* Botón de Registro */}
+      {/* codigo en wh */}
+      {/* Animación shimmer personalizada */}
+      <style>{`
+        @keyframes shimmer {
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+        
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        
+        .animate-spin-slow {
+          animation: spin-slow 3s linear infinite;
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
+        }
+      `}</style>
 
       {/* Sección de presentación */}
       <div
@@ -120,31 +151,31 @@ function Home() {
             }}
           >
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#B018A9] leading-tight"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#B018A9] leading-tight"
               style={{
                 fontFamily: "'Anton', sans-serif",
-                letterSpacing: "3px",
+                letterSpacing: "2px",
                 marginTop: "10px",
-                marginBottom: "40px",
+                marginBottom: "30px",
                 width: "100%",
                 maxWidth: "900px",
-                paddingLeft: "20px",
-                paddingRight: "20px",
+                paddingLeft: "15px",
+                paddingRight: "15px",
               }}
             >
               EL FESTIVAL FEMENINO MÁS INSPIRADOR DEL PAÍS
             </h1>
             <p
-              className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-700 leading-relaxed"
               style={{
                 fontFamily: "'Gotham', sans-serif",
-                letterSpacing: "1px",
+                letterSpacing: "0.5px",
                 marginTop: "10px",
-                marginBottom: "50px",
+                marginBottom: "40px",
                 width: "100%",
                 maxWidth: "800px",
-                paddingLeft: "20px",
-                paddingRight: "20px",
+                paddingLeft: "15px",
+                paddingRight: "15px",
               }}
             >
               Celebramos los 15 años de la Warmi Runner presentando el{" "}
@@ -170,128 +201,128 @@ function Home() {
               }}
             >
               <div
-                className="bg-white rounded-xl p-8 md:p-10 shadow-lg transition-all duration-300 border border-gray-200 text-center"
+                className="bg-white rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg transition-all duration-300 border border-gray-200 text-center"
                 style={{ marginTop: "10px", marginBottom: "10px" }}
               >
                 <h3
-                  className="text-lg md:text-xl font-light text-gray-700 uppercase tracking-wider"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-gray-700 uppercase tracking-wider"
                   style={{
                     fontFamily: "'Anton', sans-serif",
                     marginTop: "10px",
-                    marginBottom: "20px",
+                    marginBottom: "15px",
                   }}
                 >
                   El festival se acerca
                 </h3>
                 <div
-                  className="flex items-center justify-center gap-3 md:gap-4"
+                  className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4"
                   style={{ marginTop: "10px", marginBottom: "10px" }}
                 >
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center min-w-[50px] sm:min-w-[60px]">
                     <div
-                      className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
                       style={{
                         fontFamily: "monospace",
                         letterSpacing: "1px",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       {String(timeLeft.days).padStart(2, "0")}
                     </div>
                     <span
-                      className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
+                      className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       Días
                     </span>
                   </div>
                   <span
-                    className="text-2xl md:text-3xl font-mono font-light text-gray-400"
-                    style={{ marginTop: "10px", marginBottom: "10px" }}
+                    className="text-xl sm:text-2xl md:text-3xl font-mono font-light text-gray-400"
+                    style={{ marginTop: "5px", marginBottom: "5px" }}
                   >
                     :
                   </span>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center min-w-[50px] sm:min-w-[60px]">
                     <div
-                      className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
                       style={{
                         fontFamily: "monospace",
                         letterSpacing: "1px",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       {String(timeLeft.hours).padStart(2, "0")}
                     </div>
                     <span
-                      className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
+                      className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       Horas
                     </span>
                   </div>
                   <span
-                    className="text-2xl md:text-3xl font-mono font-light text-gray-400"
-                    style={{ marginTop: "10px", marginBottom: "10px" }}
+                    className="text-xl sm:text-2xl md:text-3xl font-mono font-light text-gray-400"
+                    style={{ marginTop: "5px", marginBottom: "5px" }}
                   >
                     :
                   </span>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center min-w-[50px] sm:min-w-[60px]">
                     <div
-                      className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
                       style={{
                         fontFamily: "monospace",
                         letterSpacing: "1px",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       {String(timeLeft.minutes).padStart(2, "0")}
                     </div>
                     <span
-                      className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
+                      className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       Min
                     </span>
                   </div>
                   <span
-                    className="text-2xl md:text-3xl font-mono font-light text-gray-400"
-                    style={{ marginTop: "10px", marginBottom: "10px" }}
+                    className="text-xl sm:text-2xl md:text-3xl font-mono font-light text-gray-400"
+                    style={{ marginTop: "5px", marginBottom: "5px" }}
                   >
                     :
                   </span>
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center min-w-[50px] sm:min-w-[60px]">
                     <div
-                      className="text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-light text-[#B018A9]"
                       style={{
                         fontFamily: "monospace",
                         letterSpacing: "1px",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       {String(timeLeft.seconds).padStart(2, "0")}
                     </div>
                     <span
-                      className="text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
+                      className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light uppercase tracking-wider"
                       style={{
                         fontFamily: "'Gotham', sans-serif",
-                        marginTop: "10px",
-                        marginBottom: "10px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
                       }}
                     >
                       Seg
@@ -353,9 +384,9 @@ function Home() {
                   marginBottom: "10px",
                 }}
               >
-                <div className="p-5 md:p-6 bg-white">
+                <div className="p-4 sm:p-5 md:p-6 bg-white">
                   <h3
-                    className="text-xl md:text-2xl font-bold text-[#B018A9] text-center flex items-center justify-center gap-3"
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#B018A9] text-center flex items-center justify-center gap-2 sm:gap-3"
                     style={{
                       fontFamily: "'Anton', sans-serif",
                       marginTop: "10px",
@@ -363,7 +394,7 @@ function Home() {
                     }}
                   >
                     <span
-                      className="text-2xl md:text-3xl"
+                      className="text-xl sm:text-2xl md:text-3xl"
                       style={{ marginTop: "10px", marginBottom: "10px" }}
                     >
                       📍
@@ -388,21 +419,22 @@ function Home() {
                     title="Ubicación del Warmi Power Fest - Centro de Exposiciones, Quito"
                     className="w-full h-full"
                   ></iframe>
-                  <div className="absolute bottom-4 right-4 z-10">
+                  <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 z-10">
                     <a
                       href="https://maps.app.goo.gl/QoXDHQgyjr8zyaGk6"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 px-4 py-2 md:px-6 md:py-3 rounded-lg shadow-xl border border-gray-200 transition-all duration-300 hover:scale-105 font-medium text-sm md:text-base flex items-center gap-2"
+                      className="bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-lg shadow-xl border border-gray-200 transition-all duration-300 hover:scale-105 font-medium text-xs sm:text-sm md:text-base flex items-center gap-1 sm:gap-2"
                     >
                       <svg
-                        className="w-4 h-4 md:w-5 md:h-5"
+                        className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                       </svg>
-                      Abrir en Google Maps
+                      <span className="hidden sm:inline">Abrir en Google Maps</span>
+                      <span className="sm:hidden">Ver Mapa</span>
                     </a>
                   </div>
                 </div>
