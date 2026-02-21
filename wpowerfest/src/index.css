@@ -101,7 +101,7 @@ html {
   height: -webkit-fill-available;
   height: 100dvh;
   background-color: #ffffff;
-  touch-action: pan-y; /* Prevenir zoom de página, solo permitir scroll vertical */
+  touch-action: manipulation; /* Permite scroll, previene zoom de doble tap */
 }
 
 body {
@@ -117,7 +117,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
-  touch-action: pan-y; /* Prevenir zoom de página, solo permitir scroll vertical */
+  touch-action: manipulation; /* Permite scroll, previene zoom de doble tap */
 }
 
 #root {
