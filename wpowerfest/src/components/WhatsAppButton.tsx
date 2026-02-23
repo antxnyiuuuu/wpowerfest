@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 function WhatsAppButton() {
   const location = useLocation()
-  const whatsappLink = 'https://wa.me/message/QXAL5MELZ7BJJ1'
+  const whatsappLink = 'https://wa.me/593979122939'
 
   // No mostrar en la página de inicio
   if (location.pathname === '/') {
