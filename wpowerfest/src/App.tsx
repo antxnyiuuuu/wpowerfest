@@ -9,6 +9,7 @@ import Pasaporte from "./pages/Pasaporte";
 import Premios from "./pages/Premios";
 import Stand from "./pages/Stand";
 import WS from "./pages/WS";
+import RegistroLayout from "./pages/registro/RegistroLayout";
 import PageTransition from "./components/PageTransition";
 import WhatsAppButton from "./components/WhatsAppButton";
 import CountdownTimer from "./components/CountdownTimer";
@@ -91,6 +92,14 @@ function App() {
             element={
               <PageTransition>
                 <WS />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/registro"
+            element={
+              <PageTransition>
+                <RegistroLayout />
               </PageTransition>
             }
           />

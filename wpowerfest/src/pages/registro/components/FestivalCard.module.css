@@ -1,0 +1,19 @@
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border: 1px solid #F3F4F6;
+}
+
+.accent-magenta {
+  border-left: 4px solid #E91E8C;
+}
+
+.accent-violet {
+  border-left: 4px solid #7C3AED;
+}
+
+.accent-yellow {
+  border-left: 4px solid #FACC15;
+}

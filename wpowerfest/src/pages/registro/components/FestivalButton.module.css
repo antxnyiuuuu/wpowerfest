@@ -1,0 +1,98 @@
+.button {
+  font-weight: 700;
+  border-radius: 0.75rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  outline: none;
+  border: 2px solid transparent;
+}
+
+.button:focus {
+  ring: 4px;
+  ring-offset: 2px;
+}
+
+/* Variants */
+.primary {
+  background: linear-gradient(to right, #E91E8C, #7C3AED);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.primary:hover:not(.disabled) {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(233, 30, 140, 0.3);
+}
+
+.secondary {
+  background: white;
+  color: #7C3AED;
+  border-color: #7C3AED;
+}
+
+.secondary:hover:not(.disabled) {
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.ghost {
+  background: transparent;
+  color: #4B5563;
+}
+
+.ghost:hover:not(.disabled) {
+  background: #F3F4F6;
+  color: #111827;
+}
+
+.danger {
+  background: #EF4444;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.danger:hover:not(.disabled) {
+  background: #DC2626;
+}
+
+/* Sizes */
+.sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.md {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* States */
+.fullWidth {
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

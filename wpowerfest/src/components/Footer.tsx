@@ -125,6 +125,17 @@ function Footer() {
                         © {new Date().getFullYear()} <span className="font-medium">Warmi Power Fest</span>
                     </p>
 
+                    {/* Política de Privacidad */}
+                    <a
+                        href="/documents/Política de Protección de Datos Personales y Privacidad.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-[#B018A9] text-[10px] md:text-xs transition-colors duration-300 underline"
+                        style={{ fontFamily: "'Gotham', sans-serif" }}
+                    >
+                        Política de Protección de Datos y Privacidad
+                    </a>
+
                 </div>
             </div>
         </footer>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import WhatsAppButtonHome from "../components/WhatsAppButtonHome";
 import PassportButton from "../components/PassportButton";
@@ -68,10 +69,10 @@ function Home() {
             src="/images/inicio.png"
             alt="Warmi Power Fest"
             className="w-full h-full object-cover"
-            style={{ 
-              width: "100%", 
+            style={{
+              width: "100%",
               height: "100%",
-              objectFit: "cover", 
+              objectFit: "cover",
               display: "block",
               minHeight: '200px'
             }}
@@ -88,35 +89,98 @@ function Home() {
           />
         </div>
       </div>
-    
-      {/* Botón de Registro */}
-      {/* codigo en wh */}
-      {/* Animación shimmer personalizada */}
+
+      {/* Botón de Registro - DESTACADO */}
+      <div className="w-full flex justify-center px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-10" style={{ 
+        marginTop: "40px", 
+        marginBottom: "40px",
+        background: "linear-gradient(180deg, rgba(84, 246, 197, 0.05) 0%, rgba(176, 24, 169, 0.05) 100%)"
+      }}>
+        <Link
+          to="/registro"
+          className="group relative inline-block w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl"
+        >
+          {/* Efecto de glow múltiple - SUPER VISIBLE CON PALPITACIÓN */}
+          <div className="absolute -inset-2 sm:-inset-3 md:-inset-4 lg:-inset-6 bg-gradient-to-r from-[#B018A9] via-[#54F6C5] to-[#B018A9] rounded-full blur-2xl sm:blur-3xl opacity-90 group-hover:opacity-100 transition-opacity duration-500" style={{ animation: 'heartbeat 1.5s ease-in-out infinite' }}></div>
+          <div className="absolute -inset-1 sm:-inset-2 md:-inset-3 lg:-inset-4 bg-gradient-to-r from-[#54F6C5] via-[#B018A9] to-[#54F6C5] rounded-full blur-xl sm:blur-2xl opacity-80" style={{ animation: 'heartbeat 1.5s ease-in-out infinite 0.3s' }}></div>
+
+          {/* Botón principal - MÁS VISIBLE CON PALPITACIÓN */}
+          <button
+            className="relative w-full px-5 py-4 sm:px-8 sm:py-6 md:px-12 md:py-8 lg:px-20 lg:py-12 xl:px-28 xl:py-16 text-white font-black text-lg sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl 2xl:text-7xl rounded-full shadow-2xl transform group-hover:scale-110 group-active:scale-95 transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6"
+            style={{
+              fontFamily: "'Anton', sans-serif",
+              background: "linear-gradient(135deg, #B018A9 0%, #D41CC4 25%, #B018A9 50%, #54F6C5 75%, #B018A9 100%)",
+              backgroundSize: "200% 200%",
+              letterSpacing: "1.5px",
+              border: "4px solid #54F6C5",
+              boxShadow: "0 20px 60px rgba(176, 24, 169, 0.9), 0 0 80px rgba(84, 246, 197, 0.7), 0 0 120px rgba(176, 24, 169, 0.5), inset 0 3px 20px rgba(255, 255, 255, 0.5), inset 0 -3px 20px rgba(0, 0, 0, 0.4)",
+              textShadow: "0 4px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(84, 246, 197, 0.8), 0 0 50px rgba(255, 255, 255, 0.3)",
+              animation: "gradientShift 3s ease infinite, heartbeat 1.5s ease-in-out infinite"
+            }}
+          >
+            <span className="relative text-center sm:text-left leading-tight break-words hyphens-auto" lang="es" style={{
+              filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))"
+            }}>
+              REGÍSTRATE PARA OBTENER TU PASAPORTE DE INGRESO
+            </span>
+            <svg
+              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 xl:w-16 xl:h-16 group-hover:translate-x-2 sm:group-hover:translate-x-3 md:group-hover:translate-x-4 transition-transform duration-300 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={4}
+              style={{
+                filter: "drop-shadow(0 0 10px rgba(84, 246, 197, 0.8))",
+                animation: "arrowPulse 1.5s ease-in-out infinite"
+              }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
+          </button>
+        </Link>
+      </div>
+      
+      {/* Animaciones de palpitación y gradiente */}
       <style>{`
-        @keyframes shimmer {
-          0% {
-            background-position: -200% 0;
+        @keyframes gradientShift {
+          0%, 100% {
+            background-position: 0% 50%;
           }
-          100% {
-            background-position: 200% 0;
-          }
-        }
-        
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
+          50% {
+            background-position: 100% 50%;
           }
         }
         
-        .animate-spin-slow {
-          animation: spin-slow 3s linear infinite;
+        @keyframes heartbeat {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.9;
+          }
+          25% {
+            transform: scale(1.05);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1);
+            opacity: 0.85;
+          }
+          75% {
+            transform: scale(1.08);
+            opacity: 1;
+          }
         }
         
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
+        @keyframes arrowPulse {
+          0%, 100% {
+            transform: translateX(0) scale(1);
+          }
+          50% {
+            transform: translateX(3px) scale(1.1);
+          }
         }
       `}</style>
 
