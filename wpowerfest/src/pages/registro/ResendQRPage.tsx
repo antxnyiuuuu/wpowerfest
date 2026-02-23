@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   AlertCircle,
   ArrowLeft,
+  Edit2,
 } from 'lucide-react';
 import { FestivalButton } from './components/FestivalButton';
 import { FestivalInput } from './components/FestivalInput';
@@ -31,6 +32,17 @@ interface FoundUser {
   cedula: string | null;
 }
 
+// Function to mask email for privacy
+const maskEmail = (email: string): string => {
+  const [localPart, domain] = email.split('@');
+  if (!localPart || !domain) return email;
+  
+  const visibleChars = Math.min(3, Math.floor(localPart.length / 2));
+  const maskedLocal = localPart.substring(0, visibleChars) + '***';
+  
+  return `${maskedLocal}@${domain}`;
+};
+
 export default function ResendQRPage() {
   const [step, setStep] = useState<'search' | 'edit'>('search');
   const [cedula, setCedula] = useState('');
@@ -41,6 +53,7 @@ export default function ResendQRPage() {
   const [emailError, setEmailError] = useState('');
   const [isResending, setIsResending] = useState(false);
   const [resendSuccess, setResendSuccess] = useState(false);
+  const [isEditingEmail, setIsEditingEmail] = useState(false);
 
   // Handle cedula input with formatting
   const handleCedulaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,6 +153,7 @@ export default function ResendQRPage() {
     setNewEmail('');
     setEmailError('');
     setResendSuccess(false);
+    setIsEditingEmail(false);
   };
 
   return (
@@ -231,37 +245,65 @@ export default function ResendQRPage() {
                       </p>
                     </div>
                   </div>
-
-                  <div className={styles.userDetail}>
-                    <div className={styles.userDetailIconViolet}>
-                      <Phone className={styles.userDetailIcon} />
-                    </div>
-                    <div>
-                      <p className={styles.userDetailLabel}>Teléfono</p>
-                      <p className={styles.userDetailValue}>{foundUser.phone}</p>
-                    </div>
-                  </div>
                 </div>
 
-                {/* Email Edit Section */}
+                {/* Email Section */}
                 <div className={styles.emailSection}>
-                  <p className={styles.emailHint}>
-                    Modifica tu correo electrónico para reenviar tu código QR:
-                  </p>
-                  <FestivalInput
-                    label="Correo Electrónico"
-                    type="email"
-                    placeholder="correo@ejemplo.com"
-                    value={newEmail}
-                    onChange={(e) => {
-                      setNewEmail(e.target.value);
-                      if (emailError) {
-                        setEmailError('');
-                      }
-                    }}
-                    error={emailError}
-                    required
-                  />
+                  {!isEditingEmail ? (
+                    <>
+                      <p className={styles.emailHint}>
+                        Tu código QR será enviado a:
+                      </p>
+                      <div className={styles.emailDisplay}>
+                        <div className={styles.emailDisplayContent}>
+                          <Mail className={styles.emailDisplayIcon} />
+                          <span className={styles.emailDisplayText}>
+                            {maskEmail(foundUser.email)}
+                          </span>
+                        </div>
+                        <FestivalButton
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setIsEditingEmail(true)}
+                        >
+                          <Edit2 className={styles.buttonIcon} />
+                          Editar
+                        </FestivalButton>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p className={styles.emailHint}>
+                        Modifica tu correo electrónico:
+                      </p>
+                      <FestivalInput
+                        label="Correo Electrónico"
+                        type="email"
+                        placeholder="correo@ejemplo.com"
+                        value={newEmail}
+                        onChange={(e) => {
+                          setNewEmail(e.target.value);
+                          if (emailError) {
+                            setEmailError('');
+                          }
+                        }}
+                        error={emailError}
+                        required
+                      />
+                      <FestivalButton
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setNewEmail(foundUser.email);
+                          setIsEditingEmail(false);
+                          setEmailError('');
+                        }}
+                        fullWidth
+                      >
+                        Cancelar edición
+                      </FestivalButton>
+                    </>
+                  )}
                 </div>
 
                 {/* Action Buttons */}
