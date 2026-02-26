@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
@@ -16,6 +16,28 @@ import CountdownTimer from "./components/CountdownTimer";
 import PassportButton from "./components/PassportButton";
 import ScrollToTop from "./components/ScrollToTop";
 import BackButton from "./components/BackButton";
+
+// Importar EscapeRoom
+import { EscapeRoomApp } from "./escaperoom/EscapeRoomApp";
+
+// Componente para controlar la visibilidad de los botones globales
+function GlobalComponents() {
+  const location = useLocation();
+  const isEscapeRoom = location.pathname.startsWith('/escaperoom');
+
+  if (isEscapeRoom) {
+    return null;
+  }
+
+  return (
+    <>
+      <BackButton />
+      <WhatsAppButton />
+      <CountdownTimer />
+      <PassportButton />
+    </>
+  );
+}
 
 function App() {
   return (
@@ -103,11 +125,11 @@ function App() {
               </PageTransition>
             }
           />
+
+          {/* Ruta EscapeRoom */}
+          <Route path="/escaperoom/*" element={<EscapeRoomApp />} />
         </Routes>
-        <BackButton />
-        <WhatsAppButton />
-        <CountdownTimer />
-        <PassportButton />
+        <GlobalComponents />
         <ScrollToTop />
       </BrowserRouter>
     </div>

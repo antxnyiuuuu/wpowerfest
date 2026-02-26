@@ -1,0 +1,1327 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+/* Reset y base para EscapeRoom */
+.escaperoom-wrapper {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #0d1117;
+  color: #e6edf3;
+  min-height: 100vh;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(88, 166, 255, 0.03) 2px, rgba(88, 166, 255, 0.03) 4px),
+    radial-gradient(circle at 20% 50%, rgba(88, 166, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(126, 231, 135, 0.05) 0%, transparent 50%);
+}
+
+.escaperoom-wrapper * {
+  box-sizing: border-box;
+  border-color: #30363d;
+}
+
+/* Scrollbar personalizado */
+.escaperoom-wrapper ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.escaperoom-wrapper ::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.escaperoom-wrapper ::-webkit-scrollbar-thumb {
+  background: #58a6ff;
+  border-radius: 5px;
+}
+
+.escaperoom-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: #79c0ff;
+}
+
+/* Botones primarios */
+.escaperoom-wrapper .btn-primary {
+  background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 10px;
+  border: 2px solid #58a6ff;
+  font-family: 'Fira Code', monospace;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 14px rgba(88, 166, 255, 0.4),
+    0 0 0 0 rgba(88, 166, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-size: 16px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.escaperoom-wrapper .btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.escaperoom-wrapper .btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.escaperoom-wrapper .btn-primary:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.escaperoom-wrapper .btn-primary:hover:not(:disabled)::after {
+  width: 300px;
+  height: 300px;
+}
+
+.escaperoom-wrapper .btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #79c0ff 0%, #58a6ff 100%);
+  border-color: #79c0ff;
+  box-shadow: 
+    0 6px 20px rgba(88, 166, 255, 0.6),
+    0 0 30px rgba(88, 166, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.escaperoom-wrapper .btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(88, 166, 255, 0.4),
+    0 0 15px rgba(88, 166, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.escaperoom-wrapper .btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #30363d 0%, #21262d 100%);
+  border-color: #30363d;
+  box-shadow: none;
+}
+
+/* Botones outline */
+.escaperoom-wrapper .btn-outline {
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(31, 111, 235, 0.1) 100%);
+  color: #79c0ff;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 10px;
+  border: 2px solid #58a6ff;
+  font-family: 'Fira Code', monospace;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 2px 8px rgba(88, 166, 255, 0.2),
+    inset 0 0 20px rgba(88, 166, 255, 0.05);
+  font-size: 16px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+}
+
+.escaperoom-wrapper .btn-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.escaperoom-wrapper .btn-outline:hover {
+  color: #ffffff;
+  border-color: #79c0ff;
+  box-shadow: 
+    0 4px 16px rgba(88, 166, 255, 0.5),
+    0 0 30px rgba(88, 166, 255, 0.3),
+    inset 0 0 30px rgba(88, 166, 255, 0.1);
+  transform: translateY(-2px);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.escaperoom-wrapper .btn-outline:hover::before {
+  opacity: 1;
+}
+
+.escaperoom-wrapper .btn-outline:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(88, 166, 255, 0.3),
+    inset 0 0 20px rgba(88, 166, 255, 0.1);
+}
+
+/* Campos de entrada */
+.escaperoom-wrapper .input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  background-color: #161b22;
+  color: #e6edf3;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.escaperoom-wrapper .input-field::placeholder {
+  color: #6e7681;
+}
+
+.escaperoom-wrapper .input-field:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3), 0 0 15px rgba(88, 166, 255, 0.3);
+}
+
+/* Cards */
+.escaperoom-wrapper .card {
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid #30363d;
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.escaperoom-wrapper .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #58a6ff, transparent);
+  opacity: 0.5;
+}
+
+/* Card con glow */
+.escaperoom-wrapper .card-glow {
+  border-radius: 12px;
+  padding: 32px;
+  border: 1px solid #58a6ff;
+  background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+  box-shadow: 0 0 30px rgba(88, 166, 255, 0.3), 0 10px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.escaperoom-wrapper .card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #58a6ff, #7ee787, #58a6ff, transparent);
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Títulos estilo código */
+.escaperoom-wrapper .title-code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #58a6ff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+}
+
+.escaperoom-wrapper .title-code::before {
+  content: '> ';
+  color: #7ee787;
+}
+
+/* Subtítulos estilo código */
+.escaperoom-wrapper .subtitle-code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #c9d1d9;
+}
+
+.escaperoom-wrapper .subtitle-code::before {
+  content: '// ';
+  color: #58a6ff;
+  opacity: 0.6;
+}
+
+/* Texto estilo código */
+.escaperoom-wrapper .text-code {
+  color: #8b949e;
+  line-height: 1.75;
+}
+
+/* Divisor estilo código */
+.escaperoom-wrapper .divider-code {
+  border-top: 1px solid #58a6ff;
+  margin: 24px 0;
+  position: relative;
+  opacity: 0.3;
+}
+
+.escaperoom-wrapper .divider-code::before {
+  content: '---';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0d1117;
+  padding: 0 10px;
+  color: #58a6ff;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+}
+
+/* Terminal window */
+.escaperoom-wrapper .terminal-window {
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  overflow: hidden;
+  background: #0d1117;
+  box-shadow: 0 0 30px rgba(88, 166, 255, 0.2), inset 0 0 20px rgba(88, 166, 255, 0.05);
+}
+
+.escaperoom-wrapper .terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #30363d;
+  background: #161b22;
+}
+
+.escaperoom-wrapper .terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Bloques de código */
+.escaperoom-wrapper .code-block {
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #7ee787;
+}
+
+/* Animaciones */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Utilidades de texto */
+.escaperoom-wrapper .text-center {
+  text-align: center;
+}
+
+.escaperoom-wrapper .text-left {
+  text-align: left;
+}
+
+.escaperoom-wrapper .text-right {
+  text-align: right;
+}
+
+/* Utilidades de espaciado */
+.escaperoom-wrapper .mt-4 {
+  margin-top: 16px;
+}
+
+.escaperoom-wrapper .mt-6 {
+  margin-top: 24px;
+}
+
+.escaperoom-wrapper .mt-8 {
+  margin-top: 32px;
+}
+
+.escaperoom-wrapper .mb-4 {
+  margin-bottom: 16px;
+}
+
+.escaperoom-wrapper .mb-6 {
+  margin-bottom: 24px;
+}
+
+.escaperoom-wrapper .mb-8 {
+  margin-bottom: 32px;
+}
+
+.escaperoom-wrapper .mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.escaperoom-wrapper .p-4 {
+  padding: 16px;
+}
+
+.escaperoom-wrapper .p-6 {
+  padding: 24px;
+}
+
+.escaperoom-wrapper .p-8 {
+  padding: 32px;
+}
+
+/* Utilidades de layout */
+.escaperoom-wrapper .flex {
+  display: flex;
+}
+
+.escaperoom-wrapper .flex-col {
+  flex-direction: column;
+}
+
+.escaperoom-wrapper .items-center {
+  align-items: center;
+}
+
+.escaperoom-wrapper .justify-center {
+  justify-content: center;
+}
+
+.escaperoom-wrapper .justify-between {
+  justify-content: space-between;
+}
+
+.escaperoom-wrapper .gap-2 {
+  gap: 8px;
+}
+
+.escaperoom-wrapper .gap-4 {
+  gap: 16px;
+}
+
+.escaperoom-wrapper .gap-6 {
+  gap: 24px;
+}
+
+/* Utilidades de ancho */
+.escaperoom-wrapper .w-full {
+  width: 100%;
+}
+
+.escaperoom-wrapper .max-w-md {
+  max-width: 448px;
+}
+
+.escaperoom-wrapper .max-w-lg {
+  max-width: 512px;
+}
+
+.escaperoom-wrapper .max-w-xl {
+  max-width: 576px;
+}
+
+.escaperoom-wrapper .max-w-2xl {
+  max-width: 672px;
+}
+
+.escaperoom-wrapper .max-w-4xl {
+  max-width: 896px;
+}
+
+.escaperoom-wrapper .max-w-6xl {
+  max-width: 1152px;
+}
+
+/* Utilidades de altura */
+.escaperoom-wrapper .min-h-screen {
+  min-height: 100vh;
+}
+
+/* Utilidades de color de texto */
+.escaperoom-wrapper .text-gray-100 {
+  color: #f0f6fc;
+}
+
+.escaperoom-wrapper .text-gray-300 {
+  color: #c9d1d9;
+}
+
+.escaperoom-wrapper .text-gray-400 {
+  color: #8b949e;
+}
+
+.escaperoom-wrapper .text-gray-500 {
+  color: #6e7681;
+}
+
+.escaperoom-wrapper .text-secondary {
+  color: #58a6ff;
+}
+
+.escaperoom-wrapper .text-success {
+  color: #3fb950;
+}
+
+.escaperoom-wrapper .text-error {
+  color: #f85149;
+}
+
+.escaperoom-wrapper .text-warning {
+  color: #d29922;
+}
+
+/* Utilidades de tamaño de fuente */
+.escaperoom-wrapper .text-sm {
+  font-size: 14px;
+}
+
+.escaperoom-wrapper .text-base {
+  font-size: 16px;
+}
+
+.escaperoom-wrapper .text-lg {
+  font-size: 18px;
+}
+
+.escaperoom-wrapper .text-xl {
+  font-size: 20px;
+}
+
+.escaperoom-wrapper .text-2xl {
+  font-size: 24px;
+}
+
+.escaperoom-wrapper .text-3xl {
+  font-size: 30px;
+}
+
+.escaperoom-wrapper .text-4xl {
+  font-size: 36px;
+}
+
+/* Utilidades de peso de fuente */
+.escaperoom-wrapper .font-normal {
+  font-weight: 400;
+}
+
+.escaperoom-wrapper .font-medium {
+  font-weight: 500;
+}
+
+.escaperoom-wrapper .font-semibold {
+  font-weight: 600;
+}
+
+.escaperoom-wrapper .font-bold {
+  font-weight: 700;
+}
+
+/* Utilidades de familia de fuente */
+.escaperoom-wrapper .font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.escaperoom-wrapper .font-mono {
+  font-family: 'Fira Code', monospace;
+}
+
+.escaperoom-wrapper .font-display {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Utilidades de border radius */
+.escaperoom-wrapper .rounded {
+  border-radius: 4px;
+}
+
+.escaperoom-wrapper .rounded-lg {
+  border-radius: 8px;
+}
+
+.escaperoom-wrapper .rounded-xl {
+  border-radius: 12px;
+}
+
+.escaperoom-wrapper .rounded-full {
+  border-radius: 9999px;
+}
+
+/* Utilidades de sombra */
+.escaperoom-wrapper .shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.escaperoom-wrapper .shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.escaperoom-wrapper .shadow-lg {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Utilidades de opacidad */
+.escaperoom-wrapper .opacity-50 {
+  opacity: 0.5;
+}
+
+.escaperoom-wrapper .opacity-75 {
+  opacity: 0.75;
+}
+
+/* Utilidades de cursor */
+.escaperoom-wrapper .cursor-pointer {
+  cursor: pointer;
+}
+
+.escaperoom-wrapper .cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+/* Utilidades de overflow */
+.escaperoom-wrapper .overflow-hidden {
+  overflow: hidden;
+}
+
+.escaperoom-wrapper .overflow-auto {
+  overflow: auto;
+}
+
+/* Utilidades de posición */
+.escaperoom-wrapper .relative {
+  position: relative;
+}
+
+.escaperoom-wrapper .absolute {
+  position: absolute;
+}
+
+.escaperoom-wrapper .fixed {
+  position: fixed;
+}
+
+/* Utilidades de display */
+.escaperoom-wrapper .block {
+  display: block;
+}
+
+.escaperoom-wrapper .inline-block {
+  display: inline-block;
+}
+
+.escaperoom-wrapper .hidden {
+  display: none;
+}
+
+/* Utilidades de grid */
+.escaperoom-wrapper .grid {
+  display: grid;
+}
+
+.escaperoom-wrapper .grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.escaperoom-wrapper .grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.escaperoom-wrapper .grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Utilidades de transición */
+.escaperoom-wrapper .transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Utilidades de backdrop */
+.escaperoom-wrapper .backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Utilidades de border */
+.escaperoom-wrapper .border {
+  border-width: 1px;
+}
+
+.escaperoom-wrapper .border-2 {
+  border-width: 2px;
+}
+
+.escaperoom-wrapper .border-t {
+  border-top-width: 1px;
+}
+
+.escaperoom-wrapper .border-b {
+  border-bottom-width: 1px;
+}
+
+.escaperoom-wrapper .border-gray-600 {
+  border-color: #484f58;
+}
+
+.escaperoom-wrapper .border-gray-700 {
+  border-color: #30363d;
+}
+
+.escaperoom-wrapper .border-secondary {
+  border-color: #58a6ff;
+}
+
+/* Utilidades de background */
+.escaperoom-wrapper .bg-background {
+  background-color: #0d1117;
+}
+
+.escaperoom-wrapper .bg-surface {
+  background-color: #161b22;
+}
+
+.escaperoom-wrapper .bg-secondary {
+  background-color: #58a6ff;
+}
+
+.escaperoom-wrapper .bg-secondary-dark {
+  background-color: #1f6feb;
+}
+
+/* Hover states */
+.escaperoom-wrapper .hover\:bg-secondary:hover {
+  background-color: #58a6ff;
+}
+
+.escaperoom-wrapper .hover\:bg-secondary-dark:hover {
+  background-color: #1f6feb;
+}
+
+.escaperoom-wrapper .hover\:text-primary:hover {
+  color: #0d1117;
+}
+
+/* Disabled states */
+.escaperoom-wrapper .disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
+
+.escaperoom-wrapper .disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+
+/* Focus states */
+.escaperoom-wrapper .focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.escaperoom-wrapper .focus\:ring-2:focus {
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.5);
+}
+
+.escaperoom-wrapper .focus\:ring-secondary:focus {
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.5);
+}
+
+.escaperoom-wrapper .focus\:border-secondary:focus {
+  border-color: #58a6ff;
+}
+
+/* Utilidades adicionales necesarias */
+.escaperoom-wrapper .space-y-3 > * + * {
+  margin-top: 12px;
+}
+
+.escaperoom-wrapper .space-y-4 > * + * {
+  margin-top: 16px;
+}
+
+.escaperoom-wrapper .space-y-5 > * + * {
+  margin-top: 20px;
+}
+
+.escaperoom-wrapper .space-y-6 > * + * {
+  margin-top: 24px;
+}
+
+.escaperoom-wrapper .space-x-2 > * + * {
+  margin-left: 8px;
+}
+
+.escaperoom-wrapper .space-x-4 > * + * {
+  margin-left: 16px;
+}
+
+/* Padding específicos */
+.escaperoom-wrapper .px-4 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.escaperoom-wrapper .px-6 {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.escaperoom-wrapper .px-8 {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.escaperoom-wrapper .py-3 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.escaperoom-wrapper .py-6 {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.escaperoom-wrapper .py-12 {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.escaperoom-wrapper .py-20 {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.escaperoom-wrapper .pt-20 {
+  padding-top: 80px;
+}
+
+.escaperoom-wrapper .pt-40 {
+  padding-top: 160px;
+}
+
+.escaperoom-wrapper .pl-8 {
+  padding-left: 32px;
+}
+
+/* Margin específicos */
+.escaperoom-wrapper .mb-3 {
+  margin-bottom: 12px;
+}
+
+.escaperoom-wrapper .mt-1 {
+  margin-top: 4px;
+}
+
+.escaperoom-wrapper .mt-2 {
+  margin-top: 8px;
+}
+
+.escaperoom-wrapper .mt-3 {
+  margin-top: 12px;
+}
+
+.escaperoom-wrapper .my-6 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.escaperoom-wrapper .-mt-12 {
+  margin-top: -48px;
+}
+
+/* Width específicos */
+.escaperoom-wrapper .w-2 {
+  width: 8px;
+}
+
+.escaperoom-wrapper .w-8 {
+  width: 32px;
+}
+
+.escaperoom-wrapper .w-14 {
+  width: 56px;
+}
+
+.escaperoom-wrapper .w-20 {
+  width: 80px;
+}
+
+.escaperoom-wrapper .w-32 {
+  width: 128px;
+}
+
+.escaperoom-wrapper .w-50 {
+  width: 200px;
+}
+
+.escaperoom-wrapper .w-56 {
+  width: 224px;
+}
+
+.escaperoom-wrapper .w-64 {
+  width: 256px;
+}
+
+/* Height específicos */
+.escaperoom-wrapper .h-2 {
+  height: 8px;
+}
+
+/* Colores de fondo específicos */
+.escaperoom-wrapper .bg-code-pattern {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+}
+
+.escaperoom-wrapper .bg-error {
+  background-color: #f85149;
+}
+
+.escaperoom-wrapper .bg-warning {
+  background-color: #d29922;
+}
+
+.escaperoom-wrapper .bg-success {
+  background-color: #3fb950;
+}
+
+.escaperoom-wrapper .bg-gray-600 {
+  background-color: #484f58;
+}
+
+.escaperoom-wrapper .bg-gray-900 {
+  background-color: #0d1117;
+}
+
+.escaperoom-wrapper .bg-gray-900\/80 {
+  background-color: rgba(13, 17, 23, 0.8);
+}
+
+.escaperoom-wrapper .bg-gray-900\/90 {
+  background-color: rgba(13, 17, 23, 0.9);
+}
+
+.escaperoom-wrapper .bg-secondary\/5 {
+  background-color: rgba(88, 166, 255, 0.05);
+}
+
+.escaperoom-wrapper .bg-code-green\/5 {
+  background-color: rgba(126, 231, 135, 0.05);
+}
+
+/* Colores de borde específicos */
+.escaperoom-wrapper .border-secondary\/30 {
+  border-color: rgba(88, 166, 255, 0.3);
+}
+
+.escaperoom-wrapper .border-code-green\/30 {
+  border-color: rgba(126, 231, 135, 0.3);
+}
+
+.escaperoom-wrapper .border-warning\/30 {
+  border-color: rgba(210, 153, 34, 0.3);
+}
+
+.escaperoom-wrapper .border-warning\/50 {
+  border-color: rgba(210, 153, 34, 0.5);
+}
+
+/* Colores de texto específicos */
+.escaperoom-wrapper .text-code-green {
+  color: #7ee787;
+}
+
+.escaperoom-wrapper .text-code-purple {
+  color: #d2a8ff;
+}
+
+.escaperoom-wrapper .text-code-orange {
+  color: #ffa657;
+}
+
+.escaperoom-wrapper .text-5xl {
+  font-size: 48px;
+}
+
+.escaperoom-wrapper .text-6xl {
+  font-size: 60px;
+}
+
+/* Gradientes */
+.escaperoom-wrapper .bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+.escaperoom-wrapper .from-gray-900\/80 {
+  --tw-gradient-from: rgba(13, 17, 23, 0.8);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(13, 17, 23, 0));
+}
+
+.escaperoom-wrapper .from-gray-900\/90 {
+  --tw-gradient-from: rgba(13, 17, 23, 0.9);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(13, 17, 23, 0));
+}
+
+.escaperoom-wrapper .to-transparent {
+  --tw-gradient-to: transparent;
+}
+
+/* Z-index */
+.escaperoom-wrapper .z-10 {
+  z-index: 10;
+}
+
+.escaperoom-wrapper .z-20 {
+  z-index: 20;
+}
+
+.escaperoom-wrapper .z-50 {
+  z-index: 50;
+}
+
+/* Inset */
+.escaperoom-wrapper .inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.escaperoom-wrapper .top-0 {
+  top: 0;
+}
+
+.escaperoom-wrapper .left-0 {
+  left: 0;
+}
+
+.escaperoom-wrapper .right-0 {
+  right: 0;
+}
+
+.escaperoom-wrapper .bottom-0 {
+  bottom: 0;
+}
+
+/* Flex específicos */
+.escaperoom-wrapper .flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.escaperoom-wrapper .items-start {
+  align-items: flex-start;
+}
+
+/* Opacidad específica */
+.escaperoom-wrapper .opacity-40 {
+  opacity: 0.4;
+}
+
+.escaperoom-wrapper .opacity-60 {
+  opacity: 0.6;
+}
+
+.escaperoom-wrapper .opacity-70 {
+  opacity: 0.7;
+}
+
+/* Border radius específicos */
+.escaperoom-wrapper .rounded-3xl {
+  border-radius: 24px;
+}
+
+/* Duración de transición */
+.escaperoom-wrapper .duration-300 {
+  transition-duration: 300ms;
+}
+
+.escaperoom-wrapper .duration-500 {
+  transition-duration: 500ms;
+}
+
+/* Timing function */
+.escaperoom-wrapper .ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transform */
+.escaperoom-wrapper .transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .escaperoom-wrapper .md\:flex {
+    display: flex;
+  }
+  
+  .escaperoom-wrapper .md\:hidden {
+    display: none;
+  }
+  
+  .escaperoom-wrapper .md\:pt-40 {
+    padding-top: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .escaperoom-wrapper .lg\:w-40 {
+    width: 160px;
+  }
+  
+  .escaperoom-wrapper .lg\:w-56 {
+    width: 224px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .escaperoom-wrapper .xl\:w-48 {
+    width: 192px;
+  }
+  
+  .escaperoom-wrapper .xl\:w-64 {
+    width: 256px;
+  }
+}
+
+/* Utilidades de tracking */
+.escaperoom-wrapper .tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+/* Utilidades de leading */
+.escaperoom-wrapper .leading-relaxed {
+  line-height: 1.625;
+}
+
+/* Utilidades de text-shadow */
+.escaperoom-wrapper .text-shadow-glow {
+  text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+}
+
+/* Clases adicionales para componentes */
+.escaperoom-wrapper .mr-2 {
+  margin-right: 8px;
+}
+
+.escaperoom-wrapper .h-5 {
+  height: 20px;
+}
+
+.escaperoom-wrapper .w-5 {
+  width: 20px;
+}
+
+.escaperoom-wrapper .animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.escaperoom-wrapper .opacity-25 {
+  opacity: 0.25;
+}
+
+.escaperoom-wrapper .stroke-4 {
+  stroke-width: 4;
+}
+
+.escaperoom-wrapper .fill-none {
+  fill: none;
+}
+
+.escaperoom-wrapper .text-white {
+  color: #ffffff;
+}
+
+.escaperoom-wrapper .bg-red-700 {
+  background-color: #b91c1c;
+}
+
+.escaperoom-wrapper .border-red-800 {
+  border-color: #991b1b;
+}
+
+.escaperoom-wrapper .border-error {
+  border-color: #f85149;
+}
+
+.escaperoom-wrapper .focus\:ring-error:focus {
+  box-shadow: 0 0 0 2px rgba(248, 81, 73, 0.5);
+}
+
+.escaperoom-wrapper .hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.escaperoom-wrapper .active\:scale-95:active {
+  transform: scale(0.95);
+}
+
+.escaperoom-wrapper .scale-105 {
+  transform: scale(1.05);
+}
+
+.escaperoom-wrapper .scale-95 {
+  transform: scale(0.95);
+}
+
+.escaperoom-wrapper .tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+.escaperoom-wrapper .gap-1 {
+  gap: 4px;
+}
+
+/* Utilidades de color primario */
+.escaperoom-wrapper .text-primary {
+  color: #0d1117;
+}
+
+.escaperoom-wrapper .bg-primary {
+  background-color: #0d1117;
+}
+
+/* Utilidades de pointer events */
+.escaperoom-wrapper .pointer-events-none {
+  pointer-events: none;
+}
+
+.escaperoom-wrapper .pointer-events-auto {
+  pointer-events: auto;
+}
+
+/* Z-index adicionales */
+.escaperoom-wrapper .z-30 {
+  z-index: 30;
+}
+
+/* Botón danger mejorado */
+.escaperoom-wrapper .btn-danger {
+  background: linear-gradient(135deg, #f85149 0%, #da3633 100%);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 14px 36px;
+  border-radius: 10px;
+  border: 2px solid #f85149;
+  font-family: 'Fira Code', monospace;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 14px rgba(248, 81, 73, 0.4),
+    0 0 0 0 rgba(248, 81, 73, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-size: 16px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.escaperoom-wrapper .btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff7b72 0%, #f85149 100%);
+  border-color: #ff7b72;
+  box-shadow: 
+    0 6px 20px rgba(248, 81, 73, 0.6),
+    0 0 30px rgba(248, 81, 73, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.escaperoom-wrapper .btn-danger:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(248, 81, 73, 0.4),
+    0 0 15px rgba(248, 81, 73, 0.3);
+}
+
+/* Botones de selección de turno */
+.escaperoom-wrapper button[class*="border-gray-700"],
+.escaperoom-wrapper button[class*="border-secondary"] {
+  background-color: #161b22 !important;
+  color: #e6edf3 !important;
+}
+
+.escaperoom-wrapper button[class*="border-secondary"][class*="bg-secondary"] {
+  background-color: rgba(88, 166, 255, 0.1) !important;
+  color: #e6edf3 !important;
+}
+
+/* Efecto de pulso para botones importantes */
+@keyframes pulse-button {
+  0%, 100% {
+    box-shadow: 
+      0 4px 14px rgba(88, 166, 255, 0.4),
+      0 0 0 0 rgba(88, 166, 255, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 4px 14px rgba(88, 166, 255, 0.4),
+      0 0 0 8px rgba(88, 166, 255, 0);
+  }
+}
+
+.escaperoom-wrapper .btn-primary.pulse {
+  animation: pulse-button 2s infinite;
+}
+
+/* Padding adicionales */
+.escaperoom-wrapper .pt-32 {
+  padding-top: 128px;
+}
+
+.escaperoom-wrapper .pt-48 {
+  padding-top: 192px;
+}
+
+/* Responsive padding */
+@media (min-width: 768px) {
+  .escaperoom-wrapper .md\:pt-48 {
+    padding-top: 192px;
+  }
+}
+
+/* Margin vertical adicional */
+.escaperoom-wrapper .my-3 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
