@@ -7,7 +7,7 @@ import { useUserStore } from '../store/userStore';
 import type { TimeSlot } from '../types/timeslot.types';
 import { Button } from '../components/common/Button';
 import { Loading } from '../components/common/Loading';
-import { calculateDuration } from '../utils/formatters';
+import { calculateDuration, getTodayInEcuador } from '../utils/formatters';
 
 export const TimeslotSelectionPage = () => {
   const navigate = useNavigate();
@@ -36,8 +36,8 @@ export const TimeslotSelectionPage = () => {
 
   const loadTimeslots = async () => {
     try {
-      // Obtener fecha actual en formato YYYY-MM-DD
-      const today = new Date().toISOString().split('T')[0];
+      // Obtener fecha actual en zona horaria de Ecuador
+      const today = getTodayInEcuador();
       const response = await timeslotApi.getAvailableSlots(today);
       
       if (response.success) {

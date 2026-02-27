@@ -7,7 +7,7 @@ import { userApi } from '../api/user.api';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
 import { Modal } from '../components/common/Modal';
-import { maskEmail, maskWhatsapp, calculateDuration } from '../utils/formatters';
+import { maskEmail, maskWhatsapp, calculateDuration, getTodayInEcuador } from '../utils/formatters';
 import type { User } from '../types/user.types';
 import type { TimeSlot } from '../types/timeslot.types';
 
@@ -83,7 +83,7 @@ export const ResendQRPage = () => {
     // Cargar turnos disponibles
     try {
       setLoadingTimeslots(true);
-      const today = new Date().toISOString().split('T')[0];
+      const today = getTodayInEcuador();
       const response = await timeslotApi.getAvailableSlots(today);
       
       if (response.success) {
