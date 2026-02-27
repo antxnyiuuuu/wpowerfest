@@ -66,3 +66,18 @@ export const calculateDuration = (startTime: string, endTime: string): number =>
   
   return endInMinutes - startInMinutes;
 };
+
+/**
+ * Obtiene la fecha actual en zona horaria de Ecuador (UTC-5) en formato YYYY-MM-DD
+ * @returns Fecha actual en Ecuador
+ */
+export const getTodayInEcuador = (): string => {
+  const now = new Date();
+  const ecuadorDate = new Date(now.toLocaleString('en-US', { timeZone: 'America/Guayaquil' }));
+  
+  const year = ecuadorDate.getFullYear();
+  const month = String(ecuadorDate.getMonth() + 1).padStart(2, '0');
+  const day = String(ecuadorDate.getDate()).padStart(2, '0');
+  
+  return `${year}-${month}-${day}`;
+};
