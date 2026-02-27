@@ -64,7 +64,8 @@ export const ResendQRPage = () => {
       } else if (error.response?.status === 403) {
         toast.error('Registro cerrado');
       } else {
-        toast.error(error.message || 'Error al buscar usuario');
+        const errorMessage = error.response?.data?.error || error.message || 'Error al buscar usuario';
+        toast.error(errorMessage);
       }
     } finally {
       setSearching(false);
@@ -101,7 +102,8 @@ export const ResendQRPage = () => {
         setTimeslots(futureSlots);
       }
     } catch (error: any) {
-      toast.error('Error al cargar turnos');
+      const errorMessage = error.response?.data?.error || error.message || 'Error al cargar turnos';
+      toast.error(errorMessage);
     } finally {
       setLoadingTimeslots(false);
     }
@@ -183,11 +185,14 @@ export const ResendQRPage = () => {
       if (error.response?.status === 404) {
         toast.error('Usuario no encontrado');
       } else if (error.response?.status === 400) {
-        toast.error(error.response.data.error || 'Error en la solicitud');
+        const errorMessage = error.response.data?.error || 'Error en la solicitud';
+        toast.error(errorMessage);
       } else if (error.response?.status === 409) {
-        toast.error('El nuevo email ya está en uso');
+        const errorMessage = error.response.data?.error || 'El nuevo email ya está en uso';
+        toast.error(errorMessage);
       } else {
-        toast.error(error.message || 'Error al reenviar QR');
+        const errorMessage = error.response?.data?.error || error.message || 'Error al reenviar QR';
+        toast.error(errorMessage);
       }
     } finally {
       setLoading(false);
@@ -328,7 +333,8 @@ export const ResendQRPage = () => {
                             });
                           }
                         } catch (error: any) {
-                          toast.error(error.message || 'Error al reenviar QR');
+                          const errorMessage = error.response?.data?.error || error.message || 'Error al reenviar QR';
+                          toast.error(errorMessage);
                         } finally {
                           setLoading(false);
                         }

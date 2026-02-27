@@ -76,6 +76,8 @@ export const RegisterPage = () => {
         setRegistrationClosed(true);
         setClosedMessage(error.response.data.error || 'Registro cerrado');
         setNextOpening(error.response.data.nextOpening || '');
+      } else if (error.response?.data?.error) {
+        toast.error(error.response.data.error);
       } else {
         toast.error(error.message || 'Error al registrarse');
       }

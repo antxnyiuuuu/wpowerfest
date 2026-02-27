@@ -37,7 +37,8 @@ export const TriviaPage = () => {
         setQuestions(response.data);
       }
     } catch (error: any) {
-      toast.error(error.message || 'Error al cargar preguntas');
+      const errorMessage = error.response?.data?.error || error.message || 'Error al cargar preguntas';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -114,7 +115,8 @@ export const TriviaPage = () => {
         toast.error('Registro cerrado');
         navigate('/escaperoom');
       } else {
-        toast.error(error.message || 'Error al validar trivia');
+        const errorMessage = error.response?.data?.error || error.message || 'Error al validar trivia';
+        toast.error(errorMessage);
       }
     } finally {
       setSubmitting(false);

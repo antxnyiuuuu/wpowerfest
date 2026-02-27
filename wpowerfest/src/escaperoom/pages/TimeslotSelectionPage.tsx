@@ -56,7 +56,8 @@ export const TimeslotSelectionPage = () => {
         setTimeslots(futureSlots);
       }
     } catch (error: any) {
-      toast.error(error.message || 'Error al cargar turnos');
+      const errorMessage = error.response?.data?.error || error.message || 'Error al cargar turnos';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -101,7 +102,8 @@ export const TimeslotSelectionPage = () => {
       }
     } catch (error: any) {
       console.error('❌ Error creando reservas:', error);
-      toast.error(error.message || 'Error al crear reservas');
+      const errorMessage = error.response?.data?.error || error.message || 'Error al crear reservas';
+      toast.error(errorMessage);
     } finally {
       setSubmitting(false);
     }
