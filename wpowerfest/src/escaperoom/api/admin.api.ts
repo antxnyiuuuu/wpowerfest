@@ -59,7 +59,7 @@ export const adminApi = {
 
   // Obtener datos de usuarios para exportación
   getUsersData: async (): Promise<ApiResponse<any[]>> => {
-    const response = await apiClient.get('/api/admin/users-data');
+    const response = await apiClient.get('/admin/users-data');
     return response.data;
   },
 };
