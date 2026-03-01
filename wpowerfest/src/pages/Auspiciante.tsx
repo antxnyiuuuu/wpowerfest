@@ -218,6 +218,59 @@ function Auspiciante() {
 
             </div>
 
+            {/* Grid de logos nuevos - 2 columnas centradas */}
+            <div className="grid grid-cols-2 gap-6 md:gap-8 lg:gap-10 w-full max-w-3xl px-4 mx-auto" style={{marginTop: "30px"}}>
+              
+              {/* Logo 5: Gen Be Health */}
+              <a
+                href="https://genbehealth.com/" // AQUÍ PONES EL LINK
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center gap-3 transition-all duration-300 hover:scale-105"
+              >
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-[#B018A9]/30 w-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#B018A9]/0 via-[#B018A9]/10 to-[#B018A9]/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <img
+                    src="/images/AliadosEstrategicos(link)/nuevo/Gen-be-health.png"
+                    alt="Gen Be Health"
+                    className="relative z-10 w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+                <p
+                  className="text-sm sm:text-base md:text-lg font-medium text-gray-700 group-hover:text-[#B018A9] transition-colors duration-300 text-center"
+                  style={{ fontFamily: "'Gotham', sans-serif" }}
+                >
+                  Gen Be Health
+                </p>
+              </a>
+
+              {/* Logo 6: Inventa */}
+              <a
+                href="https://inventta.ec/?gad_source=1&gad_campaignid=23313985863&gbraid=0AAAAAp3Z5fFXGf12FeEo9V-ErUyANzLQr&gclid=Cj0KCQiA5I_NBhDVARIsAOrqIsZ2k_TcAUmK6d-Xn3-6I7OCT3jOxHlTTCeqjiIV4ey2wfNpzrP8kl4aApsxEALw_wcB" // AQUÍ PONES EL LINK
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center gap-3 transition-all duration-300 hover:scale-105"
+              >
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 transition-all duration-300 group-hover:shadow-xl group-hover:border-[#B018A9]/30 w-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#B018A9]/0 via-[#B018A9]/10 to-[#B018A9]/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <img
+                    src="/images/AliadosEstrategicos(link)/nuevo/Inventa-LOGO.png"
+                    alt="Inventa"
+                    className="relative z-10 w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+                <p
+                  className="text-sm sm:text-base md:text-lg font-medium text-gray-700 group-hover:text-[#B018A9] transition-colors duration-300 text-center"
+                  style={{ fontFamily: "'Gotham', sans-serif" }}
+                >
+                  Inventa
+                </p>
+              </a>
+
+            </div>
+
             {/* Grid de logos SIN link - 3 columnas */}
             <div className="grid grid-cols-3 gap-6 md:gap-8 lg:gap-10 w-full max-w-4xl px-4 mt-8 md:mt-12" style={{marginTop: "30px"}}>
               
@@ -251,6 +304,35 @@ function Auspiciante() {
                   <img
                     src="/images/AliadosEstrategicos(nolink)/Risk-LOGO.png"
                     alt="Risk"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            {/* Grid de logos nuevos SIN link - 2 columnas centradas */}
+            <div className="grid grid-cols-2 gap-6 md:gap-8 lg:gap-10 w-full max-w-3xl px-4 mx-auto mt-8 md:mt-12" style={{marginTop: "30px"}}>
+              
+              {/* Logo 4: Martinizing */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/AliadosEstrategicos(nolink)/Nuevo/martinizing-logo.png"
+                    alt="Risk"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "180px", marginTop: "25px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 5: Splendor */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/AliadosEstrategicos(nolink)/Nuevo/Splendor-LOGO.png"
+                    alt="Martinizing"
                     className="w-full h-auto object-contain"
                     style={{ maxHeight: "120px" }}
                   />
@@ -437,7 +519,7 @@ function Auspiciante() {
               </div>
 
               {/* Logo 13: Solange Hair Collection */}
-              <div className="flex flex-col items-center md:col-start-2">
+              <div className="flex flex-col items-center">
                 <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
                   <img
                     src="/images/expositores/Solange-Hair-Collection-Logo.png"
@@ -454,6 +536,246 @@ function Auspiciante() {
                   <img
                     src="/images/expositores/Wemi-Falck-LOGO.png"
                     alt="Wemi Falck"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 15: Blast Jumping */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Blast-Jumping-LOGO.png"
+                    alt="Blast Jumping"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 16: BYD */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/BYD-LOGO.png"
+                    alt="BYD"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 17: Círculo Crearte */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/CIRCULO--CREARTE---LOGO-.png"
+                    alt="Círculo Crearte"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 18: Esvelt Only Natural */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Esvelt-Only-natural.png"
+                    alt="Esvelt Only Natural"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 19: Fisionex */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/fisionex_LOGO.png"
+                    alt="Fisionex"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 20: Fotodepil */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/FOTODEPIL%20LOGO.png"
+                    alt="Fotodepil"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 21: Gloss Dental */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Gloss-Dental.png"
+                    alt="Gloss Dental"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 22: Hoaz Milagros */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Hoaz%20Milagros%20Logo.png"
+                    alt="Hoaz Milagros"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 23: Logo 2 */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/LOGO%202.png"
+                    alt="Logo 2"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 24: Dianética */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/logo%20dianetica.png"
+                    alt="Dianética"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 25: Pensarte Oficial */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/LOGO%20PENSARTE%20OFICIAL%20(1).png"
+                    alt="Pensarte Oficial"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 26: Universitario Cordillera */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Logo%20universitario%20cordillera.png"
+                    alt="Universitario Cordillera"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 27: Aura Skin Warmi */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/logo-Aura-Skin-Warmi.png"
+                    alt="Aura Skin Warmi"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 28: Keif */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/logo-keif.png"
+                    alt="Keif"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 29: Pilopeptan Woman */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/logo-pilopeptan-woman.png"
+                    alt="Pilopeptan Woman"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 30: Temtis */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Logo-temtis.png"
+                    alt="Temtis"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 31: Miskiruru */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/LOGOTIPO_MISKIRURU.png"
+                    alt="Miskiruru"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 32: Lule */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Lule%20Logo.jfif"
+                    alt="Lule"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 33: Salud y Fitness */}
+              <div className="flex flex-col items-center md:col-start-2">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Salud-y-fitness.png"
+                    alt="Salud y Fitness"
+                    className="w-full h-auto object-contain"
+                    style={{ maxHeight: "120px" }}
+                  />
+                </div>
+              </div>
+
+              {/* Logo 34: Super Food */}
+              <div className="flex flex-col items-center">
+                <div className="relative bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100 w-full">
+                  <img
+                    src="/images/expositores/nuevo/Super-Food.png"
+                    alt="Super Food"
                     className="w-full h-auto object-contain"
                     style={{ maxHeight: "120px" }}
                   />
