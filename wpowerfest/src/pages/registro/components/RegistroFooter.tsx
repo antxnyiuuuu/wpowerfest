@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import logoFooter from '../assets/logos/footer-logos.jpeg';
+import logoFooter from '../assets/logos/Banner-Marcas-pagina-web-Warmi-Power-Fest.png';
 import styles from './RegistroFooter.module.css';
 
 export function RegistroFooter() {
