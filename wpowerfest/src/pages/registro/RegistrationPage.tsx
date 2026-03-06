@@ -240,6 +240,10 @@ export default function RegistrationPage() {
         formData.sector
       );
 
+      console.log('✅ Registro creado:', newTicket);
+      console.log('🔍 QR Code presente:', !!newTicket.qrCode);
+      console.log('🔍 QR Code length:', newTicket.qrCode?.length);
+
       setTicketData(newTicket);
       setStep(3);
 
@@ -780,16 +784,22 @@ export default function RegistrationPage() {
                       </p>
                     </div>
                   ) : (
-                    <div className={styles.ticketQrBox}>
-                      <div className={styles.ticketQrIcon}>
-                        <Mail className={styles.ticketQrIconSvg} />
+                    <>
+                      <div className={styles.ticketQrBox}>
+                        <div className={styles.ticketQrIcon}>
+                          <Mail className={styles.ticketQrIconSvg} />
+                        </div>
+                        <h3 className={styles.ticketQrTitle}>¡QR Enviado!</h3>
+                        <p className={styles.ticketQrText}>
+                          Tu código QR ha sido enviado a tu correo electrónico
+                        </p>
+                        <p className={styles.ticketQrEmail}>{ticketData.email}</p>
                       </div>
-                      <h3 className={styles.ticketQrTitle}>¡QR Enviado!</h3>
-                      <p className={styles.ticketQrText}>
-                        Tu código QR ha sido enviado a tu correo electrónico
+                      {/* Debug info - remover en producción */}
+                      <p style={{ fontSize: '0.7rem', color: '#999', marginTop: '0.5rem' }}>
+                        Debug: QR no disponible en respuesta
                       </p>
-                      <p className={styles.ticketQrEmail}>{ticketData.email}</p>
-                    </div>
+                    </>
                   )}
                   <p className={styles.ticketId}>ID: {ticketData.id}</p>
                 </div>

@@ -7,6 +7,7 @@ export interface Attendee {
   phone: string;
   email: string;
   sports: string[];
+  qrCode?: string; // QR code en formato data URL
 }
 
 export function useEventData() {
@@ -40,6 +41,7 @@ export function useEventData() {
         phone: response.data.phone,
         email: response.data.email,
         sports: response.data.sports,
+        qrCode: response.data.qrCode, // Incluir QR code
       };
 
       return newAttendee;
