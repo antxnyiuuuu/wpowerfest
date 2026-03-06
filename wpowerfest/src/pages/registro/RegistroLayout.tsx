@@ -4,9 +4,10 @@ import { RegistroHeader } from './components/RegistroHeader';
 import { RegistroFooter } from './components/RegistroFooter';
 import RegistrationPage from './RegistrationPage';
 import ResendQRPage from './ResendQRPage';
+import ViewQRPage from './ViewQRPage';
 import styles from './RegistroLayout.module.css';
 
-type View = 'register' | 'resend';
+type View = 'register' | 'resend' | 'view';
 
 export default function RegistroLayout() {
   const [activeView, setActiveView] = useState<View>('register');
@@ -28,6 +29,7 @@ export default function RegistroLayout() {
             className={styles.content}
           >
             {activeView === 'register' && <RegistrationPage />}
+            {activeView === 'view' && <ViewQRPage />}
             {activeView === 'resend' && <ResendQRPage />}
           </motion.div>
         </AnimatePresence>

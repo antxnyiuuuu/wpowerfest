@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Ticket, RotateCcw } from 'lucide-react';
+import { Ticket, RotateCcw, QrCode } from 'lucide-react';
 import logoHeader from '../assets/logos/logo-header.jpeg';
 import styles from './RegistroHeader.module.css';
 
 interface RegistroHeaderProps {
-  activeView: 'register' | 'resend';
-  onViewChange: (view: 'register' | 'resend') => void;
+  activeView: 'register' | 'resend' | 'view';
+  onViewChange: (view: 'register' | 'resend' | 'view') => void;
 }
 
 export function RegistroHeader({ activeView, onViewChange }: RegistroHeaderProps) {
@@ -14,6 +14,11 @@ export function RegistroHeader({ activeView, onViewChange }: RegistroHeaderProps
       id: 'register' as const,
       label: 'Registro',
       icon: Ticket
+    },
+    {
+      id: 'view' as const,
+      label: 'Ver QR',
+      icon: QrCode
     },
     {
       id: 'resend' as const,
