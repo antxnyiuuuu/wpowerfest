@@ -29,6 +29,7 @@ export interface RegistrationResponse {
   registrationDate: string;
   createdAt: string;
   updatedAt: string;
+  qrCode?: string; // QR code en formato data URL
 }
 
 // Registration Service

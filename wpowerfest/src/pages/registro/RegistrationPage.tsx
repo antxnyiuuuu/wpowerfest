@@ -703,7 +703,7 @@ export default function RegistrationPage() {
           >
             <div className={styles.header}>
               <h2 className={styles.title}>¡Estás Dentro! 🎟️</h2>
-              <p className={styles.subtitle}>Tu entrada fue enviada a tu correo y teléfono.</p>
+              <p className={styles.subtitle}>Tu código QR está listo para usar</p>
             </div>
 
             {/* Ticket */}
@@ -765,16 +765,32 @@ export default function RegistrationPage() {
                 </div>
 
                 <div className={styles.ticketQr}>
-                  <div className={styles.ticketQrBox}>
-                    <div className={styles.ticketQrIcon}>
-                      <Mail className={styles.ticketQrIconSvg} />
+                  {ticketData.qrCode ? (
+                    <div className={styles.ticketQrImage}>
+                      <img 
+                        src={ticketData.qrCode} 
+                        alt="Código QR de acceso" 
+                        className={styles.qrImage}
+                      />
+                      <p className={styles.ticketQrCaption}>
+                        <strong>Presenta este código en la entrada del evento</strong>
+                      </p>
+                      <p className={styles.ticketQrCaption} style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>
+                        También lo enviamos a tu correo: {ticketData.email}
+                      </p>
                     </div>
-                    <h3 className={styles.ticketQrTitle}>¡QR Enviado!</h3>
-                    <p className={styles.ticketQrText}>
-                      Tu código QR ha sido enviado a tu correo electrónico
-                    </p>
-                    <p className={styles.ticketQrEmail}>{ticketData.email}</p>
-                  </div>
+                  ) : (
+                    <div className={styles.ticketQrBox}>
+                      <div className={styles.ticketQrIcon}>
+                        <Mail className={styles.ticketQrIconSvg} />
+                      </div>
+                      <h3 className={styles.ticketQrTitle}>¡QR Enviado!</h3>
+                      <p className={styles.ticketQrText}>
+                        Tu código QR ha sido enviado a tu correo electrónico
+                      </p>
+                      <p className={styles.ticketQrEmail}>{ticketData.email}</p>
+                    </div>
+                  )}
                   <p className={styles.ticketId}>ID: {ticketData.id}</p>
                 </div>
               </div>
