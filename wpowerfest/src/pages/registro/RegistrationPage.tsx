@@ -108,6 +108,18 @@ export default function RegistrationPage() {
   // Policy acceptance state
   const [acceptedPolicy, setAcceptedPolicy] = useState(false);
 
+  // Helper function to build final email avoiding duplicates
+  const buildFinalEmail = (username: string, domain: string): string => {
+    // Si el username ya contiene el dominio seleccionado, no duplicar
+    if (username && username.includes('@')) {
+      const userDomainPart = '@' + username.split('@')[1];
+      if (userDomainPart === domain) {
+        return username;
+      }
+    }
+    return username + domain;
+  };
+
   // Cooldown timer effect
   useEffect(() => {
     if (resendCooldown > 0) {
@@ -146,7 +158,8 @@ export default function RegistrationPage() {
       newErrors.phone = ERROR_MESSAGES.PHONE_INVALID;
     }
 
-    const fullEmail = formData.emailUsername + formData.emailDomain;
+    // Construir email evitando duplicados
+    const fullEmail = buildFinalEmail(formData.emailUsername, formData.emailDomain);
     if (!formData.emailUsername.trim()) {
       newErrors.email = ERROR_MESSAGES.EMAIL_REQUIRED;
     } else if (!formData.emailDomain.trim()) {
@@ -227,7 +240,7 @@ export default function RegistrationPage() {
       const sportsLabels = selectedSports.length > 0 
         ? selectedSports.map(id => AVAILABLE_SPORTS.find(s => s.id === id)?.label || '')
         : [];
-      const fullEmail = formData.emailUsername + formData.emailDomain;
+      const fullEmail = buildFinalEmail(formData.emailUsername, formData.emailDomain);
       
       const newTicket = await addRegistration(
         formData.firstName,

@@ -35,8 +35,21 @@ export function EmailInput({
   const handleDomainChange = (value: string) => {
     if (value === 'custom') {
       setIsCustomEmail(true);
+      // Si ya tiene un email completo, extraer solo el username
       const currentEmail = username && domain ? `${username}${domain}` : '';
-      setLocalValue(currentEmail);
+      
+      // Si el email ya tiene un dominio conocido, removerlo
+      let cleanEmail = currentEmail;
+      for (const knownDomain of EMAIL_DOMAINS) {
+        if (currentEmail.endsWith(knownDomain)) {
+          cleanEmail = currentEmail.replace(knownDomain, '');
+          break;
+        }
+      }
+      
+      setLocalValue(cleanEmail);
+      onUsernameChange(cleanEmail);
+      onDomainChange('');
     } else {
       setIsCustomEmail(false);
       setLocalValue('');
@@ -62,8 +75,49 @@ export function EmailInput({
         onDomainChange('');
       }
     } else {
-      onUsernameChange(value);
+      // Detectar si el usuario escribió el email completo con @
+      const hasAtSymbol = value.includes('@');
+      
+      if (hasAtSymbol) {
+        const atIndex = value.lastIndexOf('@');
+        const userDomain = '@' + value.substring(atIndex + 1);
+        const cleanUsername = value.substring(0, atIndex);
+        
+        // Verificar si el dominio está en la lista de dominios conocidos
+        const isDomainInList = EMAIL_DOMAINS.includes(userDomain);
+        
+        if (isDomainInList) {
+          // Si el dominio está en la lista, cambiar el selector automáticamente
+          onUsernameChange(cleanUsername);
+          onDomainChange(userDomain);
+        } else {
+          // Si el dominio NO está en la lista, cambiar a "Otro"
+          setIsCustomEmail(true);
+          setLocalValue(value);
+          onUsernameChange(cleanUsername);
+          onDomainChange(userDomain);
+        }
+      } else {
+        onUsernameChange(value);
+      }
     }
+  };
+
+  // Calcular el email final evitando duplicados
+  const getFinalEmail = () => {
+    if (isCustomEmail) {
+      return inputValue || 'correo@ejemplo.com';
+    }
+    
+    // Si el username ya contiene el dominio seleccionado, no duplicar
+    if (username && username.includes('@')) {
+      const userDomainPart = '@' + username.split('@')[1];
+      if (userDomainPart === domain) {
+        return username;
+      }
+    }
+    
+    return `${username || 'usuario'}${domain}`;
   };
 
   const inputValue = isCustomEmail ? localValue : username;
@@ -120,10 +174,7 @@ export function EmailInput({
       )}
 
       <p className={styles.preview}>
-        Email completo: {isCustomEmail 
-          ? (inputValue || 'correo@ejemplo.com')
-          : `${username || 'usuario'}${domain}`
-        }
+        Email completo: {getFinalEmail()}
       </p>
     </div>
   );
